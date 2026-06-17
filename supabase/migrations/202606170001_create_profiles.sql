@@ -14,17 +14,17 @@ create policy "profiles_select_own"
   on public.profiles
   for select
   to authenticated
-  using (auth.uid() = id);
+  using ((select auth.uid()) = id);
 
 drop policy if exists "profiles_update_own_email_only" on public.profiles;
 create policy "profiles_update_own_email_only"
   on public.profiles
   for update
   to authenticated
-  using (auth.uid() = id)
+  using ((select auth.uid()) = id)
   with check (
-    auth.uid() = id
-    and role = (select role from public.profiles where id = auth.uid())
+    (select auth.uid()) = id
+    and role = (select role from public.profiles where id = (select auth.uid()))
   );
 
 create schema if not exists private;
