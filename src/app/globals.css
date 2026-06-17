@@ -10,6 +10,25 @@
   --warning: #945600;
   --danger: #b42318;
   --success: #087443;
+  --motion-fast: 180ms;
+  --motion-base: 260ms;
+  --motion-slow: 520ms;
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-spring: cubic-bezier(0.2, 0.9, 0.2, 1.15);
+  --shadow-soft: 0 18px 46px rgba(18, 33, 48, 0.12);
+  --shadow-lift: 0 22px 58px rgba(18, 33, 48, 0.16);
+}
+
+@keyframes ld-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 * {
@@ -74,6 +93,25 @@ input {
   background: var(--paper);
   color: var(--ink);
   cursor: pointer;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease-out),
+    box-shadow var(--motion-fast) var(--motion-ease-out),
+    transform var(--motion-fast) var(--motion-ease-out);
+}
+
+.headerButton:hover,
+.headerButton:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  box-shadow: 0 10px 24px rgba(18, 33, 48, 0.1);
+  transform: translateY(-1px);
+}
+
+.headerButton:focus-visible,
+.categoryButton:focus-visible,
+.appOpenButton:focus-visible,
+.authForm button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  outline-offset: 3px;
 }
 
 .homeShell,
@@ -93,6 +131,7 @@ input {
 
 .homeIntro {
   text-align: center;
+  animation: ld-fade-up var(--motion-slow) var(--motion-ease-out) backwards;
 }
 
 .eyebrow {
@@ -126,6 +165,24 @@ h1 {
   border-radius: 8px;
   background: var(--paper);
   text-align: center;
+  box-shadow: 0 12px 30px rgba(18, 33, 48, 0.06);
+  animation: ld-fade-up var(--motion-slow) var(--motion-ease-out) backwards;
+  transition:
+    border-color var(--motion-base) var(--motion-ease-out),
+    box-shadow var(--motion-base) var(--motion-ease-out),
+    transform var(--motion-base) var(--motion-spring);
+  will-change: transform;
+}
+
+.categoryButton:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.categoryButton:hover,
+.categoryButton:focus-visible {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-4px);
 }
 
 .categoryButton span {
@@ -153,6 +210,7 @@ h1 {
 
 .pageHeading {
   margin-bottom: 30px;
+  animation: ld-fade-up var(--motion-slow) var(--motion-ease-out) backwards;
 }
 
 .pageHeading h1 {
@@ -182,6 +240,40 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
+  box-shadow: 0 12px 30px rgba(18, 33, 48, 0.05);
+  animation: ld-fade-up var(--motion-slow) var(--motion-ease-out) backwards;
+  transition:
+    border-color var(--motion-base) var(--motion-ease-out),
+    box-shadow var(--motion-base) var(--motion-ease-out),
+    transform var(--motion-base) var(--motion-spring);
+  will-change: transform;
+}
+
+.appCard:nth-child(2) {
+  animation-delay: 45ms;
+}
+
+.appCard:nth-child(3) {
+  animation-delay: 90ms;
+}
+
+.appCard:nth-child(4) {
+  animation-delay: 135ms;
+}
+
+.appCard:nth-child(5) {
+  animation-delay: 180ms;
+}
+
+.appCard:nth-child(6) {
+  animation-delay: 225ms;
+}
+
+.appCard:hover,
+.appCard:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-4px);
 }
 
 .appCard.locked {
@@ -200,6 +292,12 @@ h1 {
   width: 96px;
   height: 96px;
   object-fit: contain;
+  transition: transform var(--motion-base) var(--motion-spring);
+}
+
+.appCard:hover .appIcon,
+.appCard:focus-within .appIcon {
+  transform: scale(1.04);
 }
 
 .appCard h2 {
@@ -224,6 +322,17 @@ h1 {
   background: var(--accent);
   color: white;
   font-weight: 700;
+  transition:
+    box-shadow var(--motion-fast) var(--motion-ease-out),
+    filter var(--motion-fast) var(--motion-ease-out),
+    transform var(--motion-fast) var(--motion-ease-out);
+}
+
+.appOpenButton:hover,
+.appOpenButton:focus-visible {
+  box-shadow: 0 12px 24px rgba(13, 88, 81, 0.2);
+  filter: brightness(1.04);
+  transform: translateY(-1px);
 }
 
 .lockedButton {
@@ -244,6 +353,7 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--paper);
+  animation: ld-fade-up var(--motion-slow) var(--motion-ease-out) backwards;
 }
 
 .authPanel h1 {
@@ -282,6 +392,17 @@ h1 {
   color: white;
   font-weight: 800;
   cursor: pointer;
+  transition:
+    box-shadow var(--motion-fast) var(--motion-ease-out),
+    filter var(--motion-fast) var(--motion-ease-out),
+    transform var(--motion-fast) var(--motion-ease-out);
+}
+
+.authForm button:hover:not(:disabled),
+.authForm button:focus-visible:not(:disabled) {
+  box-shadow: 0 12px 24px rgba(13, 88, 81, 0.2);
+  filter: brightness(1.04);
+  transform: translateY(-1px);
 }
 
 .authForm button:disabled {
@@ -348,5 +469,15 @@ h1 {
 
   .appGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
