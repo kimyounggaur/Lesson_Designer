@@ -8,3 +8,5 @@ out
 .env.production.local
 npm-debug.log*
 .next-dev.*
+
+.vercel
