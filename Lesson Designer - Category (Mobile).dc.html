@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  body{ margin:0; }
+  @keyframes ld-bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-7px);} }
+  @keyframes ld-ring{ 0%{ transform:scale(1); opacity:.55;} 70%{ transform:scale(1.45); opacity:0;} 100%{ opacity:0;} }
+  @keyframes ld-sheet{ from{ transform:translateY(102%);} to{ transform:translateY(0);} }
+  @keyframes ld-fade{ from{ opacity:0;} to{ opacity:1;} }
+  @keyframes ld-toast{ 0%{ transform:transl(0,16px); opacity:0;} 12%{ transform:translateY(0); opacity:1;} 88%{ opacity:1;} 100%{ opacity:0;} }
+</style>
+</helmet>
+
+<div style="min-width:100%; width:max-content; min-height:100vh; box-sizing:border-box; padding:46px 48px 64px; background:#E7E5DF; font-family:'Noto Sans KR',sans-serif;">
+
+  <div style="max-width:1280px; margin:0 0 30px;">
+    <div style="display:inline-flex; align-items:center; gap:9px; padding:5px 12px; border-radius:999px; background:#15162E; color:#fff; font-family:'Nunito',sans-serif; font-weight:900; font-size:12px; letter-spacing:.3px;">
+      <span style="width:7px; height:7px; border-radius:50%; background:#FFB020;"></span>LESSON DESIGNER · REDESIGN
+    </div>
+    <h1 style="margin:14px 0 8px; font-family:'Jua',sans-serif; font-weight:400; font-size:38px; line-height:1.1; color:#15162E;">카테고리 페이지 · 게임형 리디자인</h1>
+    <p style="margin:0; max-width:760px; color:#5A5C76; font-size:15px; line-height:1.6;">악기 교육앱 그리드를 학습 게임처럼 재해석했습니다. 청키한 3D 버튼, 둥근 한글 디스플레이체, 진행도·잠금 상태를 살린 세 가지 방향을 나란히 비교하세요.</p>
+
+    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-top:18px;">
+      <div style="display:inline-flex; padding:5px; border-radius:14px; background:#fff; box-shadow:0 2px 0 #D6D3CB; gap:4px;">
+        <button type="button" onClick="{{ setGuest }}" style="border:0; cursor:pointer; padding:8px 16px; border-radius:10px; font-family:'Noto Sans KR'; font-weight:900; font-size:13px; transition:all .15s; {{ guestStyle }}">게스트</button>
+        <button type="button" onClick="{{ setMember }}" style="border:0; cursor:pointer; padding:8px 16px; border-radius:10px; font-family:'Noto Sans KR'; font-weight:900; font-size:13px; transition:all .15s; {{ memberStyle }}">회원</button>
+      </div>
+      <sc-if value="{{ showHint }}" hint-placeholder-val="{{ true }}">
+        <p style="margin:0; color:#8A8DA6; font-size:13px; line-height:1.5; max-width:520px;">회색(잠김) 앱을 탭하면 로그인 시트가 열리고, 로그인하면 세 화면 모두 잠금이 풀립니다.</p>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="display:flex; gap:48px; align-items:flex-start;">
+
+    <!-- ============ FRAME A · SKILL PATH ============ -->
+    <div style="flex:none;">
+      <div style="margin-bottom:12px;">
+        <div style="font-family:'Jua',sans-serif; font-size:17px; color:#15162E;">방향 A · 스킬 패스</div>
+        <div style="color:#8A8DA6; font-size:13px; margin-top:2px;">Duolingo식 굽이치는 학습 경로</div>
+      </div>
+      <div style="width:392px; height:812px; background:#1B1C2E; border-radius:48px; padding:9px; box-shadow:0 32px 60px rgba(21,22,46,.24); position:relative;">
+        <div style="position:absolute; top:18px; left:50%; transform:translateX(-50%); width:120px; height:26px; background:#1B1C2E; border-radius:0 0 16px 16px; z-index:40;"></div>
+        <div style="width:100%; height:100%; border-radius:40px; overflow:hidden; background:#FFFFFF; position:relative; display:flex; flex-direction:column;">
+
+          <!-- status bar -->
+          <div style="flex:none; height:46px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 6px; font-family:'Nunito'; font-weight:800; color:#15162E;">
+            <span style="font-size:14px;">9:41</span>
+            <span style="display:inline-flex; gap:5px; align-items:center;">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="#15162E"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/></svg>
+              <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1" width="19" height="10" rx="3" stroke="#15162E" stroke-width="1.5"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="#15162E"/><rect x="21" y="4" width="2" height="4" rx="1" fill="#15162E"/></svg>
+            </span>
+          </div>
+
+          <!-- top bar -->
+          <div style="flex:none; display:flex; align-items:center; justify-content:space-between; padding:6px 18px 12px;">
+            <div style="display:inline-flex; flex:none; padding:4px; border-radius:13px; background:#F1F3F8; gap:3px;">
+              <button type="button" onClick="{{ tabAEdu }}" style="border:0; cursor:pointer; white-space:nowrap; padding:7px 13px; border-radius:10px; font-family:'Jua'; font-size:13px; transition:all .15s; {{ tabAEduStyle }}">교육</button>
+              <button type="button" onClick="{{ tabAGame }}" style="border:0; cursor:pointer; white-space:nowrap; padding:7px 13px; border-radius:10px; font-family:'Jua'; font-size:13px; transition:all .15s; {{ tabAGameStyle }}">게임</button>
+            </div>
+            <sc-if value="{{ showStats }}" hint-placeholder-val="{{ true }}">
+              <div style="display:inline-flex; align-items:center; gap:13px; font-family:'Nunito'; font-weight:900;">
+                <span style="display:inline-flex; align-items:center; gap:4px; color:#FF6B3D; font-size:15px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="#FF6B3D"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg>14</span>
+                <span style="display:inline-flex; align-items:center; gap:4px; color:#FF4B6B; font-size:15px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="#FF4B6B"><path d="M12 21S4 14.5 4 8.8A4.3 4.3 0 0 1 12 6a4.3 4.3 0 0 1 8 2.8C20 14.5 12 21 12 21z"/></svg>5</span>
+              </div>
+            </sc-if>
+          </div>
+
+          <!-- scroll -->
+          <div style="flex:1; overflow-y:auto; padding:0 16px 44px;">
+            <!-- unit banner -->
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 18px; border-radius:22px; margin-bottom:8px; background:{{ hdrA.base }}; box-shadow:0 5px 0 {{ hdrA.edge }};">
+              <div style="min-width:0;">
+                <div style="font-family:'Nunito'; font-weight:900; font-size:11px; letter-spacing:1px; color:rgba(255,255,255,.78);">{{ hdrA.kicker }}</div>
+                <div style="font-family:'Jua'; font-size:21px; color:#fff; line-height:1.15;">{{ hdrA.title }}</div>
+                <div style="font-size:12px; color:rgba(255,255,255,.85); margin-top:2px;">{{ hdrA.sub }}</div>
+              </div>
+              <button type="button" style="flex:none; width:46px; height:46px; border:0; border-radius:14px; background:rgba(255,255,255,.18); color:#fff; cursor:pointer; display:grid; place-items:center;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5V20.5"/></svg>
+              </button>
+            </div>
+
+            <!-- path -->
+            <div style="display:flex; flex-direction:column; align-items:center; gap:22px; padding:26px 0 0;">
+              <sc-for list="{{ listA }}" as="item" hint-placeholder-count="7">
+                <div style="position:relative; display:flex; justify-content:center; width:100%; transform:translateX({{ item.offset }}px);">
+                  <sc-if value="{{ item.current }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:absolute; top:-40px; left:50%; transform:translateX(-50%); background:#fff; border:2px solid {{ item.base }}; color:{{ item.ink }}; font-family:'Jua'; font-size:13px; padding:5px 14px; border-radius:13px; box-shadow:0 4px 0 rgba(21,22,46,.12); white-space:nowrap; animation:ld-bob 1.6s ease-in-out infinite; z-index:5;">시작</div>
+                  </sc-if>
+                  <button type="button" onClick="{{ item.onTap }}" style="position:relative; width:86px; height:86px; border:0; border-radius:50%; cursor:pointer; background:{{ item.base }}; box-shadow:0 7px 0 {{ item.edge }}; display:grid; place-items:center; padding:0;" style-active="transform:translateY(7px); box-shadow:0 0 0 {{ item.edge }};">
+                    <sc-if value="{{ item.current }}" hint-placeholder-val="{{ false }}">
+                      <span style="position:absolute; inset:-6px; border-radius:50%; border:4px solid {{ item.base }}; animation:ld-ring 1.8s ease-out infinite; pointer-events:none;"></span>
+                    </sc-if>
+                    <img src="{{ item.icon }}" alt="{{ item.name }}" style="width:48px; height:48px; object-fit:contain; {{ item.imgStyle }}">
+                    <sc-if value="{{ item.done }}" hint-placeholder-val="{{ false }}">
+                      <span style="position:absolute; top:-4px; right:-4px; width:30px; height:30px; border-radius:50%; background:#FFB020; box-shadow:0 3px 0 #D98A00; display:grid; place-items:center;"><svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg></span>
+                    </sc-if>
+                    <sc-if value="{{ item.locked }}" hint-placeholder-val="{{ false }}">
+                      <span style="position:absolute; bottom:-3px; right:-3px; width:28px; height:28px; border-radius:50%; background:#A7ACBA; box-shadow:0 3px 0 #878da0; display:grid; place-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+                    </sc-if>
+                  </button>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <!-- login sheet A -->
+          <sc-if value="{{ sheetA }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; inset:0; z-index:50;">
+              <div onClick="{{ closeSheet }}" style="position:absolute; inset:0; background:rgba(21,22,46,.45); animation:ld-fade .2s ease both;"></div>
+              <div style="position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:28px 28px 0 0; padding:10px 22px 26px; animation:ld-sheet .34s cubic-bezier(.16,1,.3,1) both;">
+                <div style="width:42px; height:5px; border-radius:999px; background:#E6E8EE; margin:6px auto 16px;"></div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+                  <span style="width:46px; height:46px; border-radius:14px; background:#EAEFFF; display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+                  <div><div style="font-family:'Jua'; font-size:20px; color:#15162E;">회원 로그인</div><div style="font-size:12px; color:#8A8DA6;">로그인하면 모든 앱이 열려요</div></div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px; margin:16px 0 6px;">
+                  <input type="email" placeholder="이메일" style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 14px; font-size:14px; font-family:'Noto Sans KR'; outline:none;">
+                  <input type="password" placeholder="비밀번호" style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 14px; font-size:14px; font-family:'Noto Sans KR'; outline:none;">
+                </div>
+                <button type="button" onClick="{{ login }}" style="width:100%; border:0; cursor:pointer; margin-top:8px; padding:15px; border-radius:16px; background:#2FBF71; box-shadow:0 5px 0 #1E8C57; color:#fff; font-family:'Jua'; font-size:17px;" style-active="transform:translateY(5px); box-shadow:0 0 0 #1E8C57;">로그인하고 시작하기</button>
+                <div style="text-align:center; margin-top:14px; font-size:13px; color:#8A8DA6;">계정이 없으신가요? <span style="color:#3457D5; font-weight:900;">회원가입</span></div>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- toast A -->
+          <sc-if value="{{ toastA }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; left:16px; right:16px; bottom:26px; z-index:60; background:#15162E; color:#fff; border-radius:16px; padding:13px 16px; display:flex; align-items:center; gap:9px; box-shadow:0 12px 30px rgba(21,22,46,.3); animation:ld-toast 2.4s ease both;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB020"><path d="M12 3l2.9 5.9 6.1.9-4.5 4.4 1 6.1L12 17.8 6.5 20.3l1-6.1L3 9.8l6.1-.9z"/></svg>
+              <span style="font-weight:700; font-size:13px;">{{ toastA }}</span>
+            </div>
+          </sc-if>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FRAME B · QUEST CARDS ============ -->
+    <div style="flex:none;">
+      <div style="margin-bottom:12px;">
+        <div style="font-family:'Jua',sans-serif; font-size:17px; color:#15162E;">방향 B · 퀘스트 카드</div>
+        <div style="color:#8A8DA6; font-size:13px; margin-top:2px;">진행도 · 보상이 보이는 3D 카드 리스트</div>
+      </div>
+      <div style="width:392px; height:812px; background:#1B1C2E; border-radius:48px; padding:9px; box-shadow:0 32px 60px rgba(21,22,46,.24); position:relative;">
+        <div style="position:absolute; top:18px; left:50%; transform:translateX(-50%); width:120px; height:26px; background:#1B1C2E; border-radius:0 0 16px 16px; z-index:40;"></div>
+        <div style="width:100%; height:100%; border-radius:40px; overflow:hidden; background:#F1F4F9; position:relative; display:flex; flex-direction:column;">
+
+          <div style="flex:none; height:46px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 6px; font-family:'Nunito'; font-weight:800; color:#15162E;">
+            <span style="font-size:14px;">9:41</span>
+            <span style="display:inline-flex; gap:5px; align-items:center;">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="#15162E"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/></svg>
+              <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1" width="19" height="10" rx="3" stroke="#15162E" stroke-width="1.5"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="#15162E"/><rect x="21" y="4" width="2" height="4" rx="1" fill="#15162E"/></svg>
+            </span>
+          </div>
+
+          <div style="flex:none; padding:6px 18px 12px; background:#fff; border-bottom:1px solid #E6E8EE;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <div style="font-family:'Jua'; font-size:20px; color:#15162E; white-space:nowrap;">{{ hdrB.title }}</div>
+              <sc-if value="{{ showStats }}" hint-placeholder-val="{{ true }}">
+                <span style="display:inline-flex; align-items:center; gap:4px; font-family:'Nunito'; font-weight:900; color:#12B5C9; font-size:15px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#12B5C9"><path d="M12 2 22 9 12 22 2 9z"/></svg>{{ gems }}</span>
+              </sc-if>
+            </div>
+            <div style="display:flex; padding:4px; border-radius:14px; background:#F1F3F8; gap:4px;">
+              <button type="button" onClick="{{ tabBEdu }}" style="flex:1; border:0; cursor:pointer; padding:9px; border-radius:11px; font-family:'Jua'; font-size:14px; transition:all .15s; {{ tabBEduStyle }}">악기 교육</button>
+              <button type="button" onClick="{{ tabBGame }}" style="flex:1; border:0; cursor:pointer; padding:9px; border-radius:11px; font-family:'Jua'; font-size:14px; transition:all .15s; {{ tabBGameStyle }}">음악 게임</button>
+            </div>
+          </div>
+
+          <div style="flex:1; overflow-y:auto; padding:16px 16px 44px;">
+            <!-- daily goal -->
+            <div style="background:#fff; border-radius:20px; padding:16px 17px; margin-bottom:14px; box-shadow:0 4px 0 #E0E4ED;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+                <span style="display:inline-flex; align-items:center; gap:7px; white-space:nowrap; font-family:'Jua'; font-size:15px; color:#15162E;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#FF6B3D"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg>오늘의 목표</span>
+                <span style="white-space:nowrap; font-family:'Nunito'; font-weight:900; font-size:13px; color:#8A8DA6;">{{ goalNow }} / 50 XP</span>
+              </div>
+              <div style="height:14px; border-radius:999px; background:#EEF0F4; overflow:hidden;"><div style="height:100%; width:{{ goalNow }}%; border-radius:999px; background:#FFB020;"></div></div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <sc-for list="{{ listB }}" as="item" hint-placeholder-count="5">
+                <div style="display:flex; align-items:center; gap:13px; background:#fff; border-radius:20px; padding:13px 14px; box-shadow:0 4px 0 #E0E4ED;">
+                  <div style="flex:none; width:64px; height:64px; border-radius:16px; background:{{ item.soft }}; display:grid; place-items:center;">
+                    <img src="{{ item.icon }}" alt="{{ item.name }}" style="width:40px; height:40px; object-fit:contain; {{ item.imgStyle }}">
+                  </div>
+                  <div style="flex:1; min-width:0;">
+                    <div style="font-family:'Jua'; font-size:16px; color:#15162E; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ item.name }}</div>
+                    <div style="font-size:12px; color:#8A8DA6; margin:1px 0 7px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ item.sub }}</div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <div style="flex:1; height:9px; border-radius:999px; background:#EEF0F4; overflow:hidden;"><div style="height:100%; width:{{ item.prog }}%; background:{{ item.base }}; border-radius:999px;"></div></div>
+                      <span style="font-family:'Nunito'; font-weight:900; font-size:11px; color:{{ item.ink }};">Lv.{{ item.lvl }}</span>
+                    </div>
+                  </div>
+                  <sc-if value="{{ item.unlocked }}" hint-placeholder-val="{{ true }}">
+                    <button type="button" onClick="{{ item.onTap }}" style="flex:none; width:52px; height:52px; border:0; cursor:pointer; border-radius:15px; background:{{ item.base }}; box-shadow:0 4px 0 {{ item.edge }}; display:grid; place-items:center;" style-active="transform:translateY(4px); box-shadow:0 0 0 {{ item.edge }};">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M7 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 7 5.5z"/></svg>
+                    </button>
+                  </sc-if>
+                  <sc-if value="{{ item.locked }}" hint-placeholder-val="{{ false }}">
+                    <button type="button" onClick="{{ item.onTap }}" style="flex:none; width:52px; height:52px; border:0; cursor:pointer; border-radius:15px; background:#E9EBF1; box-shadow:0 4px 0 #D2D6DF; display:grid; place-items:center;" style-active="transform:translateY(4px); box-shadow:0 0 0 #D2D6DF;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9AA0AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+                    </button>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ sheetB }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; inset:0; z-index:50;">
+              <div onClick="{{ closeSheet }}" style="position:absolute; inset:0; background:rgba(21,22,46,.45); animation:ld-fade .2s ease both;"></div>
+              <div style="position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:28px 28px 0 0; padding:10px 22px 26px; animation:ld-sheet .34s cubic-bezier(.16,1,.3,1) both;">
+                <div style="width:42px; height:5px; border-radius:999px; background:#E6E8EE; margin:6px auto 16px;"></div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+                  <span style="width:46px; height:46px; border-radius:14px; background:#EAEFFF; display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+                  <div><div style="font-family:'Jua'; font-size:20px; color:#15162E;">회원 로그인</div><div style="font-size:12px; color:#8A8DA6;">로그인하면 모든 앱이 열려요</div></div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px; margin:16px 0 6px;">
+                  <input type="email" placeholder="이메일" style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 14px; font-size:14px; font-family:'Noto Sans KR'; outline:none;">
+                  <input type="password" placeholder="비밀번호" style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 14px; font-size:14px; font-family:'Noto Sans KR'; outline:none;">
+                </div>
+                <button type="button" onClick="{{ login }}" style="width:100%; border:0; cursor:pointer; margin-top:8px; padding:15px; border-radius:16px; background:#2FBF71; box-shadow:0 5px 0 #1E8C57; color:#fff; font-family:'Jua'; font-size:17px;" style-active="transform:translateY(5px); box-shadow:0 0 0 #1E8C57;">로그인하고 시작하기</button>
+                <div style="text-align:center; margin-top:14px; font-size:13px; color:#8A8DA6;">계정이 없으신가요? <span style="color:#3457D5; font-weight:900;">회원가입</span></div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ toastB }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; left:16px; right:16px; bottom:26px; z-index:60; background:#15162E; color:#fff; border-radius:16px; padding:13px 16px; display:flex; align-items:center; gap:9px; box-shadow:0 12px 30px rgba(21,22,46,.3); animation:ld-toast 2.4s ease both;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB020"><path d="M12 3l2.9 5.9 6.1.9-4.5 4.4 1 6.1L12 17.8 6.5 20.3l1-6.1L3 9.8l6.1-.9z"/></svg>
+              <span style="font-weight:700; font-size:13px;">{{ toastB }}</span>
+            </div>
+          </sc-if>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FRAME C · BOLD GRID ============ -->
+    <div style="flex:none;">
+      <div style="margin-bottom:12px;">
+        <div style="font-family:'Jua',sans-serif; font-size:17px; color:#15162E;">방향 C · 볼드 그리드</div>
+        <div style="color:#8A8DA6; font-size:13px; margin-top:2px;">한눈에 보는 컬러 타일 코스 맵</div>
+      </div>
+      <div style="width:392px; height:812px; background:#1B1C2E; border-radius:48px; padding:9px; box-shadow:0 32px 60px rgba(21,22,46,.24); position:relative;">
+        <div style="position:absolute; top:18px; left:50%; transform:translateX(-50%); width:120px; height:26px; background:#1B1C2E; border-radius:0 0 16px 16px; z-index:40;"></div>
+        <div style="width:100%; height:100%; border-radius:40px; overflow:hidden; background:#FFFFFF; position:relative; display:flex; flex-direction:column;">
+
+          <!-- colored hero header -->
+          <div style="flex:none; background:{{ hdrC.base }}; padding:0 0 18px; color:#fff;">
+            <div style="height:46px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 6px; font-family:'Nunito'; font-weight:800; color:#fff;">
+              <span style="font-size:14px;">9:41</span>
+              <span style="display:inline-flex; gap:5px; align-items:center;">
+                <svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/></svg>
+                <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1" width="19" height="10" rx="3" stroke="#fff" stroke-width="1.5"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="#fff"/><rect x="21" y="4" width="2" height="4" rx="1" fill="#fff"/></svg>
+              </span>
+            </div>
+            <div style="padding:6px 20px 0;">
+              <div style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="font-family:'Jua'; font-size:24px; line-height:1.1;">{{ hdrC.title }}</div>
+                <sc-if value="{{ showStats }}" hint-placeholder-val="{{ true }}">
+                  <span style="display:inline-flex; align-items:center; gap:4px; font-family:'Nunito'; font-weight:900; font-size:15px;"><svg width="17" height="17" viewBox="0 0 24 24" fill="#FFD84D"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg>14일</span>
+                </sc-if>
+              </div>
+              <div style="font-size:13px; color:rgba(255,255,255,.86); margin-top:3px;">{{ hdrC.sub }}</div>
+              <div style="display:flex; padding:4px; border-radius:13px; background:rgba(255,255,255,.18); gap:4px; margin-top:14px;">
+                <button type="button" onClick="{{ tabCEdu }}" style="flex:1; border:0; cursor:pointer; padding:8px; border-radius:10px; font-family:'Jua'; font-size:13px; transition:all .15s; {{ tabCEduStyleH }}">악기 교육</button>
+                <button type="button" onClick="{{ tabCGame }}" style="flex:1; border:0; cursor:pointer; padding:8px; border-radius:10px; font-family:'Jua'; font-size:13px; transition:all .15s; {{ tabCGameStyleH }}">음악 게임</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex:1; overflow-y:auto; padding:16px 14px 44px; background:#F7F8FB;">
+            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">
+              <sc-for list="{{ listC }}" as="item" hint-placeholder-count="8">
+                <button type="button" onClick="{{ item.onTap }}" style="position:relative; border:0; cursor:pointer; text-align:left; background:#fff; border-radius:20px; padding:14px 13px 12px; box-shadow:0 4px 0 #E4E7EE;" style-active="transform:translateY(3px); box-shadow:0 1px 0 #E4E7EE;">
+                  <sc-if value="{{ item.locked }}" hint-placeholder-val="{{ false }}">
+                    <span style="position:absolute; top:10px; right:10px; width:26px; height:26px; border-radius:50%; background:#EEF0F4; display:grid; place-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9AA0AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+                  </sc-if>
+                  <sc-if value="{{ item.current }}" hint-placeholder-val="{{ false }}">
+                    <span style="position:absolute; top:9px; right:10px; font-family:'Jua'; font-size:11px; color:{{ item.ink }}; background:{{ item.soft }}; padding:3px 8px; border-radius:999px;">시작</span>
+                  </sc-if>
+                  <div style="width:62px; height:62px; border-radius:18px; background:{{ item.soft }}; display:grid; place-items:center; margin-bottom:10px;">
+                    <img src="{{ item.icon }}" alt="{{ item.name }}" style="width:40px; height:40px; object-fit:contain; {{ item.imgStyle }}">
+                  </div>
+                  <div style="font-family:'Jua'; font-size:15px; color:#15162E; line-height:1.2; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ item.name }}</div>
+                  <div style="display:flex; align-items:center; gap:5px; margin-top:7px;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="{{ item.crownColor }}"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg>
+                    <span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6;">Lv.{{ item.lvl }}</span>
+                  </div>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ sheetC }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; inset:0; z-index:50;">
+              <div onClick="{{ closeSheet }}" style="position:absolute; inset:0; background:rgba(21,22,46,.45); animation:ld-fade .2s ease both;"></div>
+              <div style="position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:28px 28px 0 0; padding:10px 22px 26px; animation:ld-sheet .34s cubic-bezier(.16,1,.3,1) both;">
+                <div style="width:42px; height:5px; border-radius:999px; background:#E6E8EE; margin:6px auto 16px;"></div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+                  <span style="width:46px; height:46px; border-radius:14px; background:#FFEDE5; display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+                  <div><div style="font-family:'Jua'; font-size:20px; color:#15162E;">회원 로그인</div><div style="font-size:12px; color:#8A8DA6;">로그인하면 모든 앱이 열려요</div></div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px; margin:16px 0 6px;">
+                  <input type="email" placeholder="이메일" style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 14px; font-size:14px; font-family:'Noto Sans KR'; outline:none;">
+                  <input type="password" placeholder="비밀번호" style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 14px; font-size:14px; font-family:'Noto Sans KR'; outline:none;">
+                </div>
+                <button type="button" onClick="{{ login }}" style="width:100%; border:0; cursor:pointer; margin-top:8px; padding:15px; border-radius:16px; background:#2FBF71; box-shadow:0 5px 0 #1E8C57; color:#fff; font-family:'Jua'; font-size:17px;" style-active="transform:translateY(5px); box-shadow:0 0 0 #1E8C57;">로그인하고 시작하기</button>
+                <div style="text-align:center; margin-top:14px; font-size:13px; color:#8A8DA6;">계정이 없으신가요? <span style="color:#3457D5; font-weight:900;">회원가입</span></div>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ toastC }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; left:16px; right:16px; bottom:26px; z-index:60; background:#15162E; color:#fff; border-radius:16px; padding:13px 16px; display:flex; align-items:center; gap:9px; box-shadow:0 12px 30px rgba(21,22,46,.3); animation:ld-toast 2.4s ease both;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFB020"><path d="M12 3l2.9 5.9 6.1.9-4.5 4.4 1 6.1L12 17.8 6.5 20.3l1-6.1L3 9.8l6.1-.9z"/></svg>
+              <span style="font-weight:700; font-size:13px;">{{ toastC }}</span>
+            </div>
+          </sc-if>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1380,&quot;height&quot;:980},&quot;showHint&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showStats&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;startUnlocked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { loggedIn:false, sheet:null, toast:null, cat:{A:'edu',B:'edu',C:'edu'} };
+
+  HUES = {
+    blue:  {base:'#3457D5', edge:'#1E3AAE', soft:'#EAEFFF', ink:'#1E3AAE'},
+    teal:  {base:'#12B5C9', edge:'#0E8A99', soft:'#E2F7FA', ink:'#0E7D8B'},
+    orange:{base:'#FF6B3D', edge:'#D9491E', soft:'#FFEDE5', ink:'#C53E16'},
+    purple:{base:'#7C5CFC', edge:'#5B3FD4', soft:'#EFEAFF', ink:'#5B3FD4'},
+    pink:  {base:'#FF5C9D', edge:'#DB3279', soft:'#FFE8F1', ink:'#C42769'},
+    gold:  {base:'#FFB020', edge:'#D98A00', soft:'#FFF3D6', ink:'#9A6B00'},
+    green: {base:'#2FBF71', edge:'#1E8C57', soft:'#E3F7EC', ink:'#1E8C57'},
+    red:   {base:'#FF5247', edge:'#D9382E', soft:'#FFE9E7', ink:'#C42C24'}
+  };
+  GRAY = {base:'#C6CAD4', edge:'#A7ACBA', soft:'#EEF0F4', ink:'#9AA0AE'};
+  OFF = [0, 48, 74, 48, 0, -48, -74, -48];
+
+  EDU = [
+    {id:'guitar', name:'기타 코드', sub:'기본 코드와 운지', icon:'icons/guitar.png', pub:true,  hue:'blue',   done:true,  prog:100, lvl:5},
+    {id:'ukulele',name:'우쿨렐레 코드', sub:'코드 전환 연습', icon:'icons/ukulele.png', pub:true,  hue:'teal',   done:false, prog:60,  lvl:3},
+    {id:'tongue', name:'텅드럼', sub:'번호 악보 연주', icon:'icons/tongue-drum.png', pub:false, hue:'orange', done:false, prog:0, lvl:2},
+    {id:'kalimba',name:'칼림바', sub:'음계와 탭 위치', icon:'icons/kalimba.png', pub:false, hue:'purple', done:false, prog:0, lvl:2},
+    {id:'miniharp',name:'미니하프', sub:'줄 배열과 계이름', icon:'icons/miniharp.png', pub:false, hue:'pink', done:false, prog:0, lvl:1},
+    {id:'sax', name:'색소폰', sub:'운지와 음역', icon:'icons/saxophone.png', pub:false, hue:'gold', done:false, prog:0, lvl:1},
+    {id:'ocarina',name:'오카리나', sub:'구멍 위치 연습', icon:'icons/ocarina.png', pub:false, hue:'orange', done:false, prog:0, lvl:1},
+    {id:'panflute',name:'팬플룻', sub:'관 배열과 음높이', icon:'icons/panflute.png', pub:false, hue:'green', done:false, prog:0, lvl:1},
+    {id:'violin', name:'바이올린', sub:'포지션과 음정', icon:'icons/violin.png', pub:false, hue:'red', done:false, prog:0, lvl:1},
+    {id:'cello', name:'첼로', sub:'줄 이름과 포지션', icon:'icons/cello.png', pub:false, hue:'red', done:false, prog:0, lvl:1},
+    {id:'flute', name:'플루트', sub:'운지와 음계', icon:'icons/flute.png', pub:false, hue:'teal', done:false, prog:0, lvl:1},
+    {id:'metronome',name:'메트로놈', sub:'템포와 박자', icon:'icons/metronome.png', pub:false, hue:'blue', done:false, prog:0, lvl:1}
+  ];
+  GAME = [
+    {id:'nanta', name:'난타 리듬', sub:'리듬 패턴 따라치기', icon:'icons/nanta.png', pub:false, hue:'orange', done:false, prog:0, lvl:1},
+    {id:'drum',  name:'드럼 리듬', sub:'비트와 그루브', icon:'icons/drum.png', pub:false, hue:'teal', done:false, prog:0, lvl:1},
+    {id:'tongueg',name:'텅드럼 리듬', sub:'멜로디 놀이', icon:'icons/tongue-drum.png', pub:false, hue:'purple', done:false, prog:0, lvl:1},
+    {id:'kalimbag',name:'칼림바 연주', sub:'터치 연주 패턴', icon:'icons/kalimba.png', pub:false, hue:'gold', done:false, prog:0, lvl:1}
+  ];
+
+  componentDidMount(){
+    if((this.props.startUnlocked ?? false) === true){ this.setState({loggedIn:true}); }
+  }
+
+  setCat(f,c){ this.setState(s=>({cat:{...s.cat,[f]:c}})); }
+  tap(app, unlocked, frame){
+    if(!unlocked){ this.setState({sheet:frame}); return; }
+    this.fireToast(frame, app.name + ' 여는 중…');
+  }
+  closeSheet(){ this.setState({sheet:null}); }
+  login(){ const f=this.state.sheet||'A'; this.setState({loggedIn:true, sheet:null}); this.fireToast(f,'모든 앱이 열렸어요!'); }
+  fireToast(frame,msg){ clearTimeout(this._t); this.setState({toast:{frame,msg}}); this._t=setTimeout(()=>this.setState({toast:null}),2400); }
+  setLogged(v){ this.setState({loggedIn:v, sheet:null}); }
+
+  hdr(cat){
+    return cat==='edu'
+      ? {title:'악기 교육앱', sub:'코드 · 운지 · 음계를 단계별로', kicker:'유닛 1', base:'#3457D5', edge:'#1E3AAE', soft:'#EAEFFF', ink:'#1E3AAE'}
+      : {title:'음악 게임앱', sub:'리듬과 반응을 게임처럼', kicker:'플레이', base:'#FF6B3D', edge:'#D9491E', soft:'#FFEDE5', ink:'#C53E16'};
+  }
+
+  build(frame){
+    const cat=this.state.cat[frame];
+    const list = cat==='edu'? this.EDU : this.GAME;
+    let currentSet=false;
+    return list.map((a,i)=>{
+      const unlocked = a.pub || this.state.loggedIn;
+      const c = unlocked ? this.HUES[a.hue] : this.GRAY;
+      let current=false;
+      if(unlocked && !a.done && !currentSet){ current=true; currentSet=true; }
+      return {
+        name:a.name, sub:a.sub, icon:a.icon, unlocked, locked:!unlocked,
+        done:!!a.done, current,
+        base:c.base, edge:c.edge, soft:c.soft, ink:c.ink,
+        prog: a.done?100:(a.prog||0), lvl:a.lvl,
+        offset:this.OFF[i%8],
+        imgStyle: unlocked ? 'filter:none;opacity:1' : 'filter:grayscale(1) brightness(1.03);opacity:.5',
+        crownColor: a.done ? '#FFB020' : (unlocked ? '#D8DCE6' : '#C6CAD4'),
+        statusLabel: !unlocked ? '로그인 필요' : (a.done ? '완료' : '이용 가능'),
+        onTap: ()=>this.tap(a, unlocked, frame)
+      };
+    });
+  }
+
+  pillStyle(active, ink){
+    return active
+      ? ('background:#15162E;color:#fff;box-shadow:0 3px 0 #050615;')
+      : ('background:transparent;color:#9AA0AE;box-shadow:none;');
+  }
+
+  renderVals(){
+    const s=this.state;
+    const hdrA=this.hdr(s.cat.A), hdrB=this.hdr(s.cat.B), hdrC=this.hdr(s.cat.C);
+    const lit = s.loggedIn;
+    return {
+      showHint: this.props.showHint ?? true,
+      showStats: this.props.showStats ?? true,
+      loggedIn: lit,
+      profileLabel: lit ? '회원' : '게스트',
+      streak: 14,
+      gems: lit ? 620 : 120,
+      goalNow: lit ? 40 : 10,
+
+      hdrA, hdrB, hdrC,
+      listA:this.build('A'), listB:this.build('B'), listC:this.build('C'),
+      sheetA:s.sheet==='A', sheetB:s.sheet==='B', sheetC:s.sheet==='C',
+      toastA: (s.toast&&s.toast.frame==='A') ? s.toast.msg : null,
+      toastB: (s.toast&&s.toast.frame==='B') ? s.toast.msg : null,
+      toastC: (s.toast&&s.toast.frame==='C') ? s.toast.msg : null,
+
+      tabAEduStyle:this.pillStyle(s.cat.A==='edu'), tabAGameStyle:this.pillStyle(s.cat.A==='game'),
+      tabBEduStyle:this.pillStyle(s.cat.B==='edu'), tabBGameStyle:this.pillStyle(s.cat.B==='game'),
+      tabCEduStyle:this.pillStyle(s.cat.C==='edu'), tabCGameStyle:this.pillStyle(s.cat.C==='game'),
+      tabCEduStyleH: s.cat.C==='edu' ? 'background:#fff;color:#15162E;' : 'background:transparent;color:rgba(255,255,255,.85);',
+      tabCGameStyleH: s.cat.C==='game' ? 'background:#fff;color:#15162E;' : 'background:transparent;color:rgba(255,255,255,.85);',
+      guestStyle:this.pillStyle(!lit), memberStyle:this.pillStyle(lit),
+
+      tabAEdu:()=>this.setCat('A','edu'), tabAGame:()=>this.setCat('A','game'),
+      tabBEdu:()=>this.setCat('B','edu'), tabBGame:()=>this.setCat('B','game'),
+      tabCEdu:()=>this.setCat('C','edu'), tabCGame:()=>this.setCat('C','game'),
+      closeSheet:()=>this.closeSheet(), login:()=>this.login(),
+      setGuest:()=>this.setLogged(false), setMember:()=>this.setLogged(true)
+    };
+  }
+}
+</script>
+</body>
+</html>

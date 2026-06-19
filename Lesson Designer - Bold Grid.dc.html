@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  body{ margin:0; }
+  .ld-scroll::-webkit-scrollbar{ width:0; height:0; }
+  @keyframes ld-sheet{ from{ transform:translateY(102%);} to{ transform:translateY(0);} }
+  @keyframes ld-fade{ from{ opacity:0;} to{ opacity:1;} }
+  @keyframes ld-ring{ 0%{ transform:scale(1); opacity:.5;} 70%{ transform:scale(1.4); opacity:0;} 100%{ opacity:0;} }
+  @keyframes ld-toast{ 0%{ transform:translateY(16px); opacity:0;} 12%{ transform:translateY(0); opacity:1;} 88%{ opacity:1;} 100%{ opacity:0;} }
+  @keyframes ld-screen{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:translateY(0);} }
+</style>
+</helmet>
+
+<div style="min-height:100vh; display:flex; align-items:flex-start; justify-content:center; padding:36px 24px 56px; background:radial-gradient(120% 80% at 50% 0%, #EEF1F7 0%, #E3E1DA 100%); font-family:'Noto Sans KR',sans-serif;">
+  <div style="flex:none; width:404px; height:866px; background:#1B1C2E; border-radius:50px; padding:9px; box-shadow:0 40px 80px rgba(21,22,46,.28); position:relative;">
+    <div style="position:absolute; top:18px; left:50%; transform:translateX(-50%); width:124px; height:27px; background:#1B1C2E; border-radius:0 0 16px 16px; z-index:60;"></div>
+    <div style="width:100%; height:100%; border-radius:42px; overflow:hidden; background:#F4F6FA; position:relative; display:flex; flex-direction:column;">
+
+      <!-- ============ HOME HEADER ============ -->
+      <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:none; background:#fff; border-bottom:1px solid #EBEEF3;">
+          <div style="height:46px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 4px; font-family:'Nunito'; font-weight:800; font-size:14px; color:#15162E;">
+            <span>9:41</span>
+            <span style="display:inline-flex; gap:5px; align-items:center;">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="#15162E"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/></svg>
+              <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1" width="19" height="10" rx="3" stroke="#15162E" stroke-width="1.5"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="#15162E"/><rect x="21" y="4" width="2" height="4" rx="1" fill="#15162E"/></svg>
+            </span>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 20px 16px;">
+            <div style="min-width:0;">
+              <div style="font-family:'Nunito'; font-weight:900; font-size:11px; letter-spacing:1.4px; color:#3457D5;">LESSON DESIGNER</div>
+              <div style="font-family:'Jua'; font-size:25px; color:#15162E; line-height:1.12; margin-top:2px; white-space:nowrap;">반가워요, 선생님</div>
+              <div style="font-size:13px; color:#8A8DA6; margin-top:2px;">오늘도 한 곡 배워볼까요?</div>
+            </div>
+            <button type="button" onClick="{{ navProfile }}" style="flex:none; border:0; cursor:pointer; width:50px; height:50px; border-radius:16px; background:#EAEFFF; color:#3457D5; display:grid; place-items:center; position:relative;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.6 3.2-5.6 7-5.6s7 2 7 5.6"/></svg>
+              <span style="position:absolute; bottom:-4px; right:-5px; padding:2px 6px; border-radius:999px; font-family:'Nunito'; font-weight:900; font-size:9px; color:#fff; background:{{ profile.badgeBg }}; border:2px solid #fff;">{{ profile.label }}</span>
+            </button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ CATEGORY HEADER ============ -->
+      <sc-if value="{{ isCategory }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:none; position:relative; overflow:hidden; background:{{ accent.base }}; padding:0 0 22px; color:#fff;">
+          <span style="position:absolute; top:-70px; right:-50px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,.10);"></span>
+          <span style="position:absolute; top:40px; left:-70px; width:150px; height:150px; border-radius:50%; background:rgba(255,255,255,.07);"></span>
+          <div style="position:relative; height:46px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 4px; font-family:'Nunito'; font-weight:800; font-size:14px;">
+            <span>9:41</span>
+            <span style="display:inline-flex; gap:5px; align-items:center;">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/></svg>
+              <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1" width="19" height="10" rx="3" stroke="#fff" stroke-width="1.5"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="#fff"/><rect x="21" y="4" width="2" height="4" rx="1" fill="#fff"/></svg>
+            </span>
+          </div>
+          <div style="position:relative; padding:8px 20px 0;">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <div style="min-width:0;">
+                <div style="font-family:'Nunito'; font-weight:900; font-size:11px; letter-spacing:1.4px; color:rgba(255,255,255,.78);">LESSON DESIGNER</div>
+                <div style="font-family:'Jua'; font-size:27px; line-height:1.12; margin-top:2px;">{{ accent.title }}</div>
+                <div style="font-size:13px; color:rgba(255,255,255,.86); margin-top:3px;">{{ accent.sub }}</div>
+              </div>
+              <button type="button" onClick="{{ navProfile }}" style="flex:none; border:0; cursor:pointer; width:48px; height:48px; border-radius:16px; background:rgba(255,255,255,.16); color:#fff; display:grid; place-items:center; position:relative;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.6 3.2-5.6 7-5.6s7 2 7 5.6"/></svg>
+                <span style="position:absolute; bottom:-4px; right:-4px; padding:2px 6px; border-radius:999px; font-family:'Nunito'; font-weight:900; font-size:9px; color:#fff; background:{{ profile.badgeBg }}; border:2px solid {{ accent.base }};">{{ profile.label }}</span>
+              </button>
+            </div>
+            <sc-if value="{{ showStats }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex; gap:8px; margin-top:16px;">
+                <div style="flex:1; display:flex; align-items:center; gap:7px; padding:9px 11px; border-radius:14px; background:rgba(255,255,255,.16);">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="#FFD05A"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg>
+                  <div style="line-height:1;"><div style="font-family:'Nunito'; font-weight:900; font-size:16px;">14</div><div style="font-size:10px; color:rgba(255,255,255,.8); margin-top:2px;">연속</div></div>
+                </div>
+                <div style="flex:1; display:flex; align-items:center; gap:7px; padding:9px 11px; border-radius:14px; background:rgba(255,255,255,.16);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#9BE1FF"><path d="M12 2 22 9 12 22 2 9z"/></svg>
+                  <div style="line-height:1;"><div style="font-family:'Nunito'; font-weight:900; font-size:16px;">{{ gems }}</div><div style="font-size:10px; color:rgba(255,255,255,.8); margin-top:2px;">젬</div></div>
+                </div>
+                <div style="flex:1; display:flex; align-items:center; gap:7px; padding:9px 11px; border-radius:14px; background:rgba(255,255,255,.16);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#FF8AA0"><path d="M12 21S4 14.5 4 8.8A4.3 4.3 0 0 1 12 6a4.3 4.3 0 0 1 8 2.8C20 14.5 12 21 12 21z"/></svg>
+                  <div style="line-height:1;"><div style="font-family:'Nunito'; font-weight:900; font-size:16px;">{{ hearts }}</div><div style="font-size:10px; color:rgba(255,255,255,.8); margin-top:2px;">하트</div></div>
+                </div>
+              </div>
+            </sc-if>
+            <div style="display:flex; padding:4px; border-radius:14px; background:rgba(255,255,255,.16); gap:4px; margin-top:14px;">
+              <button type="button" onClick="{{ setEdu }}" style="flex:1; border:0; cursor:pointer; padding:9px; border-radius:10px; font-family:'Jua'; font-size:14px; transition:all .15s; {{ tabEduStyle }}">악기 교육</button>
+              <button type="button" onClick="{{ setGame }}" style="flex:1; border:0; cursor:pointer; padding:9px; border-radius:10px; font-family:'Jua'; font-size:14px; transition:all .15s; {{ tabGameStyle }}">음악 게임</button>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ PROFILE HEADER ============ -->
+      <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+        <div style="flex:none; position:relative; overflow:hidden; background:linear-gradient(150deg, #3457D5 0%, #5A78E8 100%); padding:0 0 24px; color:#fff;">
+          <span style="position:absolute; top:-60px; right:-40px; width:190px; height:190px; border-radius:50%; background:rgba(255,255,255,.10);"></span>
+          <div style="position:relative; height:46px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 4px; font-family:'Nunito'; font-weight:800; font-size:14px;">
+            <span>9:41</span>
+            <span style="display:inline-flex; gap:5px; align-items:center;">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/></svg>
+              <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="1" y="1" width="19" height="10" rx="3" stroke="#fff" stroke-width="1.5"/><rect x="3" y="3" width="13" height="6" rx="1.5" fill="#fff"/><rect x="21" y="4" width="2" height="4" rx="1" fill="#fff"/></svg>
+            </span>
+          </div>
+          <div style="position:relative; display:flex; flex-direction:column; align-items:center; padding:12px 20px 0; text-align:center;">
+            <div style="width:84px; height:84px; border-radius:28px; background:rgba(255,255,255,.2); border:3px solid rgba(255,255,255,.55); display:grid; place-items:center; font-family:'Jua'; font-size:36px;">음</div>
+            <div style="font-family:'Jua'; font-size:23px; margin-top:12px; white-space:nowrap;">음악 선생님</div>
+            <div style="display:inline-flex; align-items:center; gap:6px; margin-top:8px;">
+              <span style="padding:4px 12px; border-radius:999px; background:rgba(255,255,255,.22); font-family:'Jua'; font-size:12px;">{{ profile.tier }}</span>
+              <span style="font-size:12px; color:rgba(255,255,255,.82);">{{ profile.since }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ============ SCROLL BODY ============ -->
+      <div class="ld-scroll" ref="{{ scrollRef }}" style="flex:1; overflow-y:auto; padding:18px 16px 24px;">
+
+        <!-- ===== HOME BODY ===== -->
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="animation:ld-screen .3s ease both;">
+            <!-- streak / goal hero -->
+            <div style="position:relative; overflow:hidden; border-radius:24px; padding:18px 18px 16px; margin-bottom:16px; background:linear-gradient(140deg, #3457D5 0%, #5A78E8 100%); box-shadow:0 6px 0 #1E3AAE; color:#fff;">
+              <span style="position:absolute; top:-40px; right:-30px; width:130px; height:130px; border-radius:50%; background:rgba(255,255,255,.12);"></span>
+              <div style="position:relative; display:flex; align-items:center; gap:12px;">
+                <span style="width:46px; height:46px; border-radius:15px; background:rgba(255,255,255,.2); display:grid; place-items:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="#FFD05A"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg></span>
+                <div style="flex:1;"><div style="font-family:'Jua'; font-size:21px; line-height:1.1;">{{ streakLine }}</div><div style="font-size:12px; color:rgba(255,255,255,.85); margin-top:2px;">오늘의 목표까지 {{ goalLeft }} XP 남았어요</div></div>
+              </div>
+              <div style="position:relative; display:flex; align-items:center; gap:9px; margin-top:14px;">
+                <div style="flex:1; height:12px; border-radius:999px; background:rgba(255,255,255,.26); overflow:hidden;"><div style="height:100%; width:{{ goalNow }}%; border-radius:999px; background:#FFD05A;"></div></div>
+                <span style="font-family:'Nunito'; font-weight:900; font-size:12px;">{{ goalNowXp }}/50</span>
+              </div>
+            </div>
+
+            <!-- continue -->
+            <sc-if value="{{ hasHomeCont }}" hint-placeholder-val="{{ true }}">
+              <div style="font-family:'Jua'; font-size:17px; color:#15162E; padding:2px 4px 10px;">이어서 학습하기</div>
+              <button type="button" onClick="{{ homeCont.onTap }}" style="width:100%; text-align:left; border:0; cursor:pointer; display:flex; align-items:center; gap:14px; padding:14px 15px; border-radius:22px; margin-bottom:18px; background:#fff; box-shadow:0 5px 0 #E4E7EE;" style-active="transform:translateY(5px); box-shadow:0 0 0 #E4E7EE;">
+                <div style="flex:none; width:60px; height:60px; border-radius:17px; background:{{ homeCont.soft }}; display:grid; place-items:center;">
+                  <div role="img" aria-label="{{ homeCont.name }}" style="width:40px; height:40px; background-image:url({{ homeCont.icon }}); background-size:contain; background-repeat:no-repeat; background-position:center;"></div>
+                </div>
+                <div style="flex:1; min-width:0;">
+                  <div style="font-family:'Jua'; font-size:17px; color:#15162E;">{{ homeCont.name }}</div>
+                  <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+                    <div style="flex:1; height:8px; border-radius:999px; background:#EEF0F4; overflow:hidden;"><div style="height:100%; width:{{ homeCont.prog }}%; border-radius:999px; background:{{ homeCont.base }};"></div></div>
+                    <span style="font-family:'Nunito'; font-weight:900; font-size:11px; color:{{ homeCont.ink }};">{{ homeCont.prog }}%</span>
+                  </div>
+                </div>
+                <span style="flex:none; width:44px; height:44px; border-radius:14px; background:{{ homeCont.base }}; box-shadow:0 3px 0 {{ homeCont.edge }}; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 8 5.5z"/></svg></span>
+              </button>
+            </sc-if>
+
+            <!-- category cards -->
+            <div style="font-family:'Jua'; font-size:17px; color:#15162E; padding:2px 4px 10px;">카테고리</div>
+            <div style="display:flex; flex-direction:column; gap:13px;">
+              <sc-for list="{{ catCards }}" as="cc" hint-placeholder-count="2">
+                <button type="button" onClick="{{ cc.onTap }}" style="position:relative; overflow:hidden; width:100%; text-align:left; border:0; cursor:pointer; padding:18px 18px; border-radius:24px; background:{{ cc.base }}; box-shadow:0 6px 0 {{ cc.edge }}; color:#fff;" style-active="transform:translateY(6px); box-shadow:0 0 0 {{ cc.edge }};">
+                  <span style="position:absolute; top:-30px; right:-20px; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,.12);"></span>
+                  <div style="position:relative; display:flex; align-items:center; justify-content:space-between;">
+                    <div style="min-width:0;">
+                      <div style="font-family:'Jua'; font-size:21px; line-height:1.1;">{{ cc.title }}</div>
+                      <div style="font-size:12.5px; color:rgba(255,255,255,.88); margin-top:4px;">{{ cc.sub }}</div>
+                      <div style="display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:5px 11px; border-radius:999px; background:rgba(255,255,255,.2); font-family:'Nunito'; font-weight:900; font-size:12px;">{{ cc.count }}</div>
+                    </div>
+                    <div style="position:relative; flex:none; display:flex;">
+                      <div role="img" aria-label="{{ cc.i0name }}" style="width:50px; height:50px; border-radius:50%; background:#fff; background-image:url({{ cc.i0 }}); background-size:34px; background-repeat:no-repeat; background-position:center; box-shadow:0 3px 8px rgba(0,0,0,.14);"></div>
+                      <div role="img" style="width:50px; height:50px; margin-left:-18px; border-radius:50%; background:#fff; background-image:url({{ cc.i1 }}); background-size:34px; background-repeat:no-repeat; background-position:center; box-shadow:0 3px 8px rgba(0,0,0,.14);"></div>
+                      <div role="img" style="width:50px; height:50px; margin-left:-18px; border-radius:50%; background:#fff; background-image:url({{ cc.i2 }}); background-size:34px; background-repeat:no-repeat; background-position:center; box-shadow:0 3px 8px rgba(0,0,0,.14);"></div>
+                    </div>
+                  </div>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ===== CATEGORY BODY ===== -->
+        <sc-if value="{{ isCategory }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:ld-screen .3s ease both;">
+            <sc-if value="{{ hasContinue }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onClick="{{ cont.onTap }}" style="width:100%; text-align:left; border:0; cursor:pointer; display:flex; align-items:center; gap:14px; padding:15px 16px; border-radius:24px; margin-bottom:18px; background:{{ cont.base }}; box-shadow:0 6px 0 {{ cont.edge }};" style-active="transform:translateY(6px); box-shadow:0 0 0 {{ cont.edge }};">
+                <div style="flex:none; width:62px; height:62px; border-radius:18px; background:rgba(255,255,255,.22); display:grid; place-items:center;">
+                  <div role="img" aria-label="{{ cont.name }}" style="width:42px; height:42px; background-image:url({{ cont.icon }}); background-size:contain; background-repeat:no-repeat; background-position:center;"></div>
+                </div>
+                <div style="flex:1; min-width:0; color:#fff;">
+                  <div style="font-family:'Nunito'; font-weight:900; font-size:11px; letter-spacing:.6px; color:rgba(255,255,255,.85);">이어서 학습하기</div>
+                  <div style="font-family:'Jua'; font-size:18px; line-height:1.15; margin:1px 0 8px;">{{ cont.name }}</div>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="flex:1; height:9px; border-radius:999px; background:rgba(255,255,255,.28); overflow:hidden;"><div style="height:100%; width:{{ cont.prog }}%; border-radius:999px; background:#fff;"></div></div>
+                    <span style="font-family:'Nunito'; font-weight:900; font-size:11px; color:#fff;">{{ cont.prog }}%</span>
+                  </div>
+                </div>
+              </button>
+            </sc-if>
+            <sc-if value="{{ showGuestPrompt }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; align-items:center; gap:13px; padding:16px; border-radius:22px; margin-bottom:18px; background:#fff; box-shadow:0 5px 0 #E4E7EE;">
+                <span style="flex:none; width:48px; height:48px; border-radius:14px; background:{{ accent.soft }}; display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{ accent.base }}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+                <div style="flex:1; min-width:0;"><div style="font-family:'Jua'; font-size:15px; color:#15162E;">로그인하면 모두 열려요</div><div style="font-size:12px; color:#8A8DA6; margin-top:1px;">회원 계정으로 전체 앱을 이용하세요</div></div>
+                <button type="button" onClick="{{ openLogin }}" style="flex:none; border:0; cursor:pointer; padding:11px 15px; border-radius:13px; background:{{ accent.base }}; box-shadow:0 4px 0 {{ accent.edge }}; color:#fff; font-family:'Jua'; font-size:14px;" style-active="transform:translateY(4px); box-shadow:0 0 0 {{ accent.edge }};">로그인</button>
+              </div>
+            </sc-if>
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:0 4px 12px;">
+              <span style="font-family:'Jua'; font-size:17px; color:#15162E; white-space:nowrap;">전체 앱</span>
+              <span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6; white-space:nowrap;">{{ total }}개 · 잠김 {{ lockedCount }}</span>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">
+              <sc-for list="{{ list }}" as="item" hint-placeholder-count="8">
+                <button type="button" onClick="{{ item.onTap }}" style="position:relative; border:0; cursor:pointer; text-align:left; background:#fff; border-radius:22px; padding:15px 14px 13px; box-shadow:0 5px 0 {{ item.tileEdge }}; border:2.5px solid {{ item.tileBorder }};" style-active="transform:translateY(4px); box-shadow:0 1px 0 {{ item.tileEdge }};">
+                  <sc-if value="{{ item.locked }}" hint-placeholder-val="{{ false }}">
+                    <span style="position:absolute; top:11px; right:11px; width:27px; height:27px; border-radius:50%; background:#EEF0F4; display:grid; place-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9AA0AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+                  </sc-if>
+                  <sc-if value="{{ item.current }}" hint-placeholder-val="{{ false }}">
+                    <span style="position:absolute; top:11px; right:11px; white-space:nowrap; font-family:'Jua'; font-size:11px; color:#fff; background:{{ item.base }}; padding:3px 9px; border-radius:999px;">시작</span>
+                  </sc-if>
+                  <sc-if value="{{ item.done }}" hint-placeholder-val="{{ false }}">
+                    <span style="position:absolute; top:9px; right:10px; width:28px; height:28px; border-radius:50%; background:#FFB020; display:grid; place-items:center; box-shadow:0 2px 0 #D98A00;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg></span>
+                  </sc-if>
+                  <div style="position:relative; width:64px; height:64px; border-radius:18px; background:{{ item.soft }}; display:grid; place-items:center; margin-bottom:11px;">
+                    <sc-if value="{{ item.current }}" hint-placeholder-val="{{ false }}">
+                      <span style="position:absolute; inset:-3px; border-radius:21px; border:3px solid {{ item.base }}; animation:ld-ring 1.9s ease-out infinite; pointer-events:none;"></span>
+                    </sc-if>
+                    <div role="img" aria-label="{{ item.name }}" style="width:42px; height:42px; background-image:url({{ item.icon }}); background-size:contain; background-repeat:no-repeat; background-position:center; {{ item.imgStyle }}"></div>
+                  </div>
+                  <div style="font-family:'Jua'; font-size:15px; color:#15162E; line-height:1.18; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ item.name }}</div>
+                  <sc-if value="{{ item.showBar }}" hint-placeholder-val="{{ false }}">
+                    <div style="height:7px; border-radius:999px; background:#EEF0F4; overflow:hidden; margin:9px 0 0;"><div style="height:100%; width:{{ item.prog }}%; background:{{ item.base }}; border-radius:999px;"></div></div>
+                  </sc-if>
+                  <sc-if value="{{ item.showLv }}" hint-placeholder-val="{{ true }}">
+                    <div style="display:flex; align-items:center; gap:5px; margin-top:9px;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="{{ item.crownColor }}"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg>
+                      <span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6;">Lv.{{ item.lvl }}</span>
+                    </div>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ===== PROFILE BODY ===== -->
+        <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:ld-screen .3s ease both;">
+            <sc-if value="{{ guestProfile }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex; align-items:center; gap:13px; padding:16px; border-radius:22px; margin-bottom:16px; background:#FFF6DD; box-shadow:0 5px 0 #F0E2B0;">
+                <span style="flex:none; width:46px; height:46px; border-radius:14px; background:#fff; display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9A6B00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+                <div style="flex:1; min-width:0;"><div style="font-family:'Jua'; font-size:15px; color:#9A6B00;">게스트로 둘러보는 중</div><div style="font-size:12px; color:#A8853A; margin-top:1px;">로그인하면 진도와 젬이 저장돼요</div></div>
+                <button type="button" onClick="{{ openLogin }}" style="flex:none; border:0; cursor:pointer; padding:11px 15px; border-radius:13px; background:#FFB020; box-shadow:0 4px 0 #D98A00; color:#fff; font-family:'Jua'; font-size:14px;" style-active="transform:translateY(4px); box-shadow:0 0 0 #D98A00;">로그인</button>
+              </div>
+            </sc-if>
+
+            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:11px; margin-bottom:20px;">
+              <div style="display:flex; align-items:center; gap:11px; padding:15px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;">
+                <span style="width:42px; height:42px; border-radius:13px; background:#FFEDE5; display:grid; place-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#FF6B3D"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg></span>
+                <div style="line-height:1.05;"><div style="font-family:'Nunito'; font-weight:900; font-size:20px; color:#15162E;">{{ streakDays }}</div><div style="font-size:11px; color:#8A8DA6; margin-top:3px;">연속 일수</div></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:11px; padding:15px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;">
+                <span style="width:42px; height:42px; border-radius:13px; background:#E2F7FA; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#12B5C9"><path d="M12 2 22 9 12 22 2 9z"/></svg></span>
+                <div style="line-height:1.05;"><div style="font-family:'Nunito'; font-weight:900; font-size:20px; color:#15162E;">{{ gems }}</div><div style="font-size:11px; color:#8A8DA6; margin-top:3px;">젬</div></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:11px; padding:15px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;">
+                <span style="width:42px; height:42px; border-radius:13px; background:#FFE8F1; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FF5C9D"><path d="M12 21S4 14.5 4 8.8A4.3 4.3 0 0 1 12 6a4.3 4.3 0 0 1 8 2.8C20 14.5 12 21 12 21z"/></svg></span>
+                <div style="line-height:1.05;"><div style="font-family:'Nunito'; font-weight:900; font-size:20px; color:#15162E;">{{ hearts }}</div><div style="font-size:11px; color:#8A8DA6; margin-top:3px;">하트</div></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:11px; padding:15px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;">
+                <span style="width:42px; height:42px; border-radius:13px; background:#FFF3D6; display:grid; place-items:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="#FFB020"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg></span>
+                <div style="line-height:1.05;"><div style="font-family:'Nunito'; font-weight:900; font-size:20px; color:#15162E;">{{ doneApps }}</div><div style="font-size:11px; color:#8A8DA6; margin-top:3px;">완료한 앱</div></div>
+              </div>
+            </div>
+
+            <div style="font-family:'Jua'; font-size:17px; color:#15162E; padding:0 4px 12px;">업적</div>
+            <div style="display:flex; gap:11px; margin-bottom:22px;">
+              <sc-for list="{{ badges }}" as="bd" hint-placeholder-count="3">
+                <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:15px 8px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;">
+                  <span style="width:50px; height:50px; border-radius:50%; background:{{ bd.bg }}; display:grid; place-items:center;">{{ bd.icon }}</span>
+                  <span style="font-size:11px; font-weight:800; color:{{ bd.labelColor }}; text-align:center; line-height:1.25;">{{ bd.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE; overflow:hidden; margin-bottom:14px;">
+              <button type="button" onClick="{{ goEdu }}" style="width:100%; border:0; cursor:pointer; background:none; display:flex; align-items:center; gap:13px; padding:15px 16px; border-bottom:1px solid #F1F3F8;">
+                <span style="width:34px; height:34px; border-radius:11px; background:#EAEFFF; display:grid; place-items:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.2 2.7 2.5 6 2.5s6-1.3 6-2.5v-5"/></svg></span>
+                <span style="flex:1; text-align:left; font-family:'Jua'; font-size:15px; color:#15162E;">내 학습 기록</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6CAD4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <button type="button" onClick="{{ comingSoon }}" style="width:100%; border:0; cursor:pointer; background:none; display:flex; align-items:center; gap:13px; padding:15px 16px; border-bottom:1px solid #F1F3F8;">
+                <span style="width:34px; height:34px; border-radius:11px; background:#FFEDE5; display:grid; place-items:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FF6B3D" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M10.5 20a1.8 1.8 0 0 0 3 0"/></svg></span>
+                <span style="flex:1; text-align:left; font-family:'Jua'; font-size:15px; color:#15162E;">알림 설정</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6CAD4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <button type="button" onClick="{{ comingSoon }}" style="width:100%; border:0; cursor:pointer; background:none; display:flex; align-items:center; gap:13px; padding:15px 16px;">
+                <span style="width:34px; height:34px; border-radius:11px; background:#E3F7EC; display:grid; place-items:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1E8C57" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.5 1.5c0 1.7-2.5 2-2.5 3.5"/><path d="M12 17.5h.01"/></svg></span>
+                <span style="flex:1; text-align:left; font-family:'Jua'; font-size:15px; color:#15162E;">도움말</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6CAD4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+
+            <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ logout }}" style="width:100%; border:0; cursor:pointer; padding:15px; border-radius:18px; background:#FFE9E7; box-shadow:0 4px 0 #F3C9C4; color:#D9382E; font-family:'Jua'; font-size:15px; display:flex; align-items:center; justify-content:center; gap:8px;" style-active="transform:translateY(4px); box-shadow:0 0 0 #F3C9C4;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#D9382E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+                로그아웃
+              </button>
+            </sc-if>
+          </div>
+        </sc-if>
+
+      </div>
+
+      <!-- ===== BOTTOM NAV ===== -->
+      <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:none; display:flex; align-items:center; justify-content:space-around; padding:10px 8px 16px; background:#fff; border-top:1px solid #E6E8EE;">
+          <button type="button" onClick="{{ navHome }}" style="border:0; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; padding:4px 12px; color:{{ navHomeColor }};">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg>
+            <span style="font-size:10px; font-weight:700;">홈</span>
+          </button>
+          <button type="button" onClick="{{ goEdu }}" style="border:0; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; padding:4px 12px; color:{{ navEduColor }};">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.2 2.7 2.5 6 2.5s6-1.3 6-2.5v-5"/></svg>
+            <span style="font-size:10px; font-weight:700;">교육</span>
+          </button>
+          <button type="button" onClick="{{ goGame }}" style="border:0; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; padding:4px 12px; color:{{ navGameColor }};">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M8 11.5v3M6.5 13h3"/><circle cx="15.5" cy="12" r=".6" fill="currentColor"/><circle cx="17.5" cy="14" r=".6" fill="currentColor"/></svg>
+            <span style="font-size:10px; font-weight:700;">게임</span>
+          </button>
+          <button type="button" onClick="{{ navProfile }}" style="border:0; background:none; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:3px; padding:4px 12px; color:{{ navProfColor }};">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.6 3.2-5.6 7-5.6s7 2 7 5.6"/></svg>
+            <span style="font-size:10px; font-weight:700;">내 정보</span>
+          </button>
+        </div>
+      </sc-if>
+
+      <!-- ===== APP DETAIL SHEET ===== -->
+      <sc-if value="{{ detail }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; inset:0; z-index:70;">
+          <div onClick="{{ closeDetail }}" style="position:absolute; inset:0; background:rgba(21,22,46,.5); animation:ld-fade .2s ease both;"></div>
+          <div style="position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:30px 30px 0 0; padding:10px 22px 26px; animation:ld-sheet .34s cubic-bezier(.16,1,.3,1) both;">
+            <div style="width:42px; height:5px; border-radius:999px; background:#E6E8EE; margin:6px auto 18px;"></div>
+            <div style="display:flex; align-items:center; gap:15px;">
+              <div style="flex:none; width:84px; height:84px; border-radius:22px; background:{{ detail.soft }}; display:grid; place-items:center;">
+                <div role="img" aria-label="{{ detail.name }}" style="width:54px; height:54px; background-image:url({{ detail.icon }}); background-size:contain; background-repeat:no-repeat; background-position:center;"></div>
+              </div>
+              <div style="flex:1; min-width:0;">
+                <div style="display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border-radius:999px; background:{{ detail.soft }}; color:{{ detail.ink }}; font-family:'Jua'; font-size:11px;">{{ detail.catLabel }}</div>
+                <div style="font-family:'Jua'; font-size:23px; color:#15162E; line-height:1.15; margin-top:7px;">{{ detail.name }}</div>
+                <div style="display:flex; align-items:center; gap:6px; margin-top:5px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="{{ detail.crownColor }}"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg>
+                  <span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6;">레벨 {{ detail.lvl }}</span>
+                </div>
+              </div>
+            </div>
+            <p style="margin:16px 0 0; font-size:14px; line-height:1.62; color:#5A5C76;">{{ detail.desc }}</p>
+            <button type="button" onClick="{{ detail.onOpen }}" style="width:100%; border:0; cursor:pointer; margin-top:20px; padding:16px; border-radius:18px; background:{{ detail.base }}; box-shadow:0 6px 0 {{ detail.edge }}; color:#fff; font-family:'Jua'; font-size:18px; display:flex; align-items:center; justify-content:center; gap:8px;" style-active="transform:translateY(6px); box-shadow:0 0 0 {{ detail.edge }};">
+              앱 열기
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </button>
+            <button type="button" onClick="{{ closeDetail }}" style="width:100%; border:0; cursor:pointer; margin-top:10px; padding:13px; border-radius:16px; background:#F1F3F8; color:#8A8DA6; font-family:'Jua'; font-size:15px;">닫기</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ===== LOGIN SHEET ===== -->
+      <sc-if value="{{ loginOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; inset:0; z-index:80;">
+          <div onClick="{{ closeLogin }}" style="position:absolute; inset:0; background:rgba(21,22,46,.5); animation:ld-fade .2s ease both;"></div>
+          <div style="position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:30px 30px 0 0; padding:10px 22px 26px; animation:ld-sheet .34s cubic-bezier(.16,1,.3,1) both;">
+            <div style="width:42px; height:5px; border-radius:999px; background:#E6E8EE; margin:6px auto 18px;"></div>
+            <div style="display:flex; align-items:center; gap:13px; margin-bottom:6px;">
+              <span style="width:48px; height:48px; border-radius:15px; background:#EAEFFF; display:grid; place-items:center;"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+              <div><div style="font-family:'Jua'; font-size:21px; color:#15162E;">회원 로그인</div><div style="font-size:13px; color:#8A8DA6;">로그인하면 모든 앱이 열려요</div></div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px; margin:18px 0 6px;">
+              <input type="email" placeholder="이메일" value="teacher@lesson.kr" style="border:2px solid #E6E8EE; border-radius:15px; padding:14px 15px; font-size:14px; font-family:'Noto Sans KR'; color:#15162E; outline:none;">
+              <input type="password" placeholder="비밀번호" value="••••••••" style="border:2px solid #E6E8EE; border-radius:15px; padding:14px 15px; font-size:14px; font-family:'Noto Sans KR'; color:#15162E; outline:none;">
+            </div>
+            <button type="button" onClick="{{ doLogin }}" style="width:100%; border:0; cursor:pointer; margin-top:10px; padding:16px; border-radius:18px; background:#2FBF71; box-shadow:0 6px 0 #1E8C57; color:#fff; font-family:'Jua'; font-size:18px;" style-active="transform:translateY(6px); box-shadow:0 0 0 #1E8C57;">로그인하고 시작하기</button>
+            <div style="text-align:center; margin-top:15px; font-size:13px; color:#8A8DA6;">계정이 없으신가요? <span style="color:#3457D5; font-weight:900;">회원가입</span></div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ===== TOAST ===== -->
+      <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; left:16px; right:16px; bottom:96px; z-index:90; background:#15162E; color:#fff; border-radius:16px; padding:14px 16px; display:flex; align-items:center; gap:10px; box-shadow:0 14px 34px rgba(21,22,46,.34); animation:ld-toast 2.6s ease both;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="#FFB020"><path d="M12 3l2.9 5.9 6.1.9-4.5 4.4 1 6.1L12 17.8 6.5 20.3l1-6.1L3 9.8l6.1-.9z"/></svg>
+          <span style="font-weight:700; font-size:13px;">{{ toast }}</span>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:480,&quot;height&quot;:940},&quot;showStats&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showNav&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;startUnlocked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;category&quot;,&quot;profile&quot;],&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { loggedIn:false, screen:'home', cat:'edu', detail:null, loginOpen:false, toast:null };
+  scrollRef = React.createRef();
+
+  HUES = {
+    blue:  {base:'#3457D5', edge:'#1E3AAE', soft:'#EAEFFF', ink:'#1E3AAE'},
+    teal:  {base:'#12B5C9', edge:'#0E8A99', soft:'#E2F7FA', ink:'#0E7D8B'},
+    orange:{base:'#FF6B3D', edge:'#D9491E', soft:'#FFEDE5', ink:'#C53E16'},
+    purple:{base:'#7C5CFC', edge:'#5B3FD4', soft:'#EFEAFF', ink:'#5B3FD4'},
+    pink:  {base:'#FF5C9D', edge:'#DB3279', soft:'#FFE8F1', ink:'#C42769'},
+    gold:  {base:'#FFB020', edge:'#D98A00', soft:'#FFF3D6', ink:'#9A6B00'},
+    green: {base:'#2FBF71', edge:'#1E8C57', soft:'#E3F7EC', ink:'#1E8C57'},
+    red:   {base:'#FF5247', edge:'#D9382E', soft:'#FFE9E7', ink:'#C42C24'}
+  };
+  GRAY = {base:'#C6CAD4', edge:'#A7ACBA', soft:'#EEF0F4', ink:'#9AA0AE'};
+
+  EDU = [
+    {id:'guitar', name:'기타 코드', icon:'icons/guitar.png', pub:true, hue:'blue', done:true, prog:100, lvl:5, url:'https://guitar-chord-viewer.vercel.app/', desc:'기타 기본 코드와 손가락 위치를 빠르게 확인하며 연습합니다.'},
+    {id:'ukulele', name:'우쿨렐레 코드', icon:'icons/ukulele.png', pub:true, hue:'teal', done:false, prog:60, lvl:3, url:'https://ukulele-chord-viewer.vercel.app/', desc:'우쿨렐레 코드 운지와 코드 전환을 가볍게 익힙니다.'},
+    {id:'tongue', name:'텅드럼', icon:'icons/tongue-drum.png', pub:false, hue:'orange', done:false, prog:0, lvl:2, url:'https://tonguedrum-play.vercel.app/', desc:'번호 악보와 음계를 보며 텅드럼 연주 흐름을 배웁니다.'},
+    {id:'kalimba', name:'칼림바', icon:'icons/kalimba.png', pub:false, hue:'purple', done:false, prog:0, lvl:2, url:'https://kalimba-play.vercel.app/', desc:'칼림바 음계, 탭 위치, 간단한 멜로디 연습을 이어갑니다.'},
+    {id:'miniharp', name:'미니하프', icon:'icons/miniharp.png', pub:false, hue:'pink', done:false, prog:0, lvl:1, url:'https://miniharp-app.vercel.app/', desc:'줄 배열과 계이름을 확인하며 미니하프 기초를 익힙니다.'},
+    {id:'sax', name:'색소폰', icon:'icons/saxophone.png', pub:false, hue:'gold', done:false, prog:0, lvl:1, url:'https://saxophone-edu.vercel.app/', desc:'색소폰 운지와 음역을 단계별로 확인하는 학습 앱입니다.'},
+    {id:'ocarina', name:'오카리나', icon:'icons/ocarina.png', pub:false, hue:'orange', done:false, prog:0, lvl:1, url:'https://ocarina-master.vercel.app/', desc:'오카리나 구멍 위치와 계이름을 보며 연주를 연습합니다.'},
+    {id:'panflute', name:'팬플룻', icon:'icons/panflute.png', pub:false, hue:'green', done:false, prog:0, lvl:1, url:'https://panflute-edu.vercel.app/', desc:'팬플룻 관 배열과 음높이를 시각적으로 익히는 앱입니다.'},
+    {id:'violin', name:'바이올린', icon:'icons/violin.png', pub:false, hue:'red', done:false, prog:0, lvl:1, url:'https://violin-edu.vercel.app/', desc:'바이올린 줄, 포지션, 음정을 기초부터 확인합니다.'},
+    {id:'cello', name:'첼로', icon:'icons/cello.png', pub:false, hue:'red', done:false, prog:0, lvl:1, url:'https://cello-edu.vercel.app/', desc:'첼로 줄 이름과 포지션 감각을 차분하게 연습합니다.'},
+    {id:'flute', name:'플루트', icon:'icons/flute.png', pub:false, hue:'teal', done:false, prog:0, lvl:1, url:'https://flute-edu.vercel.app/', desc:'플루트 운지와 음계를 한눈에 확인하며 연습합니다.'},
+    {id:'metronome', name:'메트로놈', icon:'icons/metronome.png', pub:false, hue:'blue', done:false, prog:0, lvl:1, url:'https://metronome-app-flax.vercel.app/', desc:'박자와 템포를 맞추며 연주 루틴을 안정적으로 잡습니다.'}
+  ];
+  GAME = [
+    {id:'nanta', name:'난타 리듬', icon:'icons/nanta.png', pub:false, hue:'orange', done:false, prog:0, lvl:1, url:'https://nanta-play.vercel.app/', desc:'리듬 패턴을 따라 치며 박자 감각과 반응 속도를 키웁니다.'},
+    {id:'drum', name:'드럼 리듬', icon:'icons/drum.png', pub:false, hue:'teal', done:false, prog:0, lvl:1, url:'https://drum-beat-pi.vercel.app/', desc:'드럼 비트를 게임처럼 누르며 그루브를 체험합니다.'},
+    {id:'tongueg', name:'텅드럼 리듬', icon:'icons/tongue-drum.png', pub:false, hue:'purple', done:false, prog:0, lvl:1, url:'https://tonguedrum-play.vercel.app/', desc:'텅드럼 소리를 직접 눌러보며 멜로디 놀이를 즐깁니다.'},
+    {id:'kalimbag', name:'칼림바 연주', icon:'icons/kalimba.png', pub:false, hue:'gold', done:false, prog:0, lvl:1, url:'https://kalimba-play.vercel.app/', desc:'칼림바 음색을 터치하며 간단한 패턴을 만들어 봅니다.'}
+  ];
+
+  componentDidMount(){
+    if((this.props.startUnlocked ?? false) === true){ this.setState({loggedIn:true}); }
+    const ss=this.props.startScreen; if(ss && ['home','category','profile'].includes(ss)) this.setState({screen:ss});
+  }
+
+  curList(){ return this.state.cat==='edu' ? this.EDU : this.GAME; }
+  catLabel(){ return this.state.cat==='edu' ? '악기 교육' : '음악 게임'; }
+
+  view(a){
+    const unlocked = a.pub || this.state.loggedIn;
+    const c = unlocked ? this.HUES[a.hue] : this.GRAY;
+    const prog = a.done?100:(a.prog||0);
+    return {
+      id:a.id, name:a.name, icon:a.icon, url:a.url, desc:a.desc,
+      unlocked, locked:!unlocked, done:!!a.done, prog, lvl:a.lvl,
+      base:c.base, edge:c.edge, soft:c.soft, ink:c.ink,
+      catLabel:this.catLabel(),
+      imgStyle: unlocked ? 'filter:none;opacity:1' : 'filter:grayscale(1) brightness(1.03);opacity:.5',
+      crownColor: a.done ? '#FFB020' : (unlocked ? '#D8DCE6' : '#C6CAD4')
+    };
+  }
+
+  build(){
+    let currentSet=false;
+    return this.curList().map(a=>{
+      const v=this.view(a);
+      v.current = v.unlocked && !v.done && !currentSet;
+      if(v.current) currentSet=true;
+      v.showBar = v.unlocked && v.prog>0 && v.prog<100;
+      v.showLv = !v.showBar;
+      v.tileBorder = v.current ? v.base : 'transparent';
+      v.tileEdge = '#E4E7EE';
+      v.onTap = ()=>this.openApp(a, v.unlocked);
+      return v;
+    });
+  }
+
+  contFrom(arr){
+    const a = arr.find(x=>(x.pub||this.state.loggedIn) && !x.done);
+    if(!a) return null;
+    const v=this.view(a);
+    v.onTap = ()=>this.openApp(a, true);
+    return v;
+  }
+
+  catCardData(){
+    const eduStats={total:this.EDU.length, pub:this.EDU.filter(x=>x.pub).length};
+    const gameStats={total:this.GAME.length, pub:this.GAME.filter(x=>x.pub).length};
+    return [
+      {key:'edu', title:'악기 교육앱', sub:'코드 · 운지 · 음계 학습', count:eduStats.total+'개 앱 · 공개 '+eduStats.pub, base:'#3457D5', edge:'#1E3AAE',
+        i0:'icons/guitar.png', i0name:'기타', i1:'icons/ukulele.png', i2:'icons/kalimba.png', onTap:()=>this.goCat('edu')},
+      {key:'game', title:'음악 게임앱', sub:'리듬과 반응 놀이', count:gameStats.total+'개 앱 · 공개 '+gameStats.pub, base:'#FF6B3D', edge:'#D9491E',
+        i0:'icons/nanta.png', i0name:'난타', i1:'icons/drum.png', i2:'icons/tongue-drum.png', onTap:()=>this.goCat('game')}
+    ];
+  }
+
+  badgeData(){
+    const m=this.state.loggedIn;
+    const crown='<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg>';
+    const flame='<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg>';
+    const star='<svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 3l2.9 5.9 6.1.9-4.5 4.4 1 6.1L12 17.8 6.5 20.3l1-6.1L3 9.8l6.1-.9z"/></svg>';
+    const lock='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>';
+    const html=(s)=>React.createElement('span',{dangerouslySetInnerHTML:{__html:s},style:{display:'grid',placeItems:'center'}});
+    return [
+      {label:'첫 코드 마스터', icon:html(crown), bg:'#FFB020', labelColor:'#15162E'},
+      {label:'7일 연속', icon:html(m?flame:lock), bg:m?'#FF6B3D':'#C6CAD4', labelColor:m?'#15162E':'#9AA0AE'},
+      {label:'올라운더', icon:html(m?star:lock), bg:m?'#7C5CFC':'#C6CAD4', labelColor:m?'#15162E':'#9AA0AE'}
+    ];
+  }
+
+  openApp(a, unlocked){
+    if(!unlocked){ this.setState({loginOpen:true}); return; }
+    this.setState({detail:a});
+  }
+  doOpen(a){ this.setState({detail:null}); this.fireToast(a.name+' 여는 중…'); try{ window.open(a.url,'_blank','noopener'); }catch(e){} }
+  closeDetail(){ this.setState({detail:null}); }
+  openLogin(){ this.setState({loginOpen:true}); }
+  closeLogin(){ this.setState({loginOpen:false}); }
+  doLogin(){ this.setState({loggedIn:true, loginOpen:false}); this.fireToast('로그인 완료 · 모든 앱이 열렸어요!'); }
+  logout(){ this.setState({loggedIn:false}); this.fireToast('로그아웃 되었어요'); }
+  setCat(c){ this.setState({cat:c}); }
+  goCat(c){ this.setState({screen:'category', cat:c, detail:null}); }
+  go(scr){ this.setState({screen:scr, detail:null}); }
+  avatarTap(){ this.setState({screen:'profile', detail:null}); }
+  comingSoon(){ this.fireToast('준비 중인 기능이에요'); }
+  fireToast(msg){ clearTimeout(this._t); this.setState({toast:msg}); this._t=setTimeout(()=>this.setState({toast:null}),2600); }
+
+  accentObj(){
+    return this.state.cat==='edu'
+      ? {base:'#3457D5', edge:'#1E3AAE', soft:'#EAEFFF', ink:'#1E3AAE', title:'악기 교육앱', sub:'코드 · 운지 · 음계를 단계별로'}
+      : {base:'#FF6B3D', edge:'#D9491E', soft:'#FFEDE5', ink:'#C53E16', title:'음악 게임앱', sub:'리듬과 반응을 게임처럼'};
+  }
+  tabStyle(active){ return active ? 'background:#fff;color:#15162E;' : 'background:transparent;color:rgba(255,255,255,.85);'; }
+
+  renderVals(){
+    const s=this.state;
+    const lit=s.loggedIn;
+    const isHome=s.screen==='home', isCategory=s.screen==='category', isProfile=s.screen==='profile';
+    const list=this.build();
+    const cont=isCategory?this.contFrom(this.curList()):null;
+    const homeCont=this.contFrom(this.EDU);
+    const det=s.detail ? (()=>{ const v=this.view(s.detail); v.onOpen=()=>this.doOpen(s.detail); return v; })() : null;
+    const lockedCount=list.filter(x=>x.locked).length;
+    const doneApps=[...this.EDU,...this.GAME].filter(x=>(x.pub||lit)&&x.done).length;
+    const goalNowXp=lit?40:10;
+    return {
+      showStats: this.props.showStats ?? true,
+      showNav: this.props.showNav ?? true,
+      isHome, isCategory, isProfile, loggedIn:lit,
+      accent:this.accentObj(),
+      streakDays: lit?14:0,
+      gems: lit?620:0,
+      hearts: lit?5:0,
+      doneApps,
+      goalNow: goalNowXp*2, goalNowXp, goalLeft: 50-goalNowXp,
+      streakLine: lit?'14일 연속 학습 중!':'오늘 학습을 시작해요!',
+      profile:{ label: lit?'회원':'게스트', badgeBg: lit?'#2FBF71':'#8A8DA6', tier: lit?'회원 · Lv.5':'게스트', since: lit?'2025.09 가입':'로그인 필요' },
+      guestProfile: !lit,
+      tabEduStyle:this.tabStyle(s.cat==='edu'), tabGameStyle:this.tabStyle(s.cat==='game'),
+      navHomeColor: isHome?'#3457D5':'#9AA0AE',
+      navEduColor: (isCategory&&s.cat==='edu')?'#3457D5':'#9AA0AE',
+      navGameColor: (isCategory&&s.cat==='game')?'#FF6B3D':'#9AA0AE',
+      navProfColor: isProfile?'#3457D5':'#9AA0AE',
+      list, total:list.length, lockedCount,
+      cont, hasContinue:!!cont, showGuestPrompt:!cont,
+      homeCont, hasHomeCont:!!homeCont,
+      catCards:this.catCardData(),
+      badges:this.badgeData(),
+      detail:det, loginOpen:s.loginOpen, toast:s.toast, scrollRef:this.scrollRef,
+      setEdu:()=>this.setCat('edu'), setGame:()=>this.setCat('game'),
+      goEdu:()=>this.goCat('edu'), goGame:()=>this.goCat('game'),
+      navHome:()=>this.go('home'), navProfile:()=>this.avatarTap(),
+      openLogin:()=>this.openLogin(), doLogin:()=>this.doLogin(), closeLogin:()=>this.closeLogin(),
+      closeDetail:()=>this.closeDetail(), logout:()=>this.logout(), comingSoon:()=>this.comingSoon()
+    };
+  }
+}
+</script>
+</body>
+</html>
