@@ -1283,3 +1283,766 @@ h1 {
     opacity: 1;
   }
 }
+
+/* Exported mobile app redesign */
+:root {
+  --app-blue: #3f5fd8;
+  --app-blue-deep: #11152f;
+  --app-blue-soft: #eef2ff;
+  --app-teal: #19b7c4;
+  --app-teal-soft: #dff9fb;
+  --app-yellow: #ffd23f;
+  --app-pink: #ff7d9c;
+  --app-paper: #ffffff;
+  --app-canvas: #f3f2ee;
+  --app-rail: #f4f5fb;
+  --app-text: #17172c;
+  --app-muted: #7b7f92;
+  --app-line: #e7e8f2;
+  --app-shadow: 0 24px 60px rgba(22, 24, 48, 0.18);
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 10%, rgba(63, 95, 216, 0.12), transparent 28%),
+    radial-gradient(circle at 86% 20%, rgba(25, 183, 196, 0.14), transparent 28%),
+    var(--app-canvas);
+  color: var(--app-text);
+}
+
+.deviceStage {
+  min-height: 100vh;
+  display: grid;
+  place-items: start center;
+  padding: 28px 14px;
+}
+
+.phoneFrame {
+  width: min(430px, 100%);
+  min-height: min(880px, calc(100vh - 56px));
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  border: 7px solid #1c2031;
+  border-radius: 42px;
+  background: var(--app-rail);
+  box-shadow: var(--app-shadow);
+}
+
+.siteHeader.appHeader {
+  position: static;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 16px 20px 20px;
+  border: 0;
+  background:
+    radial-gradient(circle at 82% 22%, rgba(255, 255, 255, 0.16), transparent 25%),
+    linear-gradient(135deg, #3d63dc 0%, var(--app-blue) 68%, #496ee5 100%);
+  color: var(--app-paper);
+  backdrop-filter: none;
+}
+
+.categoryPhone.play .siteHeader.appHeader {
+  background:
+    radial-gradient(circle at 82% 22%, rgba(255, 255, 255, 0.16), transparent 25%),
+    linear-gradient(135deg, #f06b44 0%, #ff8255 58%, #f4a03d 100%);
+}
+
+.appStatusBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.appStatusBar strong {
+  font-weight: 950;
+}
+
+.statusIcons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.appHeaderTop {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 14px;
+}
+
+.brand.appBrand {
+  display: grid;
+  gap: 4px;
+}
+
+.brandEyebrow {
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 1.6px;
+}
+
+.appBrand strong {
+  font-size: 26px;
+  line-height: 1.08;
+}
+
+.appBrand small {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.accountCluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.userChip,
+.iconLogoutButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--app-paper);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.userChip {
+  min-width: 58px;
+  min-height: 58px;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.iconLogoutButton {
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+}
+
+.appQuickNav,
+.mobileTabBar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding: 6px;
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.appQuickNav a,
+.mobileTabBar a {
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.appQuickNav a:first-child,
+.mobileTabBar a.active {
+  background: var(--app-paper);
+  color: var(--app-blue-deep);
+  box-shadow: 0 10px 22px rgba(20, 24, 52, 0.14);
+}
+
+.categoryPhone.play .appQuickNav a:first-child {
+  background: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.86);
+  box-shadow: none;
+}
+
+.categoryPhone.play .appQuickNav a:last-child {
+  background: var(--app-paper);
+  color: var(--app-blue-deep);
+  box-shadow: 0 10px 22px rgba(20, 24, 52, 0.14);
+}
+
+.homeShell.appMain,
+.pageShell.appMain {
+  width: auto;
+  margin: 0;
+  padding: 18px 16px 24px;
+  background: var(--app-rail);
+}
+
+.progressHero {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 116px;
+  padding: 18px;
+  overflow: hidden;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 74% 0, rgba(255, 255, 255, 0.13), transparent 34%),
+    linear-gradient(135deg, #4566e7, #566fe8);
+  color: var(--app-paper);
+  box-shadow: 0 16px 34px rgba(63, 95, 216, 0.3);
+}
+
+.progressHero h1 {
+  font-size: 24px;
+  line-height: 1.08;
+}
+
+.progressHero p {
+  margin: 5px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.progressHero > strong {
+  align-self: end;
+  font-size: 13px;
+}
+
+.progressIcon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--app-yellow);
+}
+
+.progressTrack,
+.miniProgressTrack,
+.tileProgressTrack {
+  display: block;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.progressTrack {
+  grid-column: 1 / -1;
+  height: 11px;
+}
+
+.progressFill {
+  display: block;
+  width: 22%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--app-yellow);
+}
+
+.continueSection {
+  display: grid;
+  gap: 10px;
+}
+
+.continueSection h2,
+.appListHeading h2 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.18;
+}
+
+.continueCard {
+  min-height: 92px;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 24px;
+  background: var(--app-paper);
+  box-shadow: 0 12px 24px rgba(20, 24, 52, 0.07);
+}
+
+.continueIcon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: var(--app-teal-soft);
+}
+
+.continueIcon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.continueText {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.continueText small {
+  color: var(--app-muted);
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.continueText strong {
+  overflow: hidden;
+  font-size: 18px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.miniProgressTrack {
+  width: 100%;
+  height: 8px;
+  background: #d8f3f5;
+}
+
+.miniProgressTrack span {
+  display: block;
+  width: 60%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--app-teal);
+}
+
+.continueCard em {
+  color: var(--app-teal);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 950;
+}
+
+.continuePlay {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: var(--app-teal);
+  color: var(--app-paper);
+}
+
+.compactHeading {
+  gap: 4px;
+  margin: 0;
+}
+
+.compactHeading .eyebrow,
+.pageShell .eyebrow {
+  color: var(--app-muted);
+  font-size: 13px;
+}
+
+.compactHeading h2 {
+  font-size: 20px;
+}
+
+.categoryStack {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.categoryButton.appCategoryCard {
+  min-height: 148px;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto auto;
+  align-items: center;
+  gap: 7px 12px;
+  padding: 18px;
+  border: 0;
+  border-radius: 24px;
+  color: var(--app-paper);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.18), transparent 26%),
+    linear-gradient(135deg, var(--app-blue), #3658d6);
+  box-shadow: 0 16px 32px rgba(63, 95, 216, 0.22);
+}
+
+.categoryButton.appCategoryCard.play {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.16), transparent 26%),
+    linear-gradient(135deg, #ff7a4c, #f2a33f);
+  box-shadow: 0 16px 32px rgba(255, 126, 76, 0.2);
+}
+
+.categoryButton.appCategoryCard::before {
+  content: none;
+}
+
+.appCategoryCard .categoryIcon {
+  grid-row: 1 / 4;
+  width: 58px;
+  height: 58px;
+  color: var(--app-blue);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.appCategoryCard.play .categoryIcon {
+  color: #f06b44;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.appCategoryCard .categoryKicker,
+.appCategoryCard .categoryDescription,
+.appCategoryCard .categoryMetaLine {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.appCategoryCard .categoryTitle {
+  color: var(--app-paper);
+  font-size: 25px;
+}
+
+.appCategoryCard .categoryDescription,
+.appCategoryCard .categoryMetaLine {
+  font-size: 12px;
+}
+
+.appCategoryCard .categoryAction {
+  grid-column: 3;
+  grid-row: 1 / 4;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  color: var(--app-blue-deep);
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 0;
+}
+
+.dashboardStats,
+.heroStatRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.dashboardStats div,
+.heroStatRow span {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 11px 6px;
+  border-radius: 18px;
+  background: var(--app-paper);
+  color: var(--app-muted);
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 10px 20px rgba(20, 24, 52, 0.05);
+}
+
+.dashboardStats strong,
+.heroStatRow strong {
+  color: var(--app-blue-deep);
+  font-size: 17px;
+}
+
+.categoryHero {
+  display: grid;
+  gap: 10px;
+  margin: -18px -16px 14px;
+  padding: 18px 20px 22px;
+  color: var(--app-paper);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.16), transparent 26%),
+    linear-gradient(135deg, #3d63dc, var(--app-blue));
+}
+
+.categoryPage.play .categoryHero {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.15), transparent 26%),
+    linear-gradient(135deg, #f06b44, #ff8a5a);
+}
+
+.categoryHero h1 {
+  font-size: 28px;
+}
+
+.categoryHero p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.categoryHero .heroStatRow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 4px;
+}
+
+.categoryHero .heroStatRow span {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.84);
+  box-shadow: none;
+}
+
+.categoryHero .heroStatRow strong {
+  color: var(--app-paper);
+}
+
+.mobileTabBar {
+  margin-bottom: 16px;
+  background: #e9eaf3;
+}
+
+.mobileTabBar a {
+  color: var(--app-muted);
+}
+
+.featuredLesson {
+  margin-bottom: 18px;
+}
+
+.appPermissionStrip.permissionStrip {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.appPermissionStrip.permissionStrip div {
+  min-height: 74px;
+  border: 0;
+  border-radius: 18px;
+  box-shadow: 0 10px 20px rgba(20, 24, 52, 0.05);
+}
+
+.appListSection {
+  display: grid;
+  gap: 12px;
+}
+
+.appListHeading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.appListHeading span {
+  color: var(--app-muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.appGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.appTile {
+  min-height: 248px;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: 10px;
+  padding: 12px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--app-paper);
+  box-shadow: 0 12px 24px rgba(20, 24, 52, 0.06);
+}
+
+.appTile.locked {
+  background: #fafafe;
+}
+
+.appTileTop {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.appTileIcon {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  background: var(--app-teal-soft);
+}
+
+.appTile.play .appTileIcon {
+  background: #fff0e7;
+}
+
+.appTileIcon .appIcon {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.tileStatus {
+  min-height: 26px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.tileStatus.open {
+  color: #008d99;
+  background: #dbfbfd;
+}
+
+.tileStatus.locked {
+  color: #8a5f0b;
+  background: #fff3ce;
+}
+
+.appTileBody {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+}
+
+.appTile .pill {
+  width: fit-content;
+  min-height: 24px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+
+.appTile h2 {
+  min-height: 0;
+  margin: 0;
+  color: var(--app-text);
+  font-size: 17px;
+  line-height: 1.22;
+}
+
+.appTile p {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--app-muted);
+  font-size: 12px;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.tileProgressRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.tileProgressTrack {
+  height: 8px;
+  background: #e7eef2;
+}
+
+.tileProgressFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--app-teal);
+}
+
+.tileProgressRow strong {
+  color: var(--app-teal);
+  font-size: 11px;
+}
+
+.tileAction {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 15px;
+  background: var(--app-teal);
+  color: var(--app-paper);
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.tileAction.lockedAction {
+  background: var(--app-blue-deep);
+}
+
+.bottomNav.siteFooter {
+  width: auto;
+  margin: 0;
+  padding: 10px 16px 14px;
+  border-top: 1px solid var(--app-line);
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--app-muted);
+}
+
+.bottomNav nav {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.bottomNav a {
+  min-height: 50px;
+  display: grid;
+  place-items: center;
+  gap: 3px;
+  border-radius: 17px;
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.bottomNav a:first-child {
+  color: var(--app-blue);
+  background: var(--app-blue-soft);
+}
+
+.backLink {
+  margin-bottom: 12px;
+  color: var(--app-blue-deep);
+  font-size: 13px;
+}
+
+@media (max-width: 520px) {
+  .deviceStage {
+    padding: 0;
+  }
+
+  .phoneFrame {
+    width: 100%;
+    min-height: 100vh;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .siteHeader.appHeader {
+    padding-top: 12px;
+  }
+
+  .appGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 360px) {
+  .appGrid,
+  .dashboardStats {
+    grid-template-columns: 1fr;
+  }
+
+  .continueCard {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .continuePlay {
+    display: none;
+  }
+}

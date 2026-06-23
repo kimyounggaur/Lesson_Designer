@@ -6,15 +6,21 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { LESSON_APPS } from "@/lib/apps";
 
 describe("UI upgrade components", () => {
-  it("shows locked apps as a guided next action instead of a dead end", () => {
+  it("renders app tiles with the HTML prototype start and locked states", () => {
+    const openApp = LESSON_APPS.find((app) => app.publicAccess);
     const lockedApp = LESSON_APPS.find((app) => !app.publicAccess);
 
+    expect(openApp).toBeDefined();
     expect(lockedApp).toBeDefined();
-    render(<AppCard app={lockedApp!} role="guest" />);
 
-    expect(screen.getByText("로그인 필요")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /로그인하고 열기/ })).toHaveAttribute("href", "/login?required=1");
-    expect(screen.getByText("회원 계정으로 로그인하면 이용할 수 있어요.")).toBeInTheDocument();
+    const { rerender } = render(<AppCard app={openApp!} role="guest" />);
+    expect(screen.getByRole("article")).toHaveClass("appTile");
+    expect(screen.getByText("60%")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /시작/ })).toHaveAttribute("href", openApp!.url);
+
+    rerender(<AppCard app={lockedApp!} role="guest" />);
+    expect(screen.getAllByText("잠금").length).toBeGreaterThan(0);
+    expect(screen.getByRole("link", { name: /로그인/ })).toHaveAttribute("href", "/login?required=1");
   });
 
   it("keeps app cards descriptive enough for an app hub", () => {
@@ -22,15 +28,12 @@ describe("UI upgrade components", () => {
     expect(LESSON_APPS.every((app) => app.categoryLabel.length > 0)).toBe(true);
   });
 
-  it("separates primary navigation from admin account actions", () => {
+  it("uses the exported mobile app status header", () => {
     render(<SiteHeader profile={null} />);
 
-    expect(screen.getByRole("navigation", { name: "주요 메뉴" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "악기 교육앱" })).toHaveAttribute(
-      "href",
-      "/category/instrument-education"
-    );
-    expect(screen.getByRole("link", { name: "음악 게임앱" })).toHaveAttribute("href", "/category/music-game");
-    expect(screen.getByRole("navigation", { name: "계정 메뉴" })).toHaveClass("accountNav");
+    expect(screen.getByText("9:41")).toBeInTheDocument();
+    expect(screen.getByText("LESSON DESIGNER")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /게스트/ })).toHaveAttribute("href", "/login");
+    expect(screen.getByRole("navigation", { name: "앱 빠른 이동" })).toHaveClass("appQuickNav");
   });
 });

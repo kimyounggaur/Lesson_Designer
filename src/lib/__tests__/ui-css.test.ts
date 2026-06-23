@@ -5,16 +5,17 @@ import { describe, expect, it } from "vitest";
 const css = readFileSync(join(process.cwd(), "src/app/globals.css"), "utf8");
 
 describe("UI upgrade CSS foundation", () => {
-  it("defines Ink & Stage design tokens", () => {
-    expect(css).toContain("--edu: #3457D5");
-    expect(css).toContain("--play: #FF6B3D");
-    expect(css).toContain("--surface-soft: #FBFCFE");
-    expect(css).toContain("--r-lg: 22px");
+  it("defines the exported mobile app palette and device frame", () => {
+    expect(css).toContain("--app-blue: #3f5fd8");
+    expect(css).toContain("--app-teal: #19b7c4");
+    expect(css).toContain(".deviceStage");
+    expect(css).toContain(".phoneFrame");
   });
 
-  it("adds the home staff-line signature motion", () => {
-    expect(css).toContain("@keyframes staff-line-draw");
-    expect(css).toContain("@keyframes playhead-sweep");
-    expect(css).toContain(".heroStaff");
+  it("adds the prototype progress and bottom navigation patterns", () => {
+    expect(css).toContain(".progressHero");
+    expect(css).toContain(".continueCard");
+    expect(css).toContain(".mobileTabBar");
+    expect(css).toContain(".bottomNav");
   });
 });

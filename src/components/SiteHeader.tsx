@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Gamepad2, GraduationCap, Home, Lock, LogIn, LogOut, Shield, UserPlus } from "lucide-react";
+import { BatteryFull, LogOut, Signal, UserRound, Wifi } from "lucide-react";
 import { logoutAction } from "@/app/auth/actions";
 import type { CurrentUserProfile } from "@/lib/auth";
 
@@ -8,67 +8,44 @@ type SiteHeaderProps = {
 };
 
 export function SiteHeader({ profile }: SiteHeaderProps) {
+  const roleLabel = profile?.role === "admin" ? "관리자" : profile ? "회원" : "게스트";
+
   return (
-    <header className="siteHeader">
-      <Link href="/" className="brand" aria-label="Lesson Designer 홈">
-        <span className="brandMark" aria-hidden="true">LD</span>
-        <span className="brandText">
-          <strong>Lesson Designer</strong>
-          <small>음악 수업 웹앱 포털</small>
+    <header className="siteHeader appHeader">
+      <div className="appStatusBar" aria-label="기기 상태">
+        <strong>9:41</strong>
+        <span className="statusIcons" aria-hidden="true">
+          <Signal size={15} />
+          <Wifi size={15} />
+          <BatteryFull size={17} />
         </span>
-      </Link>
+      </div>
 
-      <nav className="primaryNav" aria-label="주요 메뉴">
-        <Link href="/" className="headerButton">
-          <Home size={16} aria-hidden="true" />
-          홈
+      <div className="appHeaderTop">
+        <Link href="/" className="brand appBrand" aria-label="Lesson Designer 홈">
+          <span className="brandEyebrow">LESSON DESIGNER</span>
+          <strong>반가워요, 선생님</strong>
+          <small>앱들도 음악 게임들도 바로 열어요</small>
         </Link>
-        <Link href="/category/instrument-education" className="headerButton">
-          <GraduationCap size={16} aria-hidden="true" />
-          악기 교육앱
-        </Link>
-        <Link href="/category/music-game" className="headerButton">
-          <Gamepad2 size={16} aria-hidden="true" />
-          음악 게임앱
-        </Link>
-      </nav>
 
-      <nav className="accountNav" aria-label="계정 메뉴">
-        {!profile ? (
-          <>
-            <Link href="/signup" className="headerButton">
-              <UserPlus size={16} aria-hidden="true" />
-              회원가입
-            </Link>
-            <Link href="/login" className="headerButton emphasis">
-              <LogIn size={16} aria-hidden="true" />
-              회원 로그인
-            </Link>
-          </>
-        ) : (
-          <>
-            <span className="profileBadge">{profile.role === "admin" ? "관리자" : "회원"} 로그인</span>
+        <div className="accountCluster">
+          <Link href={profile ? "/admin" : "/login"} className="userChip" aria-label={`${roleLabel} 계정`}>
+            <UserRound size={18} aria-hidden="true" />
+            <span>{roleLabel}</span>
+          </Link>
+          {profile ? (
             <form action={logoutAction}>
-              <button className="headerButton" type="submit">
+              <button className="iconLogoutButton" type="submit" aria-label="로그아웃">
                 <LogOut size={16} aria-hidden="true" />
-                로그아웃
               </button>
             </form>
-          </>
-        )}
-      </nav>
+          ) : null}
+        </div>
+      </div>
 
-      <nav className="adminNav" aria-label="관리자 메뉴">
-        {profile?.role !== "admin" ? (
-          <Link href="/admin-login" className="headerButton">
-            <Lock size={16} aria-hidden="true" />
-            관리자 로그인
-          </Link>
-        ) : null}
-        <Link href="/admin" className="headerButton adminButton">
-          <Shield size={16} aria-hidden="true" />
-          관리자 페이지
-        </Link>
+      <nav className="appQuickNav" aria-label="앱 빠른 이동">
+        <Link href="/category/instrument-education">악기 교육</Link>
+        <Link href="/category/music-game">음악 게임</Link>
       </nav>
     </header>
   );
