@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nunito:wght@700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  body{ margin:0; }
+  .scrl::-webkit-scrollbar{ width:0; height:0; }
+</style>
+</helmet>
+
+<div style="width:max-content; min-width:100%; min-height:100vh; box-sizing:border-box; padding:52px 48px 80px; background:#E7E5DF; font-family:'Noto Sans KR',sans-serif;">
+
+  <div style="margin:0 0 44px;">
+    <div style="font-family:'Nunito'; font-weight:900; font-size:12px; letter-spacing:2px; color:#3457D5; text-transform:uppercase;">Lesson Designer · Play 방향</div>
+    <div style="font-family:'Jua'; font-size:34px; color:#15162E; margin-top:8px;">전체 화면 리디자인</div>
+    <div style="font-size:15px; color:#5A5A6E; margin-top:8px; max-width:820px; line-height:1.6;">게임형(Play) 방향을 홈·카테고리·로그인·관리자 화면에 일관되게 적용했습니다. 두툼한 입체 카드, 연속/젬 동기부여, 잠김/진도 상태가 디자인 언어입니다.</div>
+  </div>
+
+  <!-- ===================== DESKTOP ===================== -->
+  <div style="font-family:'Jua'; font-size:18px; color:#15162E; margin:0 0 18px; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; border-radius:50%; background:#3457D5;"></span>데스크톱</div>
+  <div style="display:flex; gap:44px; align-items:flex-start; margin-bottom:64px;">
+
+    <!-- ---------- HOME ---------- -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">홈 / 대시보드</div>
+      <div style="width:1080px; background:#F4F6FA; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.10); overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 36px; background:#fff; border-bottom:1px solid #EBEEF3;">
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span style="width:42px; height:42px; border-radius:13px; background:#3457D5; color:#fff; display:grid; place-items:center; font-family:'Jua'; font-size:17px;">LD</span>
+            <div style="font-family:'Jua'; font-size:20px; color:#15162E;">Lesson Designer</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:22px;">
+            <span style="font-family:'Jua'; font-size:14px; color:#3457D5;">홈</span>
+            <span style="font-family:'Jua'; font-size:14px; color:#8A8DA6;">악기 교육</span>
+            <span style="font-family:'Jua'; font-size:14px; color:#8A8DA6;">음악 게임</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; font-family:'Nunito'; font-weight:900; font-size:13px; color:#C53E16; background:#FFEDE5; padding:8px 13px; border-radius:11px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#FF6B3D"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg>14</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; font-family:'Nunito'; font-weight:900; font-size:13px; color:#0E7D8B; background:#E2F7FA; padding:8px 13px; border-radius:11px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#12B5C9"><path d="M12 2 22 9 12 22 2 9z"/></svg>620</span>
+            <span style="width:42px; height:42px; border-radius:13px; background:#EAEFFF; display:grid; place-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.6 3.2-5.6 7-5.6s7 2 7 5.6"/></svg></span>
+          </div>
+        </div>
+        <div style="padding:30px 36px 38px;">
+          <div style="position:relative; overflow:hidden; border-radius:24px; padding:26px 28px; background:linear-gradient(135deg,#3457D5,#5A78E8); box-shadow:0 6px 0 #1E3AAE; color:#fff; display:grid; grid-template-columns:1fr auto; align-items:center; gap:20px;">
+            <span style="position:absolute; top:-50px; right:140px; width:170px; height:170px; border-radius:50%; background:rgba(255,255,255,.10);"></span>
+            <div style="position:relative;">
+              <div style="font-family:'Jua'; font-size:34px; line-height:1.08;">반가워요, 선생님 🎶</div>
+              <div style="font-size:14px; color:rgba(255,255,255,.88); margin-top:8px;">오늘의 목표까지 10 XP 남았어요. 한 곡 배워볼까요?</div>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:18px; max-width:360px;"><div style="flex:1; height:12px; border-radius:999px; background:rgba(255,255,255,.26); overflow:hidden;"><div style="height:100%; width:80%; background:#FFD05A; border-radius:999px;"></div></div><span style="font-family:'Nunito'; font-weight:900; font-size:13px;">40/50</span></div>
+            </div>
+            <div style="position:relative; display:flex; gap:10px;">
+              <div style="background:#fff; border-radius:18px; padding:16px 20px; text-align:center; box-shadow:0 5px 0 rgba(0,0,0,.12);"><div style="font-family:'Jua'; font-size:26px; color:#FF6B3D;">14</div><div style="font-size:11px; color:#8A8DA6; font-weight:700; margin-top:2px;">연속</div></div>
+              <div style="background:#fff; border-radius:18px; padding:16px 20px; text-align:center; box-shadow:0 5px 0 rgba(0,0,0,.12);"><div style="font-family:'Jua'; font-size:26px; color:#FF5C9D;">5</div><div style="font-size:11px; color:#8A8DA6; font-weight:700; margin-top:2px;">하트</div></div>
+            </div>
+          </div>
+          <div style="font-family:'Jua'; font-size:18px; color:#15162E; margin:24px 0 12px;">이어서 학습하기</div>
+          <div style="display:flex; align-items:center; gap:16px; padding:16px 18px; border-radius:22px; background:#fff; box-shadow:0 5px 0 #E4E7EE; margin-bottom:6px;">
+            <span style="width:64px; height:64px; border-radius:18px; background:#E2F7FA; display:grid; place-items:center;"><img src="icons/ukulele.png" style="width:42px;"></span>
+            <div style="flex:1;"><div style="font-family:'Jua'; font-size:18px; color:#15162E;">우쿨렐레 코드</div><div style="display:flex; align-items:center; gap:10px; margin-top:9px;"><div style="flex:1; height:9px; border-radius:999px; background:#EEF0F4; overflow:hidden; max-width:420px;"><div style="height:100%; width:60%; background:#12B5C9; border-radius:999px;"></div></div><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#0E7D8B;">60%</span></div></div>
+            <span style="width:48px; height:48px; border-radius:15px; background:#12B5C9; box-shadow:0 4px 0 #0E8A99; display:grid; place-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 8 5.5z"/></svg></span>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px;">
+            <div style="position:relative; overflow:hidden; border-radius:24px; padding:22px 24px; background:#3457D5; box-shadow:0 6px 0 #1E3AAE; color:#fff; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-family:'Jua'; font-size:24px;">악기 교육앱</div><div style="font-size:13px; color:rgba(255,255,255,.88); margin-top:4px;">코드 · 운지 · 음계 학습</div><div style="display:inline-block; margin-top:12px; font-family:'Nunito'; font-weight:900; font-size:12px; background:rgba(255,255,255,.2); padding:5px 12px; border-radius:999px;">12개 앱 · 공개 2</div></div><div style="display:flex;"><span style="width:50px; height:50px; border-radius:50%; background:#fff; display:grid; place-items:center;"><img src="icons/guitar.png" style="width:34px;"></span><span style="width:50px; height:50px; margin-left:-16px; border-radius:50%; background:#fff; display:grid; place-items:center;"><img src="icons/kalimba.png" style="width:32px;"></span></div></div>
+            <div style="position:relative; overflow:hidden; border-radius:24px; padding:22px 24px; background:#FF6B3D; box-shadow:0 6px 0 #D9491E; color:#fff; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-family:'Jua'; font-size:24px;">음악 게임앱</div><div style="font-size:13px; color:rgba(255,255,255,.88); margin-top:4px;">리듬과 반응 놀이</div><div style="display:inline-block; margin-top:12px; font-family:'Nunito'; font-weight:900; font-size:12px; background:rgba(255,255,255,.2); padding:5px 12px; border-radius:999px;">4개 앱</div></div><div style="display:flex;"><span style="width:50px; height:50px; border-radius:50%; background:#fff; display:grid; place-items:center;"><img src="icons/nanta.png" style="width:34px;"></span><span style="width:50px; height:50px; margin-left:-16px; border-radius:50%; background:#fff; display:grid; place-items:center;"><img src="icons/drum.png" style="width:34px;"></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- CATEGORY ---------- -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">카테고리 — 악기 교육앱</div>
+      <div style="width:1080px; background:#F4F6FA; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.10); overflow:hidden;">
+        <div style="position:relative; overflow:hidden; background:#3457D5; color:#fff; padding:0 0 26px;">
+          <span style="position:absolute; top:-80px; right:-40px; width:260px; height:260px; border-radius:50%; background:rgba(255,255,255,.10);"></span>
+          <div style="position:relative; display:flex; align-items:center; justify-content:space-between; padding:18px 36px; border-bottom:1px solid rgba(255,255,255,.14);">
+            <div style="display:flex; align-items:center; gap:11px;"><span style="width:40px; height:40px; border-radius:12px; background:rgba(255,255,255,.18); display:grid; place-items:center; font-family:'Jua'; font-size:16px; color:#fff;">LD</span><span style="font-family:'Jua'; font-size:18px;">Lesson Designer</span></div>
+            <span style="display:inline-flex; align-items:center; gap:7px; font-family:'Nunito'; font-weight:900; font-size:13px; background:rgba(255,255,255,.18); padding:8px 14px; border-radius:11px;">← 홈으로</span>
+          </div>
+          <div style="position:relative; padding:24px 36px 0;">
+            <div style="font-family:'Nunito'; font-weight:900; font-size:12px; letter-spacing:1.2px; color:rgba(255,255,255,.8);">악기 교육 카테고리</div>
+            <div style="font-family:'Jua'; font-size:36px; margin-top:6px;">악기 교육앱</div>
+            <div style="font-size:14px; color:rgba(255,255,255,.86); margin-top:6px;">코드, 운지, 음계, 연주 루틴을 단계적으로 익히는 수업형 웹앱</div>
+            <div style="display:inline-flex; padding:4px; border-radius:14px; background:rgba(255,255,255,.16); gap:4px; margin-top:20px;">
+              <span style="padding:9px 22px; border-radius:10px; background:#fff; color:#15162E; font-family:'Jua'; font-size:14px;">악기 교육</span>
+              <span style="padding:9px 22px; border-radius:10px; color:rgba(255,255,255,.9); font-family:'Jua'; font-size:14px;">음악 게임</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:24px 36px 36px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;"><span style="font-family:'Jua'; font-size:18px; color:#15162E;">전체 앱</span><span style="font-family:'Nunito'; font-weight:900; font-size:13px; color:#8A8DA6;">12개 · 잠김 5</span></div>
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+            <sc-for list="{{ edu }}" as="it" hint-placeholder-count="12">
+              <div style="position:relative; background:#fff; border-radius:22px; padding:18px 16px; box-shadow:0 5px 0 #E4E7EE; border:2.5px solid {{ it.border }};">
+                <sc-if value="{{ it.locked }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:12px; right:12px; width:26px; height:26px; border-radius:50%; background:#EEF0F4; display:grid; place-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9AA0AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span></sc-if>
+                <sc-if value="{{ it.done }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:10px; right:11px; width:28px; height:28px; border-radius:50%; background:#FFB020; box-shadow:0 2px 0 #D98A00; display:grid; place-items:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg></span></sc-if>
+                <sc-if value="{{ it.current }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:12px; right:12px; font-family:'Jua'; font-size:11px; color:#fff; background:#7C5CFC; padding:3px 9px; border-radius:999px;">시작</span></sc-if>
+                <span style="width:62px; height:62px; border-radius:18px; background:{{ it.soft }}; display:grid; place-items:center;"><img src="{{ it.icon }}" style="width:40px; height:40px; object-fit:contain; {{ it.dim }}"></span>
+                <div style="font-family:'Jua'; font-size:15px; color:#15162E; margin-top:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ it.name }}</div>
+                <sc-if value="{{ it.showBar }}" hint-placeholder-val="{{ false }}"><div style="height:7px; border-radius:999px; background:#EEF0F4; overflow:hidden; margin-top:9px;"><div style="height:100%; width:{{ it.prog }}%; background:{{ it.base }}; border-radius:999px;"></div></div></sc-if>
+                <sc-if value="{{ it.showLv }}" hint-placeholder-val="{{ true }}"><div style="display:flex; align-items:center; gap:5px; margin-top:9px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="{{ it.crown }}"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6;">Lv.{{ it.lvl }}</span></div></sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- LOGIN ---------- -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">회원 로그인</div>
+      <div style="width:560px; height:720px; background:#F4F6FA; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.10); overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px;">
+        <div style="width:100%; max-width:420px; background:#fff; border-radius:28px; box-shadow:0 6px 0 #E4E7EE; padding:34px 32px;">
+          <span style="width:56px; height:56px; border-radius:17px; background:#EAEFFF; display:grid; place-items:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span>
+          <div style="font-family:'Jua'; font-size:26px; color:#15162E; margin-top:18px;">회원 로그인</div>
+          <div style="font-size:14px; color:#8A8DA6; margin-top:6px;">로그인하면 모든 앱이 열려요</div>
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:24px;">
+            <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">이메일</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:14px 15px; font-size:14px; color:#15162E;">teacher@lesson.kr</div></div>
+            <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">비밀번호</div><div style="border:2px solid #3457D5; border-radius:15px; padding:14px 15px; font-size:14px; color:#15162E; box-shadow:0 0 0 3px rgba(52,87,213,.13); display:flex; justify-content:space-between;"><span>••••••••</span><span style="color:#8A8DA6;">👁</span></div></div>
+          </div>
+          <div style="margin-top:22px; padding:16px; border-radius:18px; background:#2FBF71; box-shadow:0 6px 0 #1E8C57; color:#fff; font-family:'Jua'; font-size:18px; text-align:center;">로그인하고 시작하기</div>
+          <div style="text-align:center; margin-top:16px; font-size:13px; color:#8A8DA6;">계정이 없으신가요? <span style="color:#3457D5; font-weight:900;">회원가입</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- SIGNUP ---------- -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">회원가입</div>
+      <div style="width:560px; height:720px; background:#F4F6FA; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.10); overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:36px;">
+        <div style="width:100%; max-width:430px; background:#fff; border-radius:28px; box-shadow:0 6px 0 #E4E7EE; padding:30px 32px;">
+          <span style="width:56px; height:56px; border-radius:17px; background:#FFEDE5; display:grid; place-items:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF6B3D" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M3 20c0-3.4 2.8-5.4 6-5.4 1 0 2 .2 2.8.6"/><path d="M17 11v6M14 14h6"/></svg></span>
+          <div style="font-family:'Jua'; font-size:26px; color:#15162E; margin-top:16px;">회원가입</div>
+          <div style="font-size:14px; color:#8A8DA6; margin-top:6px;">가입하면 진도와 젬이 저장돼요</div>
+          <div style="display:flex; flex-direction:column; gap:11px; margin-top:22px;">
+            <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">이름</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:13px 15px; font-size:14px; color:#15162E;">음악 선생님</div></div>
+            <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">이메일</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:13px 15px; font-size:14px; color:#15162E;">teacher@lesson.kr</div></div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:11px;">
+              <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">비밀번호</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:13px 15px; font-size:14px; color:#15162E;">••••••••</div></div>
+              <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">비밀번호 확인</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:13px 15px; font-size:14px; color:#15162E;">••••••••</div></div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; margin-top:16px;"><span style="width:24px; height:24px; border-radius:7px; background:#3457D5; display:grid; place-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span style="font-size:13px; color:#5A5C76;">이용약관 및 개인정보 처리방침에 동의합니다</span></div>
+          <div style="margin-top:20px; padding:16px; border-radius:18px; background:#3457D5; box-shadow:0 6px 0 #1E3AAE; color:#fff; font-family:'Jua'; font-size:18px; text-align:center;">가입하고 시작하기</div>
+          <div style="text-align:center; margin-top:14px; font-size:13px; color:#8A8DA6;">이미 계정이 있으신가요? <span style="color:#3457D5; font-weight:900;">로그인</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- ADMIN ---------- -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">관리자 페이지</div>
+      <div style="width:1080px; background:#F4F6FA; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.10); overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 36px; background:#15162E; color:#fff;">
+          <div style="display:flex; align-items:center; gap:11px;"><span style="width:40px; height:40px; border-radius:12px; background:#3457D5; display:grid; place-items:center; font-family:'Jua'; font-size:16px;">LD</span><div><div style="font-family:'Jua'; font-size:17px;">관리자 콘솔</div><div style="font-size:11px; color:rgba(255,255,255,.6);">Lesson Designer</div></div></div>
+          <span style="display:inline-flex; align-items:center; gap:7px; font-family:'Nunito'; font-weight:900; font-size:13px; background:rgba(255,255,255,.12); padding:8px 14px; border-radius:11px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5z"/></svg>관리자</span>
+        </div>
+        <div style="padding:28px 36px 36px;">
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px;">
+            <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+              <div style="background:#fff; border-radius:18px; padding:18px 20px; box-shadow:0 4px 0 #E4E7EE;"><div style="display:flex; align-items:center; gap:9px;"><span style="width:34px; height:34px; border-radius:11px; background:{{ st.soft }}; display:grid; place-items:center; color:{{ st.ink }};">{{ st.glyph }}</span><span style="font-size:12px; color:#8A8DA6; font-weight:800;">{{ st.label }}</span></div><div style="font-family:'Jua'; font-size:30px; color:#15162E; margin-top:12px;">{{ st.value }}</div></div>
+            </sc-for>
+          </div>
+          <div style="background:#fff; border-radius:20px; box-shadow:0 4px 0 #E4E7EE; overflow:hidden;">
+            <div style="display:grid; grid-template-columns:2.4fr 1.1fr 1fr 0.9fr; gap:12px; padding:15px 22px; border-bottom:1px solid #F1F3F8; font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6; letter-spacing:.4px;"><span>앱</span><span>카테고리</span><span>공개 상태</span><span style="text-align:right;">관리</span></div>
+            <sc-for list="{{ adminRows }}" as="row" hint-placeholder-count="6">
+              <div style="display:grid; grid-template-columns:2.4fr 1.1fr 1fr 0.9fr; gap:12px; align-items:center; padding:14px 22px; border-bottom:1px solid #F4F5F9;">
+                <div style="display:flex; align-items:center; gap:12px;"><span style="width:42px; height:42px; border-radius:12px; background:{{ row.soft }}; display:grid; place-items:center;"><img src="{{ row.icon }}" style="width:28px; height:28px; object-fit:contain;"></span><div><div style="font-family:'Jua'; font-size:15px; color:#15162E;">{{ row.name }}</div><div style="font-size:11px; color:#9AA0AE; margin-top:2px;">{{ row.sub }}</div></div></div>
+                <div><span style="font-family:'Nunito'; font-weight:900; font-size:11px; color:{{ row.ink }}; background:{{ row.soft }}; padding:5px 10px; border-radius:999px;">{{ row.catLabel }}</span></div>
+                <div>
+                  <sc-if value="{{ row.pub }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; align-items:center; gap:8px;"><span style="width:38px; height:22px; border-radius:999px; background:#2FBF71; position:relative;"><span style="position:absolute; top:2px; right:2px; width:18px; height:18px; border-radius:50%; background:#fff;"></span></span><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#1E8C57;">공개</span></span></sc-if>
+                  <sc-if value="{{ row.locked }}" hint-placeholder-val="{{ true }}"><span style="display:inline-flex; align-items:center; gap:8px;"><span style="width:38px; height:22px; border-radius:999px; background:#D6D9E0; position:relative;"><span style="position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:#fff;"></span></span><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#9AA0AE;">회원</span></span></sc-if>
+                </div>
+                <div style="text-align:right;"><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#3457D5; background:#EAEFFF; padding:7px 12px; border-radius:10px;">수정</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- ADMIN: APP EDIT ---------- -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">관리자 — 앱 편집</div>
+      <div style="width:1080px; background:#F4F6FA; border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,.10); overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 36px; background:#15162E; color:#fff;">
+          <div style="display:flex; align-items:center; gap:11px;"><span style="width:40px; height:40px; border-radius:12px; background:#3457D5; display:grid; place-items:center; font-family:'Jua'; font-size:16px;">LD</span><div><div style="font-family:'Jua'; font-size:17px;">관리자 콘솔</div><div style="font-size:11px; color:rgba(255,255,255,.6);">앱 관리 · 편집</div></div></div>
+          <span style="display:inline-flex; align-items:center; gap:7px; font-family:'Nunito'; font-weight:900; font-size:13px; background:rgba(255,255,255,.12); padding:8px 14px; border-radius:11px;">← 목록으로</span>
+        </div>
+        <div style="padding:24px 36px 36px;">
+          <div style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6; margin-bottom:16px;">앱 관리 / <span style="color:#3457D5;">칼림바 배우기 편집</span></div>
+          <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:22px; align-items:start;">
+            <!-- form -->
+            <div style="background:#fff; border-radius:22px; box-shadow:0 4px 0 #E4E7EE; padding:26px 28px;">
+              <div style="font-family:'Jua'; font-size:18px; color:#15162E; margin-bottom:20px;">앱 정보</div>
+              <div style="display:flex; flex-direction:column; gap:16px;">
+                <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">앱 이름</div><div style="border:2px solid #3457D5; border-radius:14px; padding:13px 15px; font-size:14px; color:#15162E; box-shadow:0 0 0 3px rgba(52,87,213,.13);">칼림바 배우기</div></div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                  <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">카테고리</div><div style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 15px; font-size:14px; color:#15162E; display:flex; justify-content:space-between; align-items:center;">악기 교육앱 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9AA0AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div></div>
+                  <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">테마 색상</div><div style="border:2px solid #E6E8EE; border-radius:14px; padding:11px 15px; display:flex; align-items:center; gap:8px;"><span style="width:8px;"></span><span style="width:22px; height:22px; border-radius:7px; background:#7C5CFC;"></span><span style="width:22px; height:22px; border-radius:7px; background:#3457D5; opacity:.3;"></span><span style="width:22px; height:22px; border-radius:7px; background:#FF6B3D; opacity:.3;"></span><span style="width:22px; height:22px; border-radius:7px; background:#2FBF71; opacity:.3;"></span></div></div>
+                </div>
+                <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">앱 URL</div><div style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 15px; font-size:14px; color:#5A5C76;">https://kalimba-play.vercel.app/</div></div>
+                <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">설명</div><div style="border:2px solid #E6E8EE; border-radius:14px; padding:13px 15px; font-size:14px; color:#5A5C76; line-height:1.6; min-height:72px;">칼림바 음계, 탭 위치, 간단한 멜로디 연습을 이어갑니다.</div></div>
+                <div style="display:flex; align-items:center; justify-content:space-between; padding:15px 17px; border-radius:14px; background:#F4F6FA;">
+                  <div><div style="font-family:'Jua'; font-size:14px; color:#15162E;">공개 상태</div><div style="font-size:12px; color:#8A8DA6; margin-top:2px;">끄면 로그인한 회원만 이용할 수 있어요</div></div>
+                  <span style="display:inline-flex; align-items:center; gap:9px;"><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#9AA0AE;">회원 전용</span><span style="width:46px; height:26px; border-radius:999px; background:#D6D9E0; position:relative;"><span style="position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.2);"></span></span></span>
+                </div>
+              </div>
+            </div>
+            <!-- preview + actions -->
+            <div style="display:flex; flex-direction:column; gap:18px;">
+              <div style="background:#fff; border-radius:22px; box-shadow:0 4px 0 #E4E7EE; padding:24px;">
+                <div style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6; margin-bottom:16px;">미리보기</div>
+                <div style="position:relative; background:#fff; border-radius:22px; padding:20px 18px; box-shadow:0 5px 0 #E4E7EE; border:2.5px solid #7C5CFC; width:200px; margin:0 auto;">
+                  <span style="position:absolute; top:12px; right:12px; font-family:'Jua'; font-size:11px; color:#fff; background:#7C5CFC; padding:3px 9px; border-radius:999px;">시작</span>
+                  <span style="width:64px; height:64px; border-radius:18px; background:#EFEAFF; display:grid; place-items:center;"><img src="icons/kalimba.png" style="width:42px;"></span>
+                  <div style="font-family:'Jua'; font-size:16px; color:#15162E; margin-top:11px;">칼림바</div>
+                  <div style="display:flex; align-items:center; gap:5px; margin-top:9px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#D8DCE6"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6;">Lv.1</span></div>
+                </div>
+              </div>
+              <div style="padding:18px; border-radius:18px; background:#3457D5; box-shadow:0 6px 0 #1E3AAE; color:#fff; font-family:'Jua'; font-size:17px; text-align:center;">변경 사항 저장</div>
+              <div style="padding:15px; border-radius:16px; background:#fff; box-shadow:0 4px 0 #E4E7EE; color:#8A8DA6; font-family:'Jua'; font-size:15px; text-align:center;">취소</div>
+              <div style="padding:15px; border-radius:16px; background:#FFE9E7; box-shadow:0 4px 0 #F3C9C4; color:#D9382E; font-family:'Jua'; font-size:15px; text-align:center;">앱 삭제</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== MOBILE ===================== -->
+  <div style="font-family:'Jua'; font-size:18px; color:#15162E; margin:0 0 18px; display:flex; align-items:center; gap:10px;"><span style="width:8px; height:8px; border-radius:50%; background:#FF6B3D;"></span>모바일</div>
+  <div style="display:flex; gap:40px; align-items:flex-start;">
+
+    <!-- MOBILE HOME -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">홈</div>
+      <div style="width:390px; height:800px; background:#1B1C2E; border-radius:40px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,.10);">
+        <div style="width:100%; height:100%; border-radius:33px; overflow:hidden; background:#F4F6FA; display:flex; flex-direction:column;">
+          <div style="background:#fff; border-bottom:1px solid #EBEEF3; padding:14px 22px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; font-family:'Nunito'; font-weight:800; font-size:13px; color:#15162E; margin-bottom:10px;"><span>9:41</span><span>▮▮▮ 100%</span></div>
+            <div style="display:flex; align-items:center; justify-content:space-between;"><div><div style="font-family:'Nunito'; font-weight:900; font-size:10px; letter-spacing:1.2px; color:#3457D5;">LESSON DESIGNER</div><div style="font-family:'Jua'; font-size:23px; color:#15162E; margin-top:2px;">반가워요, 선생님</div><div style="font-size:12px; color:#8A8DA6; margin-top:2px;">오늘도 한 곡 배워볼까요?</div></div><span style="width:48px; height:48px; border-radius:15px; background:#EAEFFF; display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.6 3.2-5.6 7-5.6s7 2 7 5.6"/></svg></span></div>
+          </div>
+          <div class="scrl" style="flex:1; overflow-y:auto; padding:18px 16px 24px;">
+            <div style="border-radius:22px; padding:18px; background:linear-gradient(140deg,#3457D5,#5A78E8); box-shadow:0 6px 0 #1E3AAE; color:#fff; margin-bottom:16px;"><div style="display:flex; align-items:center; gap:12px;"><span style="width:46px; height:46px; border-radius:15px; background:rgba(255,255,255,.2); display:grid; place-items:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="#FFD05A"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg></span><div><div style="font-family:'Jua'; font-size:20px;">14일 연속 학습 중!</div><div style="font-size:12px; color:rgba(255,255,255,.85);">목표까지 10 XP</div></div></div><div style="display:flex; align-items:center; gap:9px; margin-top:14px;"><div style="flex:1; height:11px; border-radius:999px; background:rgba(255,255,255,.26); overflow:hidden;"><div style="height:100%; width:80%; background:#FFD05A; border-radius:999px;"></div></div><span style="font-family:'Nunito'; font-weight:900; font-size:12px;">40/50</span></div></div>
+            <div style="font-family:'Jua'; font-size:16px; color:#15162E; margin:2px 4px 10px;">이어서 학습하기</div>
+            <div style="display:flex; align-items:center; gap:13px; padding:14px 15px; border-radius:22px; background:#fff; box-shadow:0 5px 0 #E4E7EE; margin-bottom:18px;"><span style="width:56px; height:56px; border-radius:16px; background:#E2F7FA; display:grid; place-items:center;"><img src="icons/ukulele.png" style="width:38px;"></span><div style="flex:1;"><div style="font-family:'Jua'; font-size:16px; color:#15162E;">우쿨렐레 코드</div><div style="display:flex; align-items:center; gap:7px; margin-top:7px;"><div style="flex:1; height:8px; border-radius:999px; background:#EEF0F4; overflow:hidden;"><div style="height:100%; width:60%; background:#12B5C9; border-radius:999px;"></div></div><span style="font-family:'Nunito'; font-weight:900; font-size:11px; color:#0E7D8B;">60%</span></div></div><span style="width:44px; height:44px; border-radius:14px; background:#12B5C9; box-shadow:0 3px 0 #0E8A99; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13a1 1 0 0 0 1.5.87l11-6.5a1 1 0 0 0 0-1.74l-11-6.5A1 1 0 0 0 8 5.5z"/></svg></span></div>
+            <div style="font-family:'Jua'; font-size:16px; color:#15162E; margin:2px 4px 12px;">카테고리</div>
+            <div style="border-radius:24px; padding:18px; background:#3457D5; box-shadow:0 6px 0 #1E3AAE; color:#fff; display:flex; align-items:center; justify-content:space-between; margin-bottom:13px;"><div><div style="font-family:'Jua'; font-size:21px;">악기 교육앱</div><div style="font-size:12.5px; color:rgba(255,255,255,.88); margin-top:4px;">코드 · 운지 · 음계</div><div style="display:inline-block; margin-top:12px; font-family:'Nunito'; font-weight:900; font-size:12px; background:rgba(255,255,255,.2); padding:5px 11px; border-radius:999px;">12개 앱 · 공개 2</div></div><div style="display:flex;"><span style="width:50px; height:50px; border-radius:50%; background:#fff; display:grid; place-items:center;"><img src="icons/guitar.png" style="width:34px;"></span><span style="width:50px; height:50px; margin-left:-18px; border-radius:50%; background:#fff; display:grid; place-items:center;"><img src="icons/kalimba.png" style="width:32px;"></span></div></div>
+            <div style="border-radius:24px; padding:18px; background:#FF6B3D; box-shadow:0 6px 0 #D9491E; color:#fff; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-family:'Jua'; font-size:21px;">음악 게임앱</div><div style="font-size:12.5px; color:rgba(255,255,255,.88); margin-top:4px;">리듬과 반응 놀이</div><div style="display:inline-block; margin-top:12px; font-family:'Nunito'; font-weight:900; font-size:12px; background:rgba(255,255,255,.2); padding:5px 11px; border-radius:999px;">4개 앱</div></div><div style="display:flex;"><span style="width:50px; height:50px; border-radius:50%; background:#fff; display:grid; place-items:center;"><img src="icons/nanta.png" style="width:34px;"></span><span style="width:50px; height:50px; margin-left:-18px; border-radius:50%; background:#fff; display:grid; place-items:center;"><img src="icons/drum.png" style="width:34px;"></span></div></div>
+          </div>
+          <div style="flex:none; display:flex; justify-content:space-around; padding:10px 8px 16px; background:#fff; border-top:1px solid #E6E8EE;">
+            <span style="display:flex; flex-direction:column; align-items:center; gap:3px; color:#3457D5;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/></svg><span style="font-size:10px; font-weight:700;">홈</span></span>
+            <span style="display:flex; flex-direction:column; align-items:center; gap:3px; color:#9AA0AE;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.2 2.7 2.5 6 2.5s6-1.3 6-2.5v-5"/></svg><span style="font-size:10px; font-weight:700;">교육</span></span>
+            <span style="display:flex; flex-direction:column; align-items:center; gap:3px; color:#9AA0AE;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M8 11.5v3M6.5 13h3"/></svg><span style="font-size:10px; font-weight:700;">게임</span></span>
+            <span style="display:flex; flex-direction:column; align-items:center; gap:3px; color:#9AA0AE;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.6 3.2-5.6 7-5.6s7 2 7 5.6"/></svg><span style="font-size:10px; font-weight:700;">내 정보</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE CATEGORY -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">카테고리</div>
+      <div style="width:390px; height:800px; background:#1B1C2E; border-radius:40px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,.10);">
+        <div style="width:100%; height:100%; border-radius:33px; overflow:hidden; background:#F4F6FA; display:flex; flex-direction:column;">
+          <div style="background:#3457D5; color:#fff; padding:14px 22px 18px; position:relative; overflow:hidden;">
+            <span style="position:absolute; top:-60px; right:-30px; width:170px; height:170px; border-radius:50%; background:rgba(255,255,255,.10);"></span>
+            <div style="position:relative; display:flex; align-items:center; justify-content:space-between; font-family:'Nunito'; font-weight:800; font-size:13px; margin-bottom:12px;"><span>9:41</span><span>▮▮▮ 100%</span></div>
+            <div style="position:relative; display:flex; align-items:center; justify-content:space-between;"><div><div style="font-family:'Nunito'; font-weight:900; font-size:10px; letter-spacing:1.2px; color:rgba(255,255,255,.8);">악기 교육 카테고리</div><div style="font-family:'Jua'; font-size:25px; margin-top:2px;">악기 교육앱</div></div><span style="width:46px; height:46px; border-radius:15px; background:rgba(255,255,255,.16); display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c0-3.6 3.2-5.6 7-5.6s7 2 7 5.6"/></svg></span></div>
+            <div style="position:relative; display:flex; padding:4px; border-radius:14px; background:rgba(255,255,255,.16); gap:4px; margin-top:16px;"><span style="flex:1; text-align:center; padding:9px; border-radius:10px; background:#fff; color:#15162E; font-family:'Jua'; font-size:14px;">악기 교육</span><span style="flex:1; text-align:center; padding:9px; border-radius:10px; color:rgba(255,255,255,.85); font-family:'Jua'; font-size:14px;">음악 게임</span></div>
+          </div>
+          <div class="scrl" style="flex:1; overflow-y:auto; padding:18px 16px 24px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:0 4px 12px;"><span style="font-family:'Jua'; font-size:16px; color:#15162E;">전체 앱</span><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6;">12개 · 잠김 5</span></div>
+            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">
+              <sc-for list="{{ eduM }}" as="it" hint-placeholder-count="8">
+                <div style="position:relative; background:#fff; border-radius:22px; padding:15px 14px; box-shadow:0 5px 0 #E4E7EE; border:2.5px solid {{ it.border }};">
+                  <sc-if value="{{ it.locked }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:11px; right:11px; width:24px; height:24px; border-radius:50%; background:#EEF0F4; display:grid; place-items:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AA0AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span></sc-if>
+                  <sc-if value="{{ it.done }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:9px; right:10px; width:26px; height:26px; border-radius:50%; background:#FFB020; box-shadow:0 2px 0 #D98A00; display:grid; place-items:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg></span></sc-if>
+                  <sc-if value="{{ it.current }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:11px; right:11px; font-family:'Jua'; font-size:11px; color:#fff; background:#7C5CFC; padding:3px 9px; border-radius:999px;">시작</span></sc-if>
+                  <span style="width:58px; height:58px; border-radius:17px; background:{{ it.soft }}; display:grid; place-items:center;"><img src="{{ it.icon }}" style="width:38px; height:38px; object-fit:contain; {{ it.dim }}"></span>
+                  <div style="font-family:'Jua'; font-size:15px; color:#15162E; margin-top:10px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ it.name }}</div>
+                  <sc-if value="{{ it.showBar }}" hint-placeholder-val="{{ false }}"><div style="height:7px; border-radius:999px; background:#EEF0F4; overflow:hidden; margin-top:9px;"><div style="height:100%; width:{{ it.prog }}%; background:{{ it.base }}; border-radius:999px;"></div></div></sc-if>
+                  <sc-if value="{{ it.showLv }}" hint-placeholder-val="{{ true }}"><div style="display:flex; align-items:center; gap:5px; margin-top:9px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="{{ it.crown }}"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg><span style="font-family:'Nunito'; font-weight:900; font-size:12px; color:#8A8DA6;">Lv.{{ it.lvl }}</span></div></sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE PROFILE -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">내 정보</div>
+      <div style="width:390px; height:800px; background:#1B1C2E; border-radius:40px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,.10);">
+        <div style="width:100%; height:100%; border-radius:33px; overflow:hidden; background:#F4F6FA; display:flex; flex-direction:column;">
+          <div style="background:linear-gradient(150deg,#3457D5,#5A78E8); color:#fff; padding:14px 22px 24px; position:relative; overflow:hidden; text-align:center;">
+            <span style="position:absolute; top:-60px; right:-40px; width:190px; height:190px; border-radius:50%; background:rgba(255,255,255,.10);"></span>
+            <div style="position:relative; display:flex; align-items:center; justify-content:space-between; font-family:'Nunito'; font-weight:800; font-size:13px; margin-bottom:14px;"><span>9:41</span><span>▮▮▮ 100%</span></div>
+            <div style="position:relative; display:flex; flex-direction:column; align-items:center;"><span style="width:80px; height:80px; border-radius:26px; background:rgba(255,255,255,.2); border:3px solid rgba(255,255,255,.55); display:grid; place-items:center; font-family:'Jua'; font-size:34px;">음</span><div style="font-family:'Jua'; font-size:22px; margin-top:12px;">음악 선생님</div><div style="display:inline-flex; gap:6px; margin-top:8px;"><span style="padding:4px 12px; border-radius:999px; background:rgba(255,255,255,.22); font-family:'Jua'; font-size:12px;">회원 · Lv.5</span><span style="font-size:12px; color:rgba(255,255,255,.82); align-self:center;">2025.09 가입</span></div></div>
+          </div>
+          <div class="scrl" style="flex:1; overflow-y:auto; padding:18px 16px 24px;">
+            <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:11px; margin-bottom:20px;">
+              <div style="display:flex; align-items:center; gap:11px; padding:15px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;"><span style="width:42px; height:42px; border-radius:13px; background:#FFEDE5; display:grid; place-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#FF6B3D"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg></span><div><div style="font-family:'Nunito'; font-weight:900; font-size:20px; color:#15162E;">14</div><div style="font-size:11px; color:#8A8DA6; margin-top:3px;">연속 일수</div></div></div>
+              <div style="display:flex; align-items:center; gap:11px; padding:15px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;"><span style="width:42px; height:42px; border-radius:13px; background:#E2F7FA; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#12B5C9"><path d="M12 2 22 9 12 22 2 9z"/></svg></span><div><div style="font-family:'Nunito'; font-weight:900; font-size:20px; color:#15162E;">620</div><div style="font-size:11px; color:#8A8DA6; margin-top:3px;">젬</div></div></div>
+              <div style="display:flex; align-items:center; gap:11px; padding:15px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;"><span style="width:42px; height:42px; border-radius:13px; background:#FFE8F1; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FF5C9D"><path d="M12 21S4 14.5 4 8.8A4.3 4.3 0 0 1 12 6a4.3 4.3 0 0 1 8 2.8C20 14.5 12 21 12 21z"/></svg></span><div><div style="font-family:'Nunito'; font-weight:900; font-size:20px; color:#15162E;">5</div><div style="font-size:11px; color:#8A8DA6; margin-top:3px;">하트</div></div></div>
+              <div style="display:flex; align-items:center; gap:11px; padding:15px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;"><span style="width:42px; height:42px; border-radius:13px; background:#FFF3D6; display:grid; place-items:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="#FFB020"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg></span><div><div style="font-family:'Nunito'; font-weight:900; font-size:20px; color:#15162E;">1</div><div style="font-size:11px; color:#8A8DA6; margin-top:3px;">완료한 앱</div></div></div>
+            </div>
+            <div style="font-family:'Jua'; font-size:16px; color:#15162E; padding:0 4px 12px;">업적</div>
+            <div style="display:flex; gap:11px; margin-bottom:22px;">
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:15px 8px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;"><span style="width:50px; height:50px; border-radius:50%; background:#FFB020; display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M3 7l4.5 3.5L12 3l4.5 7.5L21 7l-1.8 12H4.8z"/></svg></span><span style="font-size:11px; font-weight:800; color:#15162E; text-align:center;">첫 코드 마스터</span></div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:15px 8px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;"><span style="width:50px; height:50px; border-radius:50%; background:#FF6B3D; display:grid; place-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12 2c2 3.4 1 5.4 3 7.4s3 3.8 3 5.6a6 6 0 0 1-12 0c0-2 1-3.2 2-4.2 0 1.2 1 2.2 2 2.2 1.6 0 2.2-1.6 1.1-3.4C12 9 12 6.6 14 5c-1.2-1-1.6-2-2-3z"/></svg></span><span style="font-size:11px; font-weight:800; color:#15162E; text-align:center;">7일 연속</span></div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; padding:15px 8px; border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE;"><span style="width:50px; height:50px; border-radius:50%; background:#C6CAD4; display:grid; place-items:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span><span style="font-size:11px; font-weight:800; color:#9AA0AE; text-align:center;">올라운더</span></div>
+            </div>
+            <div style="border-radius:20px; background:#fff; box-shadow:0 4px 0 #E4E7EE; overflow:hidden;">
+              <div style="display:flex; align-items:center; gap:13px; padding:15px 16px; border-bottom:1px solid #F1F3F8;"><span style="width:34px; height:34px; border-radius:11px; background:#EAEFFF; display:grid; place-items:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.2 2.7 2.5 6 2.5s6-1.3 6-2.5v-5"/></svg></span><span style="flex:1; font-family:'Jua'; font-size:15px; color:#15162E;">내 학습 기록</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6CAD4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+              <div style="display:flex; align-items:center; gap:13px; padding:15px 16px;"><span style="width:34px; height:34px; border-radius:11px; background:#E3F7EC; display:grid; place-items:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#1E8C57" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 4.5 1.5c0 1.7-2.5 2-2.5 3.5"/><path d="M12 17.5h.01"/></svg></span><span style="flex:1; font-family:'Jua'; font-size:15px; color:#15162E;">도움말</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6CAD4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE LOGIN SHEET -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">로그인 시트</div>
+      <div style="width:390px; height:800px; background:#1B1C2E; border-radius:40px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,.10);">
+        <div style="width:100%; height:100%; border-radius:33px; overflow:hidden; background:#F4F6FA; position:relative; display:flex; flex-direction:column;">
+          <div style="background:#fff; border-bottom:1px solid #EBEEF3; padding:14px 22px; filter:blur(.4px); opacity:.7;">
+            <div style="display:flex; align-items:center; justify-content:space-between; font-family:'Nunito'; font-weight:800; font-size:13px; color:#15162E;"><span>9:41</span><span>▮▮▮ 100%</span></div>
+            <div style="font-family:'Jua'; font-size:23px; color:#15162E; margin-top:10px;">악기 교육앱</div>
+          </div>
+          <div style="flex:1; opacity:.5; padding:18px 16px;"><div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;"><div style="height:130px; background:#fff; border-radius:22px; box-shadow:0 5px 0 #E4E7EE;"></div><div style="height:130px; background:#fff; border-radius:22px; box-shadow:0 5px 0 #E4E7EE;"></div></div></div>
+          <div style="position:absolute; inset:0; background:rgba(21,22,46,.5);"></div>
+          <div style="position:absolute; left:0; right:0; bottom:0; background:#fff; border-radius:30px 30px 0 0; padding:10px 22px 26px;">
+            <div style="width:42px; height:5px; border-radius:999px; background:#E6E8EE; margin:6px auto 18px;"></div>
+            <div style="display:flex; align-items:center; gap:13px; margin-bottom:6px;"><span style="width:48px; height:48px; border-radius:15px; background:#EAEFFF; display:grid; place-items:center;"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#3457D5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></span><div><div style="font-family:'Jua'; font-size:21px; color:#15162E;">회원 로그인</div><div style="font-size:13px; color:#8A8DA6;">로그인하면 모든 앱이 열려요</div></div></div>
+            <div style="display:flex; flex-direction:column; gap:10px; margin:18px 0 6px;"><div style="border:2px solid #E6E8EE; border-radius:15px; padding:14px 15px; font-size:14px; color:#15162E;">teacher@lesson.kr</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:14px 15px; font-size:14px; color:#15162E;">••••••••</div></div>
+            <div style="margin-top:10px; padding:16px; border-radius:18px; background:#2FBF71; box-shadow:0 6px 0 #1E8C57; color:#fff; font-family:'Jua'; font-size:18px; text-align:center;">로그인하고 시작하기</div>
+            <div style="text-align:center; margin-top:15px; font-size:13px; color:#8A8DA6;">계정이 없으신가요? <span style="color:#3457D5; font-weight:900;">회원가입</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE SIGNUP -->
+    <div style="flex:none;">
+      <div style="font-family:'Nunito'; font-size:12px; font-weight:900; color:#8A8A9A; margin:0 0 10px 2px;">회원가입</div>
+      <div style="width:390px; height:800px; background:#1B1C2E; border-radius:40px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,.10);">
+        <div style="width:100%; height:100%; border-radius:33px; overflow:hidden; background:#F4F6FA; display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 24px 6px; font-family:'Nunito'; font-weight:800; font-size:13px; color:#15162E;"><span>9:41</span><span>▮▮▮ 100%</span></div>
+          <div class="scrl" style="flex:1; overflow-y:auto; padding:18px 20px 28px;">
+            <span style="width:52px; height:52px; border-radius:16px; background:#FFEDE5; display:grid; place-items:center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF6B3D" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.4"/><path d="M3 20c0-3.4 2.8-5.4 6-5.4 1 0 2 .2 2.8.6"/><path d="M17 11v6M14 14h6"/></svg></span>
+            <div style="font-family:'Jua'; font-size:25px; color:#15162E; margin-top:14px;">회원가입</div>
+            <div style="font-size:13px; color:#8A8DA6; margin-top:5px;">가입하면 진도와 젬이 저장돼요</div>
+            <div style="display:flex; flex-direction:column; gap:11px; margin-top:22px;">
+              <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">이름</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:13px 15px; font-size:14px; color:#15162E; background:#fff;">음악 선생님</div></div>
+              <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">이메일</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:13px 15px; font-size:14px; color:#15162E; background:#fff;">teacher@lesson.kr</div></div>
+              <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">비밀번호</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:13px 15px; font-size:14px; color:#15162E; background:#fff;">••••••••</div></div>
+              <div><div style="font-family:'Jua'; font-size:13px; color:#15162E; margin-bottom:7px;">비밀번호 확인</div><div style="border:2px solid #E6E8EE; border-radius:15px; padding:13px 15px; font-size:14px; color:#15162E; background:#fff;">••••••••</div></div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px; margin-top:16px;"><span style="width:24px; height:24px; border-radius:7px; background:#3457D5; display:grid; place-items:center; flex:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span style="font-size:12.5px; color:#5A5C76; line-height:1.4;">이용약관 및 개인정보 처리방침에 동의합니다</span></div>
+            <div style="margin-top:20px; padding:16px; border-radius:18px; background:#3457D5; box-shadow:0 6px 0 #1E3AAE; color:#fff; font-family:'Jua'; font-size:18px; text-align:center;">가입하고 시작하기</div>
+            <div style="text-align:center; margin-top:14px; font-size:13px; color:#8A8DA6;">이미 계정이 있으신가요? <span style="color:#3457D5; font-weight:900;">로그인</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  HUES = {
+    blue:{base:'#3457D5',soft:'#EAEFFF',ink:'#1E3AAE'},
+    teal:{base:'#12B5C9',soft:'#E2F7FA',ink:'#0E7D8B'},
+    orange:{base:'#FF6B3D',soft:'#FFEDE5',ink:'#C53E16'},
+    purple:{base:'#7C5CFC',soft:'#EFEAFF',ink:'#5B3FD4'},
+    pink:{base:'#FF5C9D',soft:'#FFE8F1',ink:'#C42769'},
+    gold:{base:'#FFB020',soft:'#FFF3D6',ink:'#9A6B00'},
+    green:{base:'#2FBF71',soft:'#E3F7EC',ink:'#1E8C57'},
+    red:{base:'#FF5247',soft:'#FFE9E7',ink:'#C42C24'}
+  };
+  GRAY = {base:'#C6CAD4',soft:'#EEF0F4',ink:'#9AA0AE'};
+
+  EDU = [
+    {name:'기타 코드',icon:'icons/guitar.png',hue:'blue',locked:false,done:true,prog:100,lvl:5},
+    {name:'우쿨렐레 코드',icon:'icons/ukulele.png',hue:'teal',locked:false,done:false,prog:60,lvl:3},
+    {name:'칼림바',icon:'icons/kalimba.png',hue:'purple',locked:false,done:false,prog:0,lvl:1,current:true},
+    {name:'미니하프',icon:'icons/miniharp.png',hue:'pink',locked:false,done:false,prog:0,lvl:1},
+    {name:'팬플룻',icon:'icons/panflute.png',hue:'green',locked:false,done:false,prog:0,lvl:1},
+    {name:'텅드럼',icon:'icons/tongue-drum.png',hue:'orange',locked:false,done:false,prog:0,lvl:1},
+    {name:'플루트',icon:'icons/flute.png',hue:'teal',locked:false,done:false,prog:0,lvl:1},
+    {name:'색소폰',icon:'icons/saxophone.png',hue:'gold',locked:true,lvl:1},
+    {name:'오카리나',icon:'icons/ocarina.png',hue:'orange',locked:true,lvl:1},
+    {name:'바이올린',icon:'icons/violin.png',hue:'red',locked:true,lvl:1},
+    {name:'첼로',icon:'icons/cello.png',hue:'red',locked:true,lvl:1},
+    {name:'메트로놈',icon:'icons/metronome.png',hue:'blue',locked:true,lvl:1}
+  ];
+
+  view(a){
+    const c = a.locked ? this.GRAY : this.HUES[a.hue];
+    const prog = a.done?100:(a.prog||0);
+    const showBar = !a.locked && prog>0 && prog<100;
+    return {
+      name:a.name, icon:a.icon, locked:!!a.locked, done:!!a.done, current:!!a.current,
+      base:c.base, soft:c.soft, ink:c.ink, prog, lvl:a.lvl||1,
+      showBar, showLv:!showBar && !a.done && !a.current,
+      crown:a.done?'#FFB020':(a.locked?'#C6CAD4':'#D8DCE6'),
+      border:a.current?'#7C5CFC':(a.done?'#FFB020':'transparent'),
+      dim:a.locked?'filter:grayscale(1) brightness(1.03);opacity:.5':''
+    };
+  }
+
+  renderVals(){
+    const edu = this.EDU.map(a=>this.view(a));
+    const stats = [
+      {label:'전체 앱',value:'16',soft:'#EAEFFF',ink:'#3457D5',glyph:'■'},
+      {label:'공개 앱',value:'2',soft:'#E3F7EC',ink:'#1E8C57',glyph:'●'},
+      {label:'회원 수',value:'124',soft:'#FFEDE5',ink:'#C53E16',glyph:'◆'},
+      {label:'회원 전용',value:'14',soft:'#FFF3D6',ink:'#9A6B00',glyph:'▲'}
+    ];
+    const adminSrc = [
+      {name:'기타 코드 배우기',sub:'guitar-chord-viewer',icon:'icons/guitar.png',hue:'blue',cat:'edu',pub:true},
+      {name:'우쿨렐레 코드 배우기',sub:'ukulele-chord-viewer',icon:'icons/ukulele.png',hue:'teal',cat:'edu',pub:true},
+      {name:'칼림바 배우기',sub:'kalimba-play',icon:'icons/kalimba.png',hue:'purple',cat:'edu',pub:false},
+      {name:'색소폰 배우기',sub:'saxophone-edu',icon:'icons/saxophone.png',hue:'gold',cat:'edu',pub:false},
+      {name:'난타 리듬 게임',sub:'nanta-play',icon:'icons/nanta.png',hue:'orange',cat:'game',pub:false},
+      {name:'드럼 리듬 게임',sub:'drum-beat',icon:'icons/drum.png',hue:'teal',cat:'game',pub:false}
+    ];
+    const adminRows = adminSrc.map(r=>{
+      const c=this.HUES[r.hue];
+      return {name:r.name, sub:r.sub, icon:r.icon, soft:c.soft, ink:c.ink, pub:r.pub, locked:!r.pub,
+        catLabel:r.cat==='edu'?'악기 교육':'음악 게임'};
+    });
+    return { edu, eduM:edu, stats, adminRows };
+  }
+}
+</script>
+</body>
+</html>
