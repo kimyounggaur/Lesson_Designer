@@ -1,16 +1,29 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Flame, Heart, LockKeyhole, Play, Sparkles } from "lucide-react";
 import { notFound } from "next/navigation";
-import { appOpenHref } from "@/components/AppCard";
-import { AppGrid } from "@/components/AppGrid";
-import { firstOpenableApp, roleLabel } from "@/features/catalog";
-import { getCurrentUserProfile } from "@/features/auth/service";
+import { Suspense } from "react";
+import { ArrowLeft, Globe, Layers, LockKeyhole } from "lucide-react";
+import { GridSkeleton } from "@/components/catalog/GridSkeleton";
+import { Stat } from "@/components/ui/Stat";
+import { ko } from "@/content/ko";
 import { getAppsByCategory, getCategoryMeta, getCategoryStats, isAppCategory } from "@/features/catalog";
+import { RoleAwareGrid } from "./RoleAwareGrid";
+import styles from "./category.module.css";
 
 type CategoryPageProps = {
   params: Promise<{ category: string }>;
 };
+
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+  const { category } = await params;
+
+  if (!isAppCategory(category)) {
+    return {};
+  }
+
+  const meta = getCategoryMeta(category);
+  return { title: meta.label, description: meta.description };
+}
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category } = await params;
@@ -19,105 +32,34 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     notFound();
   }
 
-  const profile = await getCurrentUserProfile();
-  const role = profile?.role ?? "guest";
-  const apps = getAppsByCategory(category);
   const meta = getCategoryMeta(category);
   const stats = getCategoryStats(category);
-  // 추천 카드는 현재 역할로 열 수 있는 앱만 노출한다 (A-1: 잠긴 앱 URL 우회 차단).
-  const featuredApp = firstOpenableApp(apps, role);
+  const skeletonCount = Math.min(getAppsByCategory(category).length, 4);
 
+  // 카탈로그 히어로는 역할과 무관하므로 즉시 렌더하고, 역할 의존 부분은 Suspense 로 분리한다.
   return (
-    <div className={`pageShell appMain categoryPage ${meta.tone}`}>
-          <Link href="/" className="backLink">
-            <ArrowLeft size={17} aria-hidden="true" />
-            홈으로
-          </Link>
+    <div className={styles.page} data-tone={meta.tone}>
+      <Link href="/" className={styles.back}>
+        <ArrowLeft size={16} aria-hidden="true" />
+        {ko.category.back}
+      </Link>
 
-          <section className="categoryHero" aria-labelledby="category-page-title">
-            <p className="brandEyebrow">LESSON DESIGNER</p>
-            <h1 id="category-page-title">{meta.label}</h1>
-            <p>{meta.preview}</p>
-            <div className="heroStatRow" aria-label="카테고리 현황">
-              <span>
-                <Flame size={16} aria-hidden="true" />
-                <strong>{stats.total}</strong>
-                전체
-              </span>
-              <span>
-                <Sparkles size={16} aria-hidden="true" />
-                <strong>{stats.publicCount}</strong>
-                공개
-              </span>
-              <span>
-                <Heart size={16} aria-hidden="true" />
-                <strong>{stats.lockedCount}</strong>
-                회원용
-              </span>
-            </div>
-          </section>
+      <section className={styles.hero} aria-labelledby="category-page-title">
+        <h1 id="category-page-title" className={styles.title}>
+          {meta.label}
+        </h1>
+        <p className={styles.desc}>{meta.description}</p>
+        <p className={styles.preview}>{meta.preview}</p>
+        <div className={styles.stats} role="group" aria-label={ko.category.statsLabel}>
+          <Stat icon={Layers} value={stats.total} label={ko.stats.total} variant="glass" />
+          <Stat icon={Globe} value={stats.publicCount} label={ko.stats.public} variant="glass" />
+          <Stat icon={LockKeyhole} value={stats.lockedCount} label={ko.stats.locked} variant="glass" />
+        </div>
+      </section>
 
-          <nav className="mobileTabBar" aria-label="카테고리 전환">
-            <Link
-              className={category === "instrument-education" ? "active" : ""}
-              href="/category/instrument-education"
-            >
-              악기 교육
-            </Link>
-            <Link className={category === "music-game" ? "active" : ""} href="/category/music-game">
-              음악 게임
-            </Link>
-          </nav>
-
-          {featuredApp ? (
-            <section className="continueSection featuredLesson" aria-labelledby="featured-title">
-              <h2 id="featured-title">이어 학습하기</h2>
-              <Link href={appOpenHref(featuredApp)} className="continueCard" target="_blank" rel="noreferrer">
-                <span className="continueIcon">
-                  <Image src={featuredApp.icon} alt="" width={58} height={58} />
-                </span>
-                <span className="continueText">
-                  <small>{meta.shortLabel}</small>
-                  <strong>{featuredApp.name}</strong>
-                  <span className="miniProgressTrack" aria-hidden="true">
-                    <span />
-                  </span>
-                </span>
-                <em>60%</em>
-                <span className="continuePlay" aria-hidden="true">
-                  <Play size={18} />
-                </span>
-              </Link>
-            </section>
-          ) : null}
-
-          <section className="permissionStrip appPermissionStrip" aria-label="이용 권한 요약">
-            <div>
-              <span>전체 앱</span>
-              <strong>{stats.total}개</strong>
-            </div>
-            <div>
-              <span>현재 상태</span>
-              <strong className="roleState">
-                {role === "guest" ? (
-                  <LockKeyhole size={16} aria-hidden="true" />
-                ) : (
-                  <Sparkles size={16} aria-hidden="true" />
-                )}
-                {roleLabel(role)}
-              </strong>
-            </div>
-          </section>
-
-          <section className="appListSection" aria-labelledby="all-apps-title">
-            <div className="appListHeading">
-              <h2 id="all-apps-title">전체 앱</h2>
-              <span>
-                {stats.total}개 · 잠김 {stats.lockedCount}
-              </span>
-            </div>
-            <AppGrid apps={apps} role={role} />
-          </section>
+      <Suspense fallback={<GridSkeleton count={skeletonCount} />}>
+        <RoleAwareGrid category={category} />
+      </Suspense>
     </div>
   );
 }
