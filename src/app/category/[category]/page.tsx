@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { AppGrid } from "@/components/AppGrid";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { firstOpenableApp, roleLabel } from "@/lib/access";
 import { getCurrentUserProfile } from "@/lib/auth";
 import { getAppsByCategory, getCategoryMeta, getCategoryStats, isAppCategory } from "@/lib/apps";
 
@@ -24,7 +25,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const apps = getAppsByCategory(category);
   const meta = getCategoryMeta(category);
   const stats = getCategoryStats(category);
-  const featuredApp = apps[0];
+  // 추천 카드는 현재 역할로 열 수 있는 앱만 노출한다 (A-1: 잠긴 앱 URL 우회 차단).
+  const featuredApp = firstOpenableApp(apps, role);
 
   return (
     <div className="deviceStage">
@@ -106,7 +108,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 ) : (
                   <Sparkles size={16} aria-hidden="true" />
                 )}
-                {role === "guest" ? "게스트" : role === "admin" ? "관리자" : "회원"}
+                {roleLabel(role)}
               </strong>
             </div>
           </section>
