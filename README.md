@@ -33,6 +33,13 @@ env가 없으면 앱은 게스트 모드로 동작합니다(빌드·테스트에
    `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next={{ .RedirectTo }}` 로 변경합니다.
 4. 관리자 승격: SQL Editor에서 `update public.profiles set role = 'admin' where email = '<이메일>';`
 
+## 앱 카탈로그
+
+- 카탈로그는 코드에 있습니다: `src/features/catalog/apps.ts`. 항목마다 `id`, `name`, `description`, `icon`, `url`, `categories`, `access("public" | "member")`.
+- 앱 추가: 항목을 추가하고 아이콘을 `public/icons/<id>.png`(Phase 7 이후 `.webp`)에 넣습니다. `npm test`의 카탈로그 무결성 테스트가 id 중복·URL 중복·아이콘 누락을 잡습니다.
+- 외부 앱 URL은 화면에 직접 쓰지 않고 항상 `/go/<id>`(서버 접근 게이트)를 거칩니다. 게스트가 회원용 앱을 열면 `/login?next=/go/<id>`로 보냅니다.
+- 2026-10 리팩토링에서 텅드럼·칼림바가 교육/게임 양쪽에 중복 등록되어 있던 것을 하나로 합쳤습니다(`categories` 복수). 전체 앱 수가 16 → **14**로 바뀐 것은 의도된 정정입니다.
+
 ## 스크립트
 
 | 명령 | 설명 |
