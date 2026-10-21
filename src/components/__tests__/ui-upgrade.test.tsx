@@ -19,7 +19,10 @@ describe("UI upgrade components", () => {
 
     rerender(<AppCard app={lockedApp!} role="guest" />);
     expect(screen.getAllByText("잠금").length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: /로그인/ })).toHaveAttribute("href", "/login?required=1");
+    expect(screen.getByRole("link", { name: /로그인/ })).toHaveAttribute(
+      "href",
+      `/login?required=1&next=${encodeURIComponent(`/category/${lockedApp!.category}`)}`
+    );
   });
 
   it("keeps app cards descriptive enough for an app hub", () => {

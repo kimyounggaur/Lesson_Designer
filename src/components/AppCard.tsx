@@ -42,7 +42,10 @@ export function AppCard({ app, role }: AppCardProps) {
           <Play size={15} aria-hidden="true" />
         </Link>
       ) : (
-        <Link href="/login?required=1" className="tileAction lockedAction">
+        <Link
+          href={`/login?required=1&next=${encodeURIComponent(`/category/${app.category}`)}`}
+          className="tileAction lockedAction"
+        >
           로그인
           <LockKeyhole size={15} aria-hidden="true" />
         </Link>
