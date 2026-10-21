@@ -1,7 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
-import { normalizeRole } from "@/lib/access";
+import { normalizeRole } from "@/features/catalog";
 import { getPublicEnv } from "@/lib/env";
 import { createClient } from "@/lib/supabase/server";
 import type { CurrentUserProfile } from "./types";

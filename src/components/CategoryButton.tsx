@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Gamepad2, GraduationCap } from "lucide-react";
-import { getCategoryMeta, getCategoryStats, type AppCategory } from "@/lib/apps";
+import { getCategoryMeta, getCategoryStats, type AppCategory } from "@/features/catalog";
 
 type CategoryButtonProps = {
   category: AppCategory;
