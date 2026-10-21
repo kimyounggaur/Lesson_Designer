@@ -1,97 +1,116 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Flame, Heart, Play, Sparkles, Trophy } from "lucide-react";
-import { appOpenHref } from "@/components/AppCard";
-import { CategoryButton } from "@/components/CategoryButton";
+import { Globe, Layers, LockKeyhole, Music, Play } from "lucide-react";
+import { CategoryCard } from "@/components/catalog/CategoryCard";
+import { Stat } from "@/components/ui/Stat";
+import { ko } from "@/content/ko";
 import { getCurrentUserProfile } from "@/features/auth/service";
-import { CATEGORY_META, firstOpenableApp, getCategoryStats, LESSON_APPS } from "@/features/catalog";
+import { appOpenHref, canOpenApp, getCatalogStats, getCategoryMeta, LESSON_APPS } from "@/features/catalog";
+import styles from "./home.module.css";
+
+const QUICK_START_LIMIT = 4;
 
 export default async function HomePage() {
   const profile = await getCurrentUserProfile();
   const role = profile?.role ?? "guest";
-  // 현재 역할로 열 수 있는 앱만 추천한다 (외부 URL 은 /go 게이트 경유).
-  const continueApp = firstOpenableApp(LESSON_APPS, role);
-  const instrumentStats = getCategoryStats("instrument-education");
-  const gameStats = getCategoryStats("music-game");
+  const stats = getCatalogStats();
+  // 현재 역할로 열 수 있는 앱만 노출한다 (게스트: 공개 앱 / 회원: 상위 4개). 열람 기록 기반 추천은 Phase 8.
+  const quickApps = LESSON_APPS.filter((app) => canOpenApp(app, role)).slice(0, QUICK_START_LIMIT);
+  const lead = role === "guest" ? ko.home.lead.guest(stats.lockedCount) : ko.home.lead[role];
 
   return (
-    <div className="homeShell appMain">
-          <section className="progressHero" aria-labelledby="progress-title">
-            <div className="progressIcon" aria-hidden="true">
-              <Flame size={24} />
-            </div>
-            <div>
-              <h1 id="progress-title">0일 연속 학습 중!</h1>
-              <p>오늘의 목표까지 40 XP 남았어요</p>
-            </div>
-            <strong>10/50</strong>
-            <span className="progressTrack" aria-hidden="true">
-              <span className="progressFill" />
-            </span>
-          </section>
-
-          {continueApp ? (
-            <section className="continueSection" aria-labelledby="continue-title">
-              <h2 id="continue-title">이어서 학습하기</h2>
-              <Link href={appOpenHref(continueApp)} className="continueCard" target="_blank" rel="noreferrer">
-                <span className="continueIcon">
-                  <Image src={continueApp.icon} alt="" width={58} height={58} />
-                </span>
-                <span className="continueText">
-                  <strong>{continueApp.name}</strong>
-                  <span className="miniProgressTrack" aria-hidden="true">
-                    <span />
-                  </span>
-                </span>
-                <em>60%</em>
-                <span className="continuePlay" aria-hidden="true">
-                  <Play size={18} />
-                </span>
+    <div className={styles.page}>
+      <section className={styles.hero} aria-labelledby="home-title">
+        <h1 id="home-title" className={styles.heroTitle}>
+          <Music size={16} aria-hidden="true" />
+          {ko.brand}
+        </h1>
+        <p className={styles.heroTagline}>{ko.tagline}</p>
+        <p className={styles.heroLead}>{lead}</p>
+        <div className={styles.ctaRow}>
+          {role === "guest" ? (
+            <>
+              <Link href="/login" className={styles.cta}>
+                {ko.home.cta.login}
               </Link>
-            </section>
-          ) : null}
+              <Link href="/signup" className={styles.cta} data-variant="secondary">
+                {ko.home.cta.signup}
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/category/instrument-education" className={styles.cta}>
+                {ko.home.cta.instrument}
+              </Link>
+              <Link href="/category/music-game" className={styles.cta} data-variant="secondary">
+                {ko.home.cta.game}
+              </Link>
+            </>
+          )}
+        </div>
+      </section>
 
-          <section className="categorySection appCategorySection" aria-labelledby="category-title">
-            <div className="sectionHeading compactHeading">
-              <p className="eyebrow">카테고리</p>
-              <h2 id="category-title">수업 방식에 맞춰 앱을 고르세요</h2>
-            </div>
-            <div className="categoryStack">
-              <CategoryButton
-                category="instrument-education"
-                label={CATEGORY_META["instrument-education"].label}
-                description="코드, 운지, 음계를 단계별로 익히는 학습 앱"
-              />
-              <CategoryButton
-                category="music-game"
-                label={CATEGORY_META["music-game"].label}
-                description="리듬과 연주 감각을 키우는 게임형 앱"
-              />
-            </div>
-          </section>
+      <section className={styles.section} aria-labelledby="category-title">
+        <div className={styles.sectionHead}>
+          <p className={styles.eyebrow}>{ko.home.categoryEyebrow}</p>
+          <h2 id="category-title" className={styles.sectionTitle}>
+            {ko.home.categoryTitle}
+          </h2>
+        </div>
+        <div className={styles.categoryStack}>
+          <CategoryCard category="instrument-education" />
+          <CategoryCard category="music-game" />
+        </div>
+      </section>
 
-          <section className="dashboardStats" aria-label="앱 현황">
-            <div>
-              <Flame size={18} aria-hidden="true" />
-              <strong>{instrumentStats.total + gameStats.total}</strong>
-              <span>전체 앱</span>
-            </div>
-            <div>
-              <Trophy size={18} aria-hidden="true" />
-              <strong>{instrumentStats.publicCount + gameStats.publicCount}</strong>
-              <span>공개</span>
-            </div>
-            <div>
-              <Heart size={18} aria-hidden="true" />
-              <strong>{instrumentStats.lockedCount + gameStats.lockedCount}</strong>
-              <span>회원용</span>
-            </div>
-            <div>
-              <Sparkles size={18} aria-hidden="true" />
-              <strong>LD</strong>
-              <span>수업 허브</span>
-            </div>
-          </section>
+      {quickApps.length > 0 ? (
+        <section className={styles.section} aria-labelledby="quick-title">
+          <div className={styles.sectionHead}>
+            <h2 id="quick-title" className={styles.sectionTitle}>
+              {ko.home.quickStartTitle}
+            </h2>
+            <p className={styles.hint}>
+              {role === "guest" ? ko.home.quickStartHint.guest : ko.home.quickStartHint.member}
+            </p>
+          </div>
+          <ul className={styles.quickList} role="list">
+            {quickApps.map((app) => (
+              <li key={app.id} className={styles.quickItem}>
+                <Link
+                  href={appOpenHref(app)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.quickLink}
+                  data-tone={getCategoryMeta(app.categories[0]).tone}
+                >
+                  <span className={styles.quickIcon}>
+                    <Image
+                      src={app.icon}
+                      alt=""
+                      width={44}
+                      height={44}
+                      sizes="44px"
+                      className={styles.quickImg}
+                    />
+                  </span>
+                  <span className={styles.quickName}>{app.name}</span>
+                  <span className={styles.quickAction}>
+                    {ko.catalog.start}
+                    <Play size={12} aria-hidden="true" />
+                    <span className={styles.srOnly}>{ko.catalog.opensInNewTab}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      <section className={styles.stats} aria-label={ko.home.statsLabel}>
+        <Stat icon={Layers} value={stats.total} label={ko.stats.total} />
+        <Stat icon={Globe} value={stats.publicCount} label={ko.stats.public} />
+        <Stat icon={LockKeyhole} value={stats.lockedCount} label={ko.stats.locked} />
+      </section>
     </div>
   );
 }
