@@ -1,0 +1,66 @@
+.card {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 28px 18px;
+  border-radius: var(--r-lg);
+  background: var(--c-paper);
+  box-shadow: var(--sh-card);
+  text-align: center;
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  background: var(--c-warn-soft);
+  color: var(--c-warn);
+}
+
+.title {
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.body {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.button {
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 16px;
+  border-radius: var(--r-md);
+  background: var(--c-brand);
+  color: var(--c-paper);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+}
+
+.button[data-variant="secondary"] {
+  background: var(--c-brand-soft);
+  color: var(--c-brand-deep);
+}
+
+.button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--c-brand) 35%, transparent);
+  outline-offset: 2px;
+}
