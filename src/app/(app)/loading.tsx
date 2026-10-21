@@ -6,7 +6,7 @@ import styles from "./loading.module.css";
 export default function Loading() {
   return (
     <div className={styles.page} role="status" aria-busy="true">
-      <span className={styles.srOnly}>{ko.status.loading}</span>
+      <span className="sr-only">{ko.status.loading}</span>
       <div className={`${styles.block} ${styles.hero}`} aria-hidden="true" />
       <div className={`${styles.block} ${styles.card}`} aria-hidden="true" />
       <GridSkeleton count={2} announce={false} />

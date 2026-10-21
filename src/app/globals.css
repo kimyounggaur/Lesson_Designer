@@ -1,4 +1,5 @@
 @import "../styles/tokens.css";
+@import "../styles/base.css";
 
 /* 아래 레거시 규칙(v1 데스크톱 + v2 모바일 레이어)은 Phase 5 에서 삭제한다. 새 컴포넌트는 CSS Modules + tokens.css 만 쓴다. */
 :root {
@@ -40,93 +41,6 @@
   --motion-spring: cubic-bezier(0.2, 0.9, 0.2, 1.08);
   --font-body: "Pretendard Variable", Pretendard, "Noto Sans KR", Arial, sans-serif;
   --font-display: "Space Grotesk", "Pretendard Variable", Pretendard, "Noto Sans KR", Arial, sans-serif;
-}
-
-@keyframes ld-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes staff-line-draw {
-  from {
-    transform: scaleX(0);
-  }
-
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes playhead-sweep {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(250px);
-  }
-}
-
-@keyframes note-pop {
-  0% {
-    transform: translateY(8px) scale(0.92);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  min-width: 320px;
-  background: var(--bg);
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(180deg, rgba(234, 239, 255, 0.72) 0, rgba(246, 247, 249, 0) 320px), var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body);
-  letter-spacing: 0;
-  text-rendering: optimizeLegibility;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input {
-  font: inherit;
-}
-
-button {
-  letter-spacing: 0;
-}
-
-img,
-svg {
-  flex-shrink: 0;
-}
-
-::selection {
-  background: var(--beat-soft);
-  color: var(--ink);
 }
 
 .siteHeader {
@@ -299,26 +213,6 @@ svg {
   color: var(--edu-ink);
   font-size: 14px;
   font-weight: 800;
-}
-
-h1,
-h2,
-h3,
-p {
-  overflow-wrap: anywhere;
-}
-
-h1,
-h2,
-h3 {
-  margin: 0;
-  font-family: var(--font-display);
-  letter-spacing: 0;
-}
-
-h1 {
-  font-size: 64px;
-  line-height: 1.02;
 }
 
 .heroLead {
@@ -1276,49 +1170,6 @@ h1 {
   .authIntro {
     grid-template-columns: 1fr;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .staffLine {
-    transform: scaleX(1);
-  }
-
-  .note {
-    opacity: 1;
-  }
-}
-
-/* Exported mobile app redesign */
-:root {
-  --app-blue: #3f5fd8;
-  --app-blue-deep: #11152f;
-  --app-blue-soft: #eef2ff;
-  --app-teal: #19b7c4;
-  --app-teal-soft: #dff9fb;
-  --app-yellow: #ffd23f;
-  --app-pink: #ff7d9c;
-  --app-paper: #ffffff;
-  --app-canvas: #f3f2ee;
-  --app-rail: #f4f5fb;
-  --app-text: #17172c;
-  --app-muted: #7b7f92;
-  --app-line: #e7e8f2;
-  --app-shadow: 0 24px 60px rgba(22, 24, 48, 0.18);
-}
-
-body {
-  background:
-    radial-gradient(circle at 18% 10%, rgba(63, 95, 216, 0.12), transparent 28%),
-    radial-gradient(circle at 86% 20%, rgba(25, 183, 196, 0.14), transparent 28%), var(--app-canvas);
-  color: var(--app-text);
 }
 
 .deviceStage {

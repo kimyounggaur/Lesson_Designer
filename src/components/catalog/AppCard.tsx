@@ -53,7 +53,7 @@ export function AppCard({ app, role, tone }: AppCardProps) {
         >
           {ko.catalog.start}
           <Play size={14} aria-hidden="true" />
-          <span className={styles.srOnly}>{ko.catalog.opensInNewTab}</span>
+          <span className="sr-only">{ko.catalog.opensInNewTab}</span>
         </Link>
       ) : (
         <Link href={appLoginHref(app)} className={styles.action} data-variant="locked">

@@ -15,7 +15,7 @@ export function GridSkeleton({ count = 4, announce = true }: GridSkeletonProps) 
       role={announce ? "status" : undefined}
       aria-busy={announce ? "true" : undefined}
     >
-      {announce ? <span className={styles.srOnly}>{ko.catalog.loading}</span> : null}
+      {announce ? <span className="sr-only">{ko.catalog.loading}</span> : null}
       {Array.from({ length: count }, (_, index) => (
         <div key={index} className={styles.card} aria-hidden="true">
           <span className={`${styles.block} ${styles.icon}`} />

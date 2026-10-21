@@ -66,7 +66,7 @@ export async function RoleAwareGrid({ category }: RoleAwareGridProps) {
             <span className={styles.featuredAction}>
               {ko.category.openNow}
               <Play size={14} aria-hidden="true" />
-              <span className={styles.srOnly}>{ko.catalog.opensInNewTab}</span>
+              <span className="sr-only">{ko.catalog.opensInNewTab}</span>
             </span>
           </Link>
         </section>

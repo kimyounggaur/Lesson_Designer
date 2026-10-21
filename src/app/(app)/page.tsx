@@ -98,7 +98,7 @@ export default async function HomePage() {
                   <span className={styles.quickAction}>
                     {ko.catalog.start}
                     <Play size={12} aria-hidden="true" />
-                    <span className={styles.srOnly}>{ko.catalog.opensInNewTab}</span>
+                    <span className="sr-only">{ko.catalog.opensInNewTab}</span>
                   </span>
                 </Link>
               </li>

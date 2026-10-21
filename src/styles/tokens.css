@@ -18,7 +18,7 @@
   /* 중립 */
   --c-canvas: #f3f2ee;
   --c-rail: #f4f5fb;
-  --c-paper: #ffffff;
+  --c-paper: #fff;
   --c-text: #17172c;
   --c-text-muted: #7b7f92;
   --c-line: #e7e8f2;
@@ -40,8 +40,10 @@
   --r-md: 15px;
   --r-lg: 24px;
   --r-pill: 999px;
-  --sh-card: 0 12px 24px rgba(20, 24, 52, 0.06);
-  --sh-float: 0 16px 34px rgba(63, 95, 216, 0.3);
+  --sh-card: 0 12px 24px rgb(20 24 52 / 6%);
+  --sh-float: 0 16px 34px rgb(63 95 216 / 30%);
+  --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-brand) 22%, transparent);
+  --sh-ring: inset 0 0 0 1px color-mix(in srgb, var(--c-paper) 22%, transparent);
   --motion-fast: 180ms;
   --motion-base: 260ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -54,6 +56,7 @@
   --fs-lg: 18px;
   --fs-xl: 24px;
   --fs-2xl: 28px;
+  --fs-3xl: 34px;
 
   /* 레이아웃 */
   --shell-max: 480px;
@@ -64,9 +67,11 @@
 [data-tone="edu"] {
   --c-tone: var(--c-brand);
   --c-tone-soft: var(--c-brand-soft);
+  --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-brand) 22%, transparent);
 }
 
 [data-tone="play"] {
   --c-tone: var(--c-play);
   --c-tone-soft: var(--c-play-soft);
+  --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-play) 22%, transparent);
 }
