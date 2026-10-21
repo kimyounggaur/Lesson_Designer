@@ -3,10 +3,10 @@
 > 매 세션 시작 시 읽고, 종료 시 갱신. 최신 항목이 위로.
 
 ## 현재 상태
-- 완료 Phase: 0
-- 진행 중 Phase: 1
-- 현재 브랜치: refactor/phase-1-hotfix (base: refactor/phase-0-tooling)
-- 마지막 verify 결과: Phase 0 — typecheck ✓ lint ✓(0 warnings) test ✓(21) build ✓
+- 완료 Phase: 0, 1
+- 진행 중 Phase: 2
+- 현재 브랜치: refactor/phase-2-auth (base: refactor/phase-1-hotfix)
+- 마지막 verify 결과: Phase 1 — typecheck ✓ lint ✓ test ✓(37) build ✓
 
 ## 사람 작업 대기 (Human TODO)
 - [ ] D6: Supabase JWT 서명 키 타입 확인(Project Settings → JWT Keys) → 비대칭이면 DECISIONS D6 갱신
@@ -18,6 +18,17 @@
 - TypeScript 6.0에서 `baseUrl` 옵션이 deprecation 오류(TS5101) → Phase 0에서 `paths`만 남기고 제거.
 
 ## 세션 로그
+
+### 2026-10-22 Phase 1 — 긴급 수정 (브랜치 refactor/phase-1-hotfix)
+- 완료 Step: 1.1(A-1), 1.2(B-1), 1.3(A-3), 1.4(A-4), 1.5(B-2), 1.6(A-5), 1.7(B-4)
+- verify: typecheck ✓ lint ✓ test ✓(37, +16) build ✓
+- 수용 기준(프로덕션 빌드 `next start`로 확인): music-game에 `nanta-play` 0건 / instrument-education에 공개 앱 URL 노출 / 보안 헤더 5종 / `/login?next=` hidden input 1개, `https://evil.com` → `/` 정규화 / 게스트 `/admin` → 307 `/login?next=/admin`
+- 가정/우회:
+  - `typedRoutes`는 Phase 3(`/go` 링크 정리 후)으로 미룸(설계 Step 1.6 허용 범위).
+  - `/admin-login`과 `adminLoginAction`은 유지하되 비관리자 `signOut()`만 제거(Phase 2에서 삭제).
+  - 새 유틸 `src/lib/auth-errors.ts`, `src/lib/safe-next.ts` (Phase 2에서 features/auth 로 이동).
+- 사람 작업: PR 생성 → Vercel Preview에서 위 curl 재확인 → **프로덕션 배포(핫픽스)**.
+- 다음: Phase 2
 
 ### 2026-10-22 Phase 0 — 안전망 구축 (브랜치 refactor/phase-0-tooling)
 - 완료 Step: 0.1, 0.2, 0.3, 0.4, 0.5, 0.6
