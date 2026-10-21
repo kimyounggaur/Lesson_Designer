@@ -29,6 +29,10 @@ const nextConfig = {
   },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
+  },
+  async redirects() {
+    // D1: 관리자 로그인 화면 삭제. 기존 북마크는 단일 로그인 화면으로 보낸다.
+    return [{ source: "/admin-login", destination: "/login", permanent: true }];
   }
 };
 
