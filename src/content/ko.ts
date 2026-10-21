@@ -77,7 +77,8 @@ export const ko = {
     byCategory: "카테고리별 현황",
     membersTitle: "회원 관리",
     membersBadge: "준비 중",
-    membersBody: "회원 역할 변경 기능은 준비 중입니다. 지금은 Supabase 대시보드에서 profiles.role 값을 바꿔주세요.",
+    membersBody:
+      "회원 역할 변경 기능은 준비 중입니다. 지금은 Supabase 대시보드에서 profiles.role 값을 바꿔주세요.",
     deniedTitle: "관리자 전용 화면입니다",
     deniedBody: "회원 계정으로는 들어갈 수 없어요. 앱은 악기 교육·음악 게임 화면에서 바로 열 수 있습니다."
   },

@@ -1,0 +1,40 @@
+/* globals.css v2 `.bottomNav`(1976-2005)를 토큰으로 옮김. 활성 상태는 :first-child 고정이 아니라 data-active (C-2).
+   sticky + safe-area 로 스크롤 중에도 뷰포트 하단에 머문다 (C-5). */
+.nav {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px 16px calc(12px + var(--safe-b));
+  border-top: 1px solid var(--c-line);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+}
+
+.item {
+  min-height: var(--tap);
+  display: grid;
+  place-items: center;
+  gap: 3px;
+  padding: 4px 0;
+  border-radius: var(--r-md);
+  color: var(--c-text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  line-height: 1.2;
+  transition:
+    color var(--motion-fast) var(--ease-out),
+    background var(--motion-fast) var(--ease-out);
+}
+
+.item[data-active] {
+  color: var(--c-brand);
+  background: var(--c-brand-soft);
+}
+
+.item:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--c-brand) 35%, transparent);
+  outline-offset: 2px;
+}
