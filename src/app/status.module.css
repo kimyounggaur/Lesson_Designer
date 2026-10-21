@@ -13,6 +13,7 @@
   font-family: var(--font-sans);
   line-height: 1.5;
   text-align: center;
+  word-break: keep-all;
 }
 
 .screen :is(h1, h2, h3) {

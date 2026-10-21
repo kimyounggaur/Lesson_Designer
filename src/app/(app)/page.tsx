@@ -78,6 +78,7 @@ export default async function HomePage() {
               <li key={app.id} className={styles.quickItem}>
                 <Link
                   href={appOpenHref(app)}
+                  prefetch={false}
                   target="_blank"
                   rel="noreferrer"
                   className={styles.quickLink}

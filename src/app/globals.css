@@ -1032,9 +1032,10 @@ h1 {
   cursor: progress;
 }
 
+/* C-10: 터치 타깃 44px (Phase 5 AuthForm.module.css 로 이동) */
 .iconOnlyButton {
-  width: 34px;
-  height: 34px;
+  width: var(--tap);
+  height: var(--tap);
   display: grid;
   place-items: center;
   border: 0;
@@ -1053,6 +1054,17 @@ h1 {
   width: fit-content;
   display: inline-flex;
   margin-top: 18px;
+  color: var(--edu-ink);
+  font-weight: 800;
+}
+
+/* C-10: 본문 안 링크도 44px 타깃 (Phase 5 AuthForm.module.css 로 이동) */
+.authSwitch a {
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  border-radius: var(--r-sm);
   color: var(--edu-ink);
   font-weight: 800;
 }

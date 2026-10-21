@@ -40,7 +40,13 @@ export async function RoleAwareGrid({ category }: RoleAwareGridProps) {
           <h2 id="featured-title" className={styles.sectionTitle}>
             {ko.category.continueTitle}
           </h2>
-          <Link href={appOpenHref(featured)} target="_blank" rel="noreferrer" className={styles.featuredCard}>
+          <Link
+            href={appOpenHref(featured)}
+            prefetch={false}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.featuredCard}
+          >
             <span className={styles.featuredIcon}>
               <Image
                 src={featured.icon}

@@ -43,7 +43,14 @@ export function AppCard({ app, role, tone }: AppCardProps) {
       </div>
 
       {allowed ? (
-        <Link href={appOpenHref(app)} target="_blank" rel="noreferrer" className={styles.action}>
+        // prefetch=false: /go 는 302 로 외부 앱에 보내는 라우트 핸들러라 프리페치하면 외부 앱까지 미리 요청하게 된다.
+        <Link
+          href={appOpenHref(app)}
+          prefetch={false}
+          target="_blank"
+          rel="noreferrer"
+          className={styles.action}
+        >
           {ko.catalog.start}
           <Play size={14} aria-hidden="true" />
           <span className={styles.srOnly}>{ko.catalog.opensInNewTab}</span>
