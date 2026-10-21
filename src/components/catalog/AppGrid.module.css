@@ -1,0 +1,32 @@
+/* globals.css v2 `.appGrid`(1832-1835) 2열 그리드. 360px 이하 1열. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  min-width: 0;
+  display: grid;
+}
+
+.empty {
+  margin: 0;
+  padding: 24px;
+  border: 1px dashed var(--c-line);
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  color: var(--c-text-muted);
+  font-size: var(--fs-md);
+  font-weight: 800;
+  text-align: center;
+}
+
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
