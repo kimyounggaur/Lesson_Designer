@@ -2,50 +2,41 @@
 
 import { useActionState, useId, useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
-import { initialAuthState, type AuthState } from "@/lib/auth-form-state";
+import { Eye, EyeOff, LockKeyhole, Mail, UserPlus } from "lucide-react";
 import { StatusBanner } from "@/components/StatusBanner";
+import { ko } from "@/content/ko";
+import { initialAuthState, type AuthState, type AuthVariant } from "@/features/auth/types";
+import { PASSWORD_MIN } from "@/features/auth/validation";
 
 type AuthAction = (state: AuthState, formData: FormData) => Promise<AuthState>;
 
 type AuthFormProps = {
-  title: string;
-  description: string;
-  submitLabel: string;
+  variant: AuthVariant;
   action: AuthAction;
-  notice?: string;
   /** 로그인 후 돌아갈 같은 사이트 경로. 서버에서 safeNext 로 다시 검증한다. */
   next?: string;
-  passwordAutoComplete?: "current-password" | "new-password";
-  variant?: "member" | "admin";
+  notice?: string;
 };
 
-export function AuthForm({
-  title,
-  description,
-  submitLabel,
-  action,
-  notice,
-  next = "/",
-  passwordAutoComplete = "current-password",
-  variant = "member"
-}: AuthFormProps) {
+export function AuthForm({ variant, action, next = "/", notice }: AuthFormProps) {
+  const copy = ko.auth[variant];
   const [state, formAction, pending] = useActionState(action, initialAuthState);
   const [showPassword, setShowPassword] = useState(false);
   const emailId = useId();
   const passwordId = useId();
-  const isAdmin = variant === "admin";
+  const isSignup = variant === "signup";
+  const switchHref = `${isSignup ? "/login" : "/signup"}${next !== "/" ? `?next=${encodeURIComponent(next)}` : ""}`;
 
   return (
     <main className="authShell">
-      <section className={`authPanel ${isAdmin ? "adminAuth" : ""}`}>
+      <section className="authPanel">
         <div className="authIntro">
           <span className="authMark" aria-hidden="true">
-            {isAdmin ? <LockKeyhole size={22} /> : <Mail size={22} />}
+            {isSignup ? <UserPlus size={22} /> : <Mail size={22} />}
           </span>
           <div>
-            <h1>{title}</h1>
-            <p>{description}</p>
+            <h1>{copy.title}</h1>
+            <p>{copy.description}</p>
           </div>
         </div>
 
@@ -55,29 +46,30 @@ export function AuthForm({
           <input type="hidden" name="next" value={next} />
 
           <div className="fieldGroup">
-            <label htmlFor={emailId}>이메일</label>
+            <label htmlFor={emailId}>{ko.auth.fields.email}</label>
             <span className="fieldShell">
               <Mail size={18} aria-hidden="true" />
-              <input id={emailId} name="email" type="email" autoComplete="email" required />
+              <input id={emailId} name="email" type="email" autoComplete="email" inputMode="email" required />
             </span>
           </div>
 
           <div className="fieldGroup">
-            <label htmlFor={passwordId}>비밀번호</label>
+            <label htmlFor={passwordId}>{ko.auth.fields.password}</label>
             <span className="fieldShell passwordShell">
               <LockKeyhole size={18} aria-hidden="true" />
               <input
                 id={passwordId}
                 name="password"
                 type={showPassword ? "text" : "password"}
-                autoComplete={passwordAutoComplete}
-                minLength={6}
+                autoComplete={isSignup ? "new-password" : "current-password"}
+                minLength={PASSWORD_MIN}
                 required
               />
               <button
                 type="button"
                 className="iconOnlyButton"
-                aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
+                aria-label={showPassword ? ko.auth.fields.hidePassword : ko.auth.fields.showPassword}
+                aria-pressed={showPassword}
                 onClick={() => setShowPassword((value) => !value)}
               >
                 {showPassword ? (
@@ -90,14 +82,18 @@ export function AuthForm({
           </div>
 
           <button type="submit" disabled={pending}>
-            {pending ? "처리 중" : submitLabel}
+            {pending ? copy.pending : copy.submit}
           </button>
         </form>
 
         <StatusBanner message={state.message} tone={state.tone} />
 
+        <p className="authSwitch">
+          {copy.switchPrompt} <Link href={switchHref}>{copy.switchLabel}</Link>
+        </p>
+
         <Link href="/" className="authBackLink">
-          홈으로 돌아가기
+          {ko.auth.backHome}
         </Link>
       </section>
     </main>
