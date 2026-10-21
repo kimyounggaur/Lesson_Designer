@@ -1,18 +1,18 @@
-import { normalizeRole, type UserRole } from "@/lib/access";
+import "server-only";
+
+import { cache } from "react";
+import { normalizeRole } from "@/lib/access";
 import { getPublicEnv } from "@/lib/env";
 import { createClient } from "@/lib/supabase/server";
-
-export type CurrentUserProfile = {
-  id: string;
-  email: string | null;
-  role: UserRole;
-};
+import type { CurrentUserProfile } from "./types";
 
 /**
- * 현재 로그인 사용자의 프로필을 돌려준다.
- * 프로필 조회가 실패하거나 행이 없으면 권한을 올리지 않고 guest 로 취급한다 (fail-closed).
+ * 현재 로그인 사용자의 프로필.
+ *
+ * - React `cache()` 로 감싸 한 요청(레이아웃 + 페이지 + 라우트 핸들러) 안에서 한 번만 실행된다.
+ * - 프로필 조회 실패·행 없음은 권한을 올리지 않고 guest 로 취급한다 (fail-closed, A-3).
  */
-export async function getCurrentUserProfile(): Promise<CurrentUserProfile | null> {
+export const getCurrentUserProfile = cache(async (): Promise<CurrentUserProfile | null> => {
   if (!getPublicEnv().isConfigured) {
     return null;
   }
@@ -47,4 +47,4 @@ export async function getCurrentUserProfile(): Promise<CurrentUserProfile | null
     email: data.email ?? user.email ?? null,
     role: normalizeRole(data.role)
   };
-}
+});

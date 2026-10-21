@@ -4,7 +4,7 @@ import { Flame, Heart, Play, Sparkles, Trophy } from "lucide-react";
 import { CategoryButton } from "@/components/CategoryButton";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { getCurrentUserProfile } from "@/lib/auth";
+import { getCurrentUserProfile } from "@/features/auth/service";
 import { CATEGORY_META, getCategoryStats, LESSON_APPS } from "@/lib/apps";
 
 export default async function HomePage() {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { FALLBACK_AUTH_MESSAGE, toUserMessage } from "../auth-errors";
+import { FALLBACK_AUTH_MESSAGE, toUserMessage } from "../errors";
 
 describe("toUserMessage", () => {
   it("maps known supabase auth error codes to Korean messages", () => {

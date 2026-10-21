@@ -6,7 +6,7 @@ import { AppGrid } from "@/components/AppGrid";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { firstOpenableApp, roleLabel } from "@/lib/access";
-import { getCurrentUserProfile } from "@/lib/auth";
+import { getCurrentUserProfile } from "@/features/auth/service";
 import { getAppsByCategory, getCategoryMeta, getCategoryStats, isAppCategory } from "@/lib/apps";
 
 type CategoryPageProps = {
