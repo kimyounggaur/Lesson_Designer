@@ -1,4 +1,5 @@
 import type { AuthTone } from "@/features/auth/types";
+import styles from "./StatusBanner.module.css";
 
 type StatusBannerProps = {
   message?: string;
@@ -12,7 +13,12 @@ export function StatusBanner({ message, tone = "idle" }: StatusBannerProps) {
   }
 
   return (
-    <p className={`statusBanner ${tone}`} role={tone === "error" ? "alert" : "status"} aria-live="polite">
+    <p
+      className={styles.banner}
+      data-variant={tone}
+      role={tone === "error" ? "alert" : "status"}
+      aria-live="polite"
+    >
       {message}
     </p>
   );

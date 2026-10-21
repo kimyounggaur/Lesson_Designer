@@ -179,8 +179,7 @@
 }
 
 .homeShell,
-.pageShell,
-.authShell {
+.pageShell {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
 }
@@ -795,202 +794,6 @@
   color: var(--muted);
 }
 
-.authShell {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 32px 0;
-}
-
-.authPanel {
-  width: min(480px, 100%);
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: var(--shadow-soft);
-  animation: ld-fade-up var(--motion-slow) var(--motion-ease-out) backwards;
-}
-
-.authIntro {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 12px;
-  align-items: start;
-}
-
-.authMark {
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-sm);
-  color: var(--edu-ink);
-  background: var(--edu-soft);
-}
-
-.adminAuth .authMark {
-  color: var(--play-ink);
-  background: var(--play-soft);
-}
-
-.authPanel h1 {
-  font-size: 34px;
-  line-height: 1.16;
-}
-
-.authPanel p {
-  margin: 8px 0 0;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.authForm {
-  display: grid;
-  gap: 16px;
-  margin-top: 22px;
-}
-
-.fieldGroup {
-  display: grid;
-  gap: 8px;
-}
-
-.authForm label {
-  color: var(--ink);
-  font-weight: 800;
-}
-
-.fieldShell {
-  min-height: 48px;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  padding: 0 11px;
-  background: var(--surface);
-  color: var(--muted);
-  transition:
-    border-color var(--motion-fast) var(--motion-ease-out),
-    box-shadow var(--motion-fast) var(--motion-ease-out);
-}
-
-.passwordShell {
-  grid-template-columns: auto 1fr auto;
-}
-
-.fieldShell:focus-within {
-  border-color: color-mix(in srgb, var(--edu) 45%, var(--line));
-  box-shadow: 0 0 0 3px rgba(52, 87, 213, 0.13);
-}
-
-.authForm input {
-  width: 100%;
-  min-width: 0;
-  min-height: 46px;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--ink);
-}
-
-.authForm button[type="submit"] {
-  min-height: 48px;
-  border: 0;
-  border-radius: var(--r-sm);
-  background: var(--edu);
-  color: var(--surface);
-  font-weight: 800;
-  cursor: pointer;
-  transition:
-    box-shadow var(--motion-fast) var(--motion-ease-out),
-    filter var(--motion-fast) var(--motion-ease-out),
-    transform var(--motion-fast) var(--motion-ease-out);
-}
-
-.adminAuth .authForm button[type="submit"] {
-  background: var(--ink);
-}
-
-.authForm button[type="submit"]:hover:not(:disabled),
-.authForm button[type="submit"]:focus-visible:not(:disabled) {
-  box-shadow: 0 12px 24px rgba(52, 87, 213, 0.22);
-  filter: brightness(1.04);
-  transform: translateY(-1px);
-}
-
-.authForm button:disabled {
-  opacity: 0.62;
-  cursor: progress;
-}
-
-/* C-10: 터치 타깃 44px (Phase 5 AuthForm.module.css 로 이동) */
-.iconOnlyButton {
-  width: var(--tap);
-  height: var(--tap);
-  display: grid;
-  place-items: center;
-  border: 0;
-  border-radius: var(--r-sm);
-  background: transparent;
-  color: var(--ink-soft);
-  cursor: pointer;
-}
-
-.iconOnlyButton:hover,
-.iconOnlyButton:focus-visible {
-  background: var(--surface-soft);
-}
-
-.authBackLink {
-  width: fit-content;
-  display: inline-flex;
-  margin-top: 18px;
-  color: var(--edu-ink);
-  font-weight: 800;
-}
-
-/* C-10: 본문 안 링크도 44px 타깃 (Phase 5 AuthForm.module.css 로 이동) */
-.authSwitch a {
-  min-height: var(--tap);
-  display: inline-flex;
-  align-items: center;
-  padding: 0 6px;
-  border-radius: var(--r-sm);
-  color: var(--edu-ink);
-  font-weight: 800;
-}
-
-.statusBanner {
-  margin: 16px 0 0;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  background: var(--surface-soft);
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.statusBanner.success {
-  border-color: color-mix(in srgb, var(--ok) 44%, var(--line));
-  color: var(--ok);
-  background: var(--ok-soft);
-}
-
-.statusBanner.error {
-  border-color: color-mix(in srgb, var(--danger) 44%, var(--line));
-  color: var(--danger);
-  background: var(--danger-soft);
-}
-
-.statusBanner.info {
-  border-color: color-mix(in srgb, var(--warn) 44%, var(--line));
-  color: #8a5700;
-  background: var(--beat-soft);
-}
-
 .siteFooter {
   width: min(1180px, calc(100% - 32px));
   display: flex;
@@ -1021,8 +824,6 @@
 .heroAction:focus-visible,
 .categoryButton:focus-visible,
 .appOpenButton:focus-visible,
-.authForm button:focus-visible,
-.authBackLink:focus-visible,
 .backLink:focus-visible,
 .siteFooter a:focus-visible {
   outline: 3px solid rgba(52, 87, 213, 0.24);
@@ -1064,7 +865,6 @@
 @media (max-width: 760px) {
   .homeShell,
   .pageShell,
-  .authShell,
   .siteFooter {
     width: min(100% - 24px, 1180px);
   }
@@ -1160,14 +960,6 @@
   }
 
   .appGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .authPanel {
-    padding: 22px;
-  }
-
-  .authIntro {
     grid-template-columns: 1fr;
   }
 }

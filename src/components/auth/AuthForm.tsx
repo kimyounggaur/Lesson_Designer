@@ -4,10 +4,11 @@ import type { Route } from "next";
 import { useActionState, useId, useState } from "react";
 import Link from "next/link";
 import { Eye, EyeOff, LockKeyhole, Mail, UserPlus } from "lucide-react";
-import { StatusBanner } from "@/components/StatusBanner";
+import { StatusBanner } from "@/components/auth/StatusBanner";
 import { ko } from "@/content/ko";
 import { initialAuthState, type AuthState, type AuthVariant } from "@/features/auth/types";
 import { PASSWORD_MIN } from "@/features/auth/validation";
+import styles from "./AuthForm.module.css";
 
 type AuthAction = (state: AuthState, formData: FormData) => Promise<AuthState>;
 
@@ -29,34 +30,46 @@ export function AuthForm({ variant, action, next = "/", notice }: AuthFormProps)
   const switchHref = `${isSignup ? "/login" : "/signup"}${next !== "/" ? `?next=${encodeURIComponent(next)}` : ""}` as Route;
 
   return (
-    <main className="authShell">
-      <section className="authPanel">
-        <div className="authIntro">
-          <span className="authMark" aria-hidden="true">
+    <main>
+      <section className={styles.panel}>
+        <div className={styles.intro}>
+          <span className={styles.mark} aria-hidden="true">
             {isSignup ? <UserPlus size={22} /> : <Mail size={22} />}
           </span>
           <div>
-            <h1>{copy.title}</h1>
-            <p>{copy.description}</p>
+            <h1 className={styles.title}>{copy.title}</h1>
+            <p className={styles.description}>{copy.description}</p>
           </div>
         </div>
 
         <StatusBanner message={notice} tone="info" />
 
-        <form action={formAction} className="authForm">
+        <form action={formAction} className={styles.form}>
           <input type="hidden" name="next" value={next} />
 
-          <div className="fieldGroup">
-            <label htmlFor={emailId}>{ko.auth.fields.email}</label>
-            <span className="fieldShell">
+          <div className={styles.group}>
+            <label htmlFor={emailId} className={styles.label}>
+              {ko.auth.fields.email}
+            </label>
+            <span className={styles.field}>
               <Mail size={18} aria-hidden="true" />
-              <input id={emailId} name="email" type="email" autoComplete="email" inputMode="email" required />
+              <input
+                id={emailId}
+                name="email"
+                type="email"
+                autoComplete="email"
+                inputMode="email"
+                required
+                className={styles.input}
+              />
             </span>
           </div>
 
-          <div className="fieldGroup">
-            <label htmlFor={passwordId}>{ko.auth.fields.password}</label>
-            <span className="fieldShell passwordShell">
+          <div className={styles.group}>
+            <label htmlFor={passwordId} className={styles.label}>
+              {ko.auth.fields.password}
+            </label>
+            <span className={styles.field}>
               <LockKeyhole size={18} aria-hidden="true" />
               <input
                 id={passwordId}
@@ -65,10 +78,11 @@ export function AuthForm({ variant, action, next = "/", notice }: AuthFormProps)
                 autoComplete={isSignup ? "new-password" : "current-password"}
                 minLength={PASSWORD_MIN}
                 required
+                className={styles.input}
               />
               <button
                 type="button"
-                className="iconOnlyButton"
+                className={styles.toggle}
                 aria-label={showPassword ? ko.auth.fields.hidePassword : ko.auth.fields.showPassword}
                 aria-pressed={showPassword}
                 onClick={() => setShowPassword((value) => !value)}
@@ -82,15 +96,18 @@ export function AuthForm({ variant, action, next = "/", notice }: AuthFormProps)
             </span>
           </div>
 
-          <button type="submit" disabled={pending}>
+          <button type="submit" className={styles.submit} disabled={pending}>
             {pending ? copy.pending : copy.submit}
           </button>
         </form>
 
         <StatusBanner message={state.message} tone={state.tone} />
 
-        <p className="authSwitch">
-          {copy.switchPrompt} <Link href={switchHref}>{copy.switchLabel}</Link>
+        <p className={styles.switchText}>
+          {copy.switchPrompt}{" "}
+          <Link href={switchHref} className={styles.switchLink}>
+            {copy.switchLabel}
+          </Link>
         </p>
       </section>
     </main>
