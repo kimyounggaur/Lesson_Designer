@@ -1,20 +1,4 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.card {
-  min-height: 236px;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 10px;
-  padding: 12px;
-  border-radius: var(--r-lg);
-  background: var(--c-paper);
-  box-shadow: var(--sh-card);
-}
-
+/* 그리드 자리 표시자. 격자·카드 틀은 AppGrid/AppCard 모듈을 그대로 쓰고, 여기서는 펄스 블록만 둔다. */
 .block {
   border-radius: var(--r-md);
   background: color-mix(in srgb, var(--c-line) 70%, var(--c-paper));
@@ -44,11 +28,5 @@
 
   50% {
     opacity: 0.55;
-  }
-}
-
-@media (max-width: 360px) {
-  .grid {
-    grid-template-columns: 1fr;
   }
 }

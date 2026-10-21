@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Globe, Layers, LockKeyhole, Music, Play } from "lucide-react";
 import { CategoryCard } from "@/components/catalog/CategoryCard";
+import page from "@/components/ui/Page.module.css";
 import { Stat } from "@/components/ui/Stat";
 import { ko } from "@/content/ko";
 import { getCurrentUserProfile } from "@/features/auth/service";
@@ -52,8 +53,8 @@ export default async function HomePage() {
 
       <section className={styles.section} aria-labelledby="category-title">
         <div className={styles.sectionHead}>
-          <p className={styles.eyebrow}>{ko.home.categoryEyebrow}</p>
-          <h2 id="category-title" className={styles.sectionTitle}>
+          <p className={page.eyebrow}>{ko.home.categoryEyebrow}</p>
+          <h2 id="category-title" className={page.sectionTitle}>
             {ko.home.categoryTitle}
           </h2>
         </div>
@@ -66,7 +67,7 @@ export default async function HomePage() {
       {quickApps.length > 0 ? (
         <section className={styles.section} aria-labelledby="quick-title">
           <div className={styles.sectionHead}>
-            <h2 id="quick-title" className={styles.sectionTitle}>
+            <h2 id="quick-title" className={page.sectionTitle}>
               {ko.home.quickStartTitle}
             </h2>
             <p className={styles.hint}>
@@ -107,7 +108,7 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      <section className={styles.stats} aria-label={ko.home.statsLabel}>
+      <section className={page.stats} aria-label={ko.home.statsLabel}>
         <Stat icon={Layers} value={stats.total} label={ko.stats.total} />
         <Stat icon={Globe} value={stats.publicCount} label={ko.stats.public} />
         <Stat icon={LockKeyhole} value={stats.lockedCount} label={ko.stats.locked} />

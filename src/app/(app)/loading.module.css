@@ -1,29 +1,12 @@
-.page {
-  display: grid;
-  gap: 18px;
-}
-
-.block {
-  border-radius: var(--r-lg);
-  background: color-mix(in srgb, var(--c-line) 70%, var(--c-paper));
-  animation: pulse 1.4s ease-in-out infinite;
-}
-
+/* (app) 세그먼트 로딩 — 펄스 블록은 GridSkeleton 모듈을 composes 로 공유한다. */
 .hero {
+  composes: block from "../../components/catalog/GridSkeleton.module.css";
   height: 150px;
+  border-radius: var(--r-lg);
 }
 
 .card {
+  composes: block from "../../components/catalog/GridSkeleton.module.css";
   height: 148px;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.55;
-  }
+  border-radius: var(--r-lg);
 }

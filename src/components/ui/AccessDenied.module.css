@@ -1,3 +1,4 @@
+/* 403 안내 카드 (B-1). 버튼은 Button 모듈을 직접 쓴다. */
 .card {
   display: grid;
   justify-items: center;
@@ -21,13 +22,11 @@
 
 .title {
   font-size: var(--fs-xl);
-  font-weight: 800;
   line-height: 1.2;
 }
 
 .body {
   max-width: 34ch;
-  margin: 0;
   color: var(--c-text-muted);
   font-size: var(--fs-sm);
   line-height: 1.55;
@@ -39,28 +38,4 @@
   justify-content: center;
   gap: 8px;
   margin-top: 8px;
-}
-
-.button {
-  min-height: var(--tap);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 0 16px;
-  border-radius: var(--r-md);
-  background: var(--c-brand);
-  color: var(--c-paper);
-  font-size: var(--fs-sm);
-  font-weight: 800;
-}
-
-.button[data-variant="secondary"] {
-  background: var(--c-brand-soft);
-  color: var(--c-brand-deep);
-}
-
-.button:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--c-brand) 35%, transparent);
-  outline-offset: 2px;
 }

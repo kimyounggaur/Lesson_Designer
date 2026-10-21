@@ -3,6 +3,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ArrowLeft, ArrowRight, Globe, Layers, LockKeyhole, ShieldCheck } from "lucide-react";
 import { AccessDenied } from "@/components/ui/AccessDenied";
+import page from "@/components/ui/Page.module.css";
+import { Pill } from "@/components/ui/Pill";
 import { Stat } from "@/components/ui/Stat";
 import { ko } from "@/content/ko";
 import { getCurrentUserProfile } from "@/features/auth/service";
@@ -32,8 +34,8 @@ export default async function AdminPage() {
   const stats = getCatalogStats();
 
   return (
-    <div className={styles.page}>
-      <Link href="/" className={styles.back}>
+    <div className={page.page}>
+      <Link href="/" className={styles.back} data-variant="ghost">
         <ArrowLeft size={16} aria-hidden="true" />
         {ko.category.back}
       </Link>
@@ -43,19 +45,19 @@ export default async function AdminPage() {
           <ShieldCheck size={16} aria-hidden="true" />
           {ko.admin.eyebrow}
         </p>
-        <h1 id="admin-title" className={styles.title}>
+        <h1 id="admin-title" className={page.title}>
           {ko.admin.title}
         </h1>
         <p className={styles.desc}>{ko.admin.description(profile.email ?? "")}</p>
       </section>
 
-      <div className={styles.stats} role="group" aria-label={ko.home.statsLabel}>
+      <div className={page.stats} role="group" aria-label={ko.home.statsLabel}>
         <Stat icon={Layers} value={stats.total} label={ko.stats.total} />
         <Stat icon={Globe} value={stats.publicCount} label={ko.stats.public} />
         <Stat icon={LockKeyhole} value={stats.lockedCount} label={ko.stats.locked} />
       </div>
 
-      <section className={styles.section} aria-labelledby="admin-category-title">
+      <section className={page.section} aria-labelledby="admin-category-title">
         <h2 id="admin-category-title" className={styles.sectionTitle}>
           {ko.admin.byCategory}
         </h2>
@@ -83,10 +85,10 @@ export default async function AdminPage() {
         </ul>
       </section>
 
-      <section className={styles.section} aria-labelledby="admin-members-title">
+      <section className={page.section} aria-labelledby="admin-members-title">
         <h2 id="admin-members-title" className={styles.sectionTitle}>
           {ko.admin.membersTitle}
-          <span className={styles.badge}>{ko.admin.membersBadge}</span>
+          <Pill variant="warn">{ko.admin.membersBadge}</Pill>
         </h2>
         <p className={styles.note}>{ko.admin.membersBody}</p>
       </section>
