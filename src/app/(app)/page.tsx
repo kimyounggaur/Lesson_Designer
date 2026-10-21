@@ -3,8 +3,6 @@ import Link from "next/link";
 import { Flame, Heart, Play, Sparkles, Trophy } from "lucide-react";
 import { appOpenHref } from "@/components/AppCard";
 import { CategoryButton } from "@/components/CategoryButton";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { getCurrentUserProfile } from "@/features/auth/service";
 import { CATEGORY_META, firstOpenableApp, getCategoryStats, LESSON_APPS } from "@/features/catalog";
 
@@ -17,10 +15,7 @@ export default async function HomePage() {
   const gameStats = getCategoryStats("music-game");
 
   return (
-    <div className="deviceStage">
-      <div className="phoneFrame">
-        <SiteHeader profile={profile} />
-        <main className="homeShell appMain">
+    <div className="homeShell appMain">
           <section className="progressHero" aria-labelledby="progress-title">
             <div className="progressIcon" aria-hidden="true">
               <Flame size={24} />
@@ -97,9 +92,6 @@ export default async function HomePage() {
               <span>수업 허브</span>
             </div>
           </section>
-        </main>
-        <SiteFooter />
-      </div>
     </div>
   );
 }

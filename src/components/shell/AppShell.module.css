@@ -1,0 +1,35 @@
+/* D2: 폰 베젤 없이 중앙 컬럼. 600px 이상에서는 카드형(라운드 + 그림자). DESIGN.md Step 5.3 */
+.shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  margin: 0 auto;
+  background: var(--c-rail);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+/* 레거시 globals.css 의 h1~h3 font-family 재정의를 셸 안에서는 무효화한다 (Phase 5 에서 base.css 로 흡수) */
+.shell :is(h1, h2, h3) {
+  margin: 0;
+  font-family: inherit;
+  overflow-wrap: anywhere;
+}
+
+.main {
+  min-width: 0;
+  padding: 18px 16px 24px;
+}
+
+@media (min-width: 600px) {
+  .shell {
+    min-height: calc(100dvh - 48px);
+    margin-block: 24px;
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-card);
+    overflow: clip;
+  }
+}

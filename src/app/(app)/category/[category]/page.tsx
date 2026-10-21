@@ -4,8 +4,6 @@ import { ArrowLeft, Flame, Heart, LockKeyhole, Play, Sparkles } from "lucide-rea
 import { notFound } from "next/navigation";
 import { appOpenHref } from "@/components/AppCard";
 import { AppGrid } from "@/components/AppGrid";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { firstOpenableApp, roleLabel } from "@/features/catalog";
 import { getCurrentUserProfile } from "@/features/auth/service";
 import { getAppsByCategory, getCategoryMeta, getCategoryStats, isAppCategory } from "@/features/catalog";
@@ -30,10 +28,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const featuredApp = firstOpenableApp(apps, role);
 
   return (
-    <div className="deviceStage">
-      <div className={`phoneFrame categoryPhone ${meta.tone}`}>
-        <SiteHeader profile={profile} />
-        <main className={`pageShell appMain categoryPage ${meta.tone}`}>
+    <div className={`pageShell appMain categoryPage ${meta.tone}`}>
           <Link href="/" className="backLink">
             <ArrowLeft size={17} aria-hidden="true" />
             홈으로
@@ -123,9 +118,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </div>
             <AppGrid apps={apps} role={role} />
           </section>
-        </main>
-        <SiteFooter />
-      </div>
     </div>
   );
 }
