@@ -60,7 +60,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </section>
 
           <nav className="mobileTabBar" aria-label="카테고리 전환">
-            <Link className={category === "instrument-education" ? "active" : ""} href="/category/instrument-education">
+            <Link
+              className={category === "instrument-education" ? "active" : ""}
+              href="/category/instrument-education"
+            >
               악기 교육
             </Link>
             <Link className={category === "music-game" ? "active" : ""} href="/category/music-game">
@@ -98,7 +101,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <div>
               <span>현재 상태</span>
               <strong className="roleState">
-                {role === "guest" ? <LockKeyhole size={16} aria-hidden="true" /> : <Sparkles size={16} aria-hidden="true" />}
+                {role === "guest" ? (
+                  <LockKeyhole size={16} aria-hidden="true" />
+                ) : (
+                  <Sparkles size={16} aria-hidden="true" />
+                )}
                 {role === "guest" ? "게스트" : role === "admin" ? "관리자" : "회원"}
               </strong>
             </div>

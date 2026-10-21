@@ -83,11 +83,7 @@ export async function adminLoginAction(_state: AuthState, formData: FormData): P
     data: { user }
   } = await supabase.auth.getUser();
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user?.id)
-    .maybeSingle();
+  const { data: profile } = await supabase.from("profiles").select("role").eq("id", user?.id).maybeSingle();
 
   if (profile?.role !== "admin") {
     await supabase.auth.signOut();

@@ -20,9 +20,7 @@ export function AppCard({ app, role }: AppCardProps) {
         <div className="appTileIcon">
           <Image src={app.icon} alt={`${app.name} 아이콘`} width={74} height={74} className="appIcon" />
         </div>
-        <span className={`tileStatus ${allowed ? "open" : "locked"}`}>
-          {allowed ? "진행중" : "잠금"}
-        </span>
+        <span className={`tileStatus ${allowed ? "open" : "locked"}`}>{allowed ? "진행중" : "잠금"}</span>
       </div>
 
       <div className="appTileBody">
