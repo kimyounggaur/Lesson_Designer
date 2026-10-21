@@ -1,0 +1,68 @@
+# Lesson Designer
+
+악기 교육앱과 음악 게임앱을 한곳에서 고르고 여는 모바일 퍼스트 수업 허브입니다. 게스트는 공개 앱만, 회원은 모든 앱을 열 수 있고, 관리자는 관리 화면에 들어갈 수 있습니다.
+
+- 스택: Next.js 16 (App Router) · React 19 · TypeScript · Supabase (Auth, Postgres, `@supabase/ssr`) · 순수 CSS
+- 배포: Vercel
+- 리팩토링 진행 중 — 설계·진행 상황은 [`docs/refactor/`](docs/refactor/) 참조 (`DESIGN.md`, `PROMPTBOOK.md`, `DECISIONS.md`, `PROGRESS.md`)
+
+## 로컬 실행
+
+```bash
+nvm use            # .nvmrc = Node 22
+npm ci
+cp .env.example .env.local   # 값 채우기 (아래 참조)
+npm run dev        # http://localhost:3000
+```
+
+`.env.local`:
+
+| 변수 | 설명 |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase 프로젝트 URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | anon(publishable) 키. service_role 키는 절대 넣지 않습니다 |
+| `NEXT_PUBLIC_SITE_URL` | 배포 도메인. 이메일 확인 링크 생성에 사용되므로 실제 도메인과 일치해야 합니다 |
+
+env가 없으면 앱은 게스트 모드로 동작합니다(빌드·테스트에는 필요 없음).
+
+## Supabase 설정
+
+1. `supabase/migrations/`의 SQL을 순서대로 적용합니다 (`supabase db push` 또는 SQL Editor).
+2. Authentication → URL Configuration: Site URL = 배포 도메인, Redirect URLs에 `http://localhost:3000/**`, `https://<배포도메인>/**`.
+3. Authentication → Email Templates → Confirm signup 링크를
+   `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next={{ .RedirectTo }}` 로 변경합니다.
+4. 관리자 승격: SQL Editor에서 `update public.profiles set role = 'admin' where email = '<이메일>';`
+
+## 스크립트
+
+| 명령 | 설명 |
+|---|---|
+| `npm run dev` / `build` / `start` | Next.js 개발·빌드·실행 |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` | ESLint (flat config, 경고 0 기준) |
+| `npm run format` / `format:check` | Prettier |
+| `npm test` / `test:watch` | Vitest 단위 테스트 |
+| `npm run test:e2e` | Playwright e2e |
+| `npm run verify` | typecheck → lint → test → build (CI와 동일) |
+| `npm run icons:build` | `design/icons-src/` → `public/icons/` 아이콘 생성 |
+| `npm run db:types` | Supabase 타입 생성 (`SUPABASE_PROJECT_ID` 필요) |
+
+## 폴더 구조
+
+```
+proxy.ts                 Supabase 세션 갱신 (Next 16 proxy)
+src/app/                 App Router 라우트
+src/components/          UI 컴포넌트
+src/features/            도메인 로직 (auth, catalog)
+src/lib/                 env, supabase 클라이언트, 공용 유틸
+src/styles/              디자인 토큰·베이스 스타일
+supabase/migrations/     DB 마이그레이션 (커밋된 파일은 수정하지 않음)
+docs/refactor/           리팩토링 설계·진행 문서
+design/                  디자인 산출물 (앱 빌드와 무관)
+```
+
+## 의존성 메모
+
+- `.npmrc`의 `legacy-peer-deps=true`: npm 10.9의 arborist 버그(vitest 4.1.11+의 optional peer 집합에서 `edgesOut` null 참조)로 표준 peer 해석이 실패해 설정했습니다. 이 때문에 `@testing-library/dom`을 명시적 devDependency로 둡니다.
+- `overrides.next.postcss`: Next가 요구하는 postcss 8.4.x에 경로 탐색 취약점(GHSA-fxqj-rqcc-2cmp)이 있어 8.5.31 이상으로 고정합니다.
+- `npm audit`에 남는 `braces`/`micromatch` 계열 경고는 stylelint 개발 도구 체인(ReDoS)으로 런타임과 무관합니다.
