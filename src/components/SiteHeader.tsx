@@ -1,14 +1,24 @@
 import Link from "next/link";
 import { BatteryFull, LogOut, Signal, UserRound, Wifi } from "lucide-react";
 import { logoutAction } from "@/app/auth/actions";
+import { roleLabel } from "@/lib/access";
 import type { CurrentUserProfile } from "@/lib/auth";
 
 type SiteHeaderProps = {
   profile: CurrentUserProfile | null;
 };
 
+/** 계정 칩 목적지. 회원을 /admin 으로 보내 로그아웃 트랩에 빠뜨리지 않는다 (B-1). */
+function accountHref(profile: CurrentUserProfile | null) {
+  if (!profile) {
+    return "/login";
+  }
+
+  return profile.role === "admin" ? "/admin" : "/category/instrument-education";
+}
+
 export function SiteHeader({ profile }: SiteHeaderProps) {
-  const roleLabel = profile?.role === "admin" ? "관리자" : profile ? "회원" : "게스트";
+  const label = roleLabel(profile?.role ?? "guest");
 
   return (
     <header className="siteHeader appHeader">
@@ -29,9 +39,9 @@ export function SiteHeader({ profile }: SiteHeaderProps) {
         </Link>
 
         <div className="accountCluster">
-          <Link href={profile ? "/admin" : "/login"} className="userChip" aria-label={`${roleLabel} 계정`}>
+          <Link href={accountHref(profile)} className="userChip" aria-label={`${label} 계정`}>
             <UserRound size={18} aria-hidden="true" />
-            <span>{roleLabel}</span>
+            <span>{label}</span>
           </Link>
           {profile ? (
             <form action={logoutAction}>
