@@ -59,17 +59,35 @@ env가 없으면 앱은 게스트 모드로 동작합니다(빌드·테스트에
 
 ```
 proxy.ts                 Supabase 세션 갱신 (Next 16 proxy)
-src/app/                 App Router 라우트 — (app)/ 셸 있는 화면(홈·카테고리·관리), (auth)/ 로그인·가입, go/ 접근 게이트
+src/app/                 App Router 라우트 — (app)/ 셸 있는 화면(홈·카테고리·관리), (auth)/ 로그인·가입, go/ 접근 게이트, auth/ 서버 액션·이메일 확인
 src/components/          UI 컴포넌트 — shell/(AppShell·AppHeader·BottomNav) catalog/(AppCard·AppGrid·CategoryCard) auth/(AuthForm·StatusBanner) ui/(Stat·Pill·AccessDenied·Button/Page 모듈)
 src/features/            도메인 로직 (auth, catalog)
-src/lib/                 env, supabase 클라이언트, 공용 유틸
-src/styles/              tokens.css(디자인 토큰 1벌) + base.css(리셋·.sr-only·포커스 링) — 그 외 CSS 는 전부 CSS Modules, 색·그림자·라운드는 토큰만 사용
-supabase/migrations/     DB 마이그레이션 (커밋된 파일은 수정하지 않음)
-docs/refactor/           리팩토링 설계·진행 문서
-design/                  디자인 산출물 (앱 빌드와 무관)
+src/lib/                 env, supabase 클라이언트·DB 타입, 공용 유틸
+src/styles/              tokens.css(디자인 토큰 1벌) + base.css(리셋·.sr-only·포커스 링) — 그 외 CSS 는 전부 CSS Modules
+src/content/ko.ts        사용자에게 보이는 문구(한국어) 단일 출처
+e2e/                     Playwright e2e(게스트·회원·관리자·시각 스냅샷·axe·CSP)
+scripts/                 optimize-icons.mjs(아이콘 생성), check-coverage.mjs(커버리지 게이트)
+supabase/migrations/     DB 마이그레이션 (커밋된 파일은 수정하지 않음, 새 파일만 추가)
+docs/refactor/           리팩토링 설계·프롬프트북·결정·진행 문서
+docs/history/            초기 계획서(superpowers) — 현 코드와 불일치, 참고용
+docs/app-links.md        하위 앱 배포 링크 목록
+design/                  디자인 산출물 (앱 빌드와 무관) — exports/(Claude Design 내보내기) mockups/ screenshots/ icons-src/(아이콘 원본) qa/(Phase 별 스크린샷)
+public/icons/            카탈로그 아이콘 14종 (256×256 webp, 생성물 — 직접 편집하지 않음)
 ```
 
 CSS 는 CSS Modules + `src/styles/tokens.css` 토큰만 사용하며 Prettier 로 포맷하고 Stylelint(`npm run lint:css`: 토큰 외 hex 금지, 특이성 상한 (0,2,0), `!important` 금지)로 검사합니다.
+
+## 디자인 자산과 아이콘
+
+- 아이콘 원본은 `design/icons-src/<카탈로그 id>.png|jpg` 에 둡니다. `npm run icons:build` 가 `public/icons/<id>.webp`(256×256, 투명 배경, contain)를 생성합니다. 모든 사용처가 `next/image` 를 거치므로 png 폴백은 만들지 않습니다(필요하면 `--png`).
+- 앱을 추가할 때: `src/features/catalog/apps.ts` 항목 + `design/icons-src/<id>.png` → `npm run icons:build` → 카탈로그 무결성 테스트가 아이콘 존재를 확인합니다.
+- 크몽 구매 원본(`.ai`, 미사용 악기 아이콘 등 5.7MB)은 저장소에서 제거했습니다(DECISIONS D5). 외부 보관 링크는 `design/README.md` 에 적습니다. 제거 전 마지막 커밋(태그 `phase-6`)에서 `git checkout phase-6 -- 아이콘` 으로 복구할 수 있습니다.
+
+## 테스트
+
+- 단위: `npm test` (Vitest + Testing Library). CI 는 `src/features`·`src/app/auth`·`src/app/go` 라인 커버리지 85% 미만이면 실패합니다(`scripts/check-coverage.mjs`).
+- e2e: `npm run test:e2e` (Playwright, 390×844 Chromium). 프로덕션 빌드를 3100 포트에 띄워 실행합니다. 회원·관리자 시나리오는 `E2E_MEMBER_EMAIL/E2E_MEMBER_PASSWORD/E2E_ADMIN_EMAIL/E2E_ADMIN_PASSWORD` 가 없으면 건너뜁니다. 시각 스냅샷 기준선은 `e2e/visual.spec.ts-snapshots/`, 갱신은 `npx playwright test e2e/visual.spec.ts --update-snapshots`.
+- 접근성: `e2e/a11y.spec.ts` 가 axe 로 serious/critical 위반 0 을 강제합니다.
 
 ## 의존성 메모
 

@@ -1,0 +1,7 @@
+*.png binary
+*.webp binary
+*.jpg binary
+*.ai binary
+*.dc.html -diff
+support.js -diff linguist-generated
+package-lock.json -diff
