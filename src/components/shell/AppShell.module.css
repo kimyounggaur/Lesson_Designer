@@ -14,7 +14,7 @@
   padding: 18px 16px 24px;
 }
 
-@media (min-width: 600px) {
+@media (width >= 600px) {
   .shell {
     min-height: calc(100dvh - 48px);
     margin-block: 24px;
