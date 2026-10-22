@@ -10,3 +10,10 @@ npm-debug.log*
 .next-dev.*
 
 .vercel
+
+coverage/
+playwright-report/
+test-results/
+.DS_Store
+*.ai
+tsconfig.tsbuildinfo

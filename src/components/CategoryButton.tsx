@@ -14,7 +14,11 @@ export function CategoryButton({ category, label, description }: CategoryButtonP
   const Icon = meta.tone === "edu" ? GraduationCap : Gamepad2;
 
   return (
-    <Link href={`/category/${category}`} className={`categoryButton appCategoryCard ${meta.tone}`} data-category={category}>
+    <Link
+      href={`/category/${category}`}
+      className={`categoryButton appCategoryCard ${meta.tone}`}
+      data-category={category}
+    >
       <span className="categoryIcon" aria-hidden="true">
         <Icon size={28} strokeWidth={1.9} />
       </span>

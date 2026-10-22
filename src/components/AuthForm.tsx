@@ -65,7 +65,11 @@ export function AuthForm({ title, description, submitLabel, action, notice }: Au
                 aria-label={showPassword ? "비밀번호 숨기기" : "비밀번호 보기"}
                 onClick={() => setShowPassword((value) => !value)}
               >
-                {showPassword ? <EyeOff size={18} aria-hidden="true" /> : <Eye size={18} aria-hidden="true" />}
+                {showPassword ? (
+                  <EyeOff size={18} aria-hidden="true" />
+                ) : (
+                  <Eye size={18} aria-hidden="true" />
+                )}
               </button>
             </span>
           </div>

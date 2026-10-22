@@ -22,11 +22,7 @@ export async function getCurrentUserProfile(): Promise<CurrentUserProfile | null
     return null;
   }
 
-  const { data } = await supabase
-    .from("profiles")
-    .select("id,email,role")
-    .eq("id", user.id)
-    .maybeSingle();
+  const { data } = await supabase.from("profiles").select("id,email,role").eq("id", user.id).maybeSingle();
 
   return {
     id: user.id,
