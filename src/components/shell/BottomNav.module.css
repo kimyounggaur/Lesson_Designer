@@ -1,4 +1,4 @@
-/* 하단 탭. globals.css v2 .bottomNav(1979-2008)를 토큰으로 옮김. 활성 상태는 data-active (C-2), sticky + safe-area 로 뷰포트 하단에 고정 (C-5). */
+/* 하단 탭. globals.css v2 하단 탭 규칙(1979-2008)을 토큰으로 옮김. 활성 상태는 data-active (C-2), sticky + safe-area 로 뷰포트 하단에 고정 (C-5). */
 .nav {
   position: sticky; bottom: 0; z-index: 20; display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px;

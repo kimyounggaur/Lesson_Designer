@@ -7,7 +7,8 @@
     "import-notation": "string",
     "selector-class-pattern": null,
     "property-no-unknown": [true, { "ignoreProperties": ["composes"] }],
-    "value-keyword-case": ["lower", { "ignoreProperties": ["composes"] }]
+    "value-keyword-case": ["lower", { "ignoreProperties": ["composes"] }],
+    "property-no-vendor-prefix": [true, { "ignoreProperties": ["-webkit-text-size-adjust"] }]
   },
   "overrides": [
     {

@@ -2,7 +2,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
-  min-width: 320px; background: var(--c-canvas); text-size-adjust: 100%;
+  min-width: 320px; background: var(--c-canvas); -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
 }
 
 /* 은은한 배경 그라데이션은 v2 모바일 레이어의 body 배경을 토큰으로 옮긴 것 — 셸 밖(로그인·404·데스크톱 여백)에서 보인다 */

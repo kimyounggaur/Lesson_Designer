@@ -1,4 +1,4 @@
-/* 앱 카드. globals.css v2 .appTile~.tileAction(1844-1977)을 토큰으로 옮김. 진행률 규칙(tileProgress*)은 옮기지 않는다 (C-1). */
+/* 앱 카드. globals.css v2 앱 타일 규칙(1844-1977)을 토큰으로 옮김. 진행률 규칙은 옮기지 않는다 (C-1). */
 .card {
   min-height: 236px; display: grid; grid-template-rows: auto 1fr auto; gap: 10px; padding: 12px;
   border-radius: var(--r-lg); background: var(--c-paper); box-shadow: var(--sh-card);

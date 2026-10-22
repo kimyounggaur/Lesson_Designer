@@ -1,5 +1,5 @@
 /* 카테고리 화면. globals.css v2 categoryHero/featuredLesson/appPermissionStrip/appListHeading(1752-1837) 대체.
-   톤은 .page 의 data-tone 으로만 바뀐다. 본문 탭바(mobileTabBar)는 옮기지 않는다 (C-3). */
+   톤은 .page 의 data-tone 으로만 바뀐다. 본문 탭바는 옮기지 않는다 (C-3). */
 .back {
   composes: button from "../../../../components/ui/Button.module.css"; margin: -8px 0;
 }
