@@ -1,16 +1,11 @@
 /* 카테고리 화면. globals.css v2 categoryHero/featuredLesson/appPermissionStrip/appListHeading(1752-1837) 대체.
    톤은 .page 의 data-tone 으로만 바뀐다. 본문 탭바(mobileTabBar)는 옮기지 않는다 (C-3). */
 .back {
-  composes: button from "../../../../components/ui/Button.module.css";
-  margin: -8px 0;
+  composes: button from "../../../../components/ui/Button.module.css"; margin: -8px 0;
 }
 
 .hero {
-  display: grid;
-  gap: 8px;
-  padding: 18px;
-  border-radius: var(--r-lg);
-  color: var(--c-paper);
+  display: grid; gap: 8px; padding: 18px; border-radius: var(--r-lg); color: var(--c-paper);
   background:
     radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--c-paper) 16%, transparent), transparent 26%),
     linear-gradient(135deg, var(--c-tone) 0%, color-mix(in srgb, var(--c-tone) 80%, var(--c-paper)) 100%);
@@ -18,119 +13,70 @@
 }
 
 .desc {
-  color: color-mix(in srgb, var(--c-paper) 90%, transparent);
-  font-size: var(--fs-sm);
-  font-weight: 600;
+  color: color-mix(in srgb, var(--c-paper) 90%, transparent); font-size: var(--fs-sm); font-weight: 600;
 }
 
 .preview {
-  color: color-mix(in srgb, var(--c-paper) 78%, transparent);
-  font-size: var(--fs-xs);
-  font-weight: 800;
+  color: color-mix(in srgb, var(--c-paper) 78%, transparent); font-size: var(--fs-xs); font-weight: 800;
 }
 
 .stats {
-  composes: stats from "../../../../components/ui/Page.module.css";
-  margin-top: 6px;
+  composes: stats from "../../../../components/ui/Page.module.css"; margin-top: 6px;
 }
 
 /* 이어 학습하기 — 진행률 없이 '바로 열기'만 */
 .featuredCard {
-  min-height: 92px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 12px;
-  padding: 14px;
-  border-radius: var(--r-lg);
-  background: var(--c-paper);
-  box-shadow: var(--sh-card);
+  min-height: 92px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px;
+  padding: 14px; border-radius: var(--r-lg); background: var(--c-paper); box-shadow: var(--sh-card);
 }
 
 .featuredIcon {
-  width: 62px;
-  height: 62px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-md);
+  width: 62px; height: 62px; display: grid; place-items: center; border-radius: var(--r-md);
   background: var(--c-tone-soft);
 }
 
 .featuredImg {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
+  width: 48px; height: 48px; object-fit: contain;
 }
 
 .featuredText {
-  min-width: 0;
-  display: grid;
-  gap: 4px;
+  min-width: 0; display: grid; gap: 4px;
 }
 
-.featuredKicker,
-.listMeta {
-  color: var(--c-text-muted);
-  font-size: var(--fs-xs);
-  font-weight: 800;
+.featuredKicker, .listMeta {
+  color: var(--c-text-muted); font-size: var(--fs-xs); font-weight: 800;
 }
 
 .featuredName {
-  overflow: hidden;
-  font-size: var(--fs-lg);
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow: hidden; font-size: var(--fs-lg); line-height: 1.2; text-overflow: ellipsis; white-space: nowrap;
 }
 
 .featuredAction {
-  composes: button from "../../../../components/ui/Button.module.css";
-  padding: 0 14px;
-  background: var(--c-accent);
-  white-space: nowrap;
+  composes: button from "../../../../components/ui/Button.module.css"; padding: 0 14px;
+  background: var(--c-accent); white-space: nowrap;
 }
 
 /* 권한 요약 스트립 — 아이콘 + 텍스트 병기 */
 .strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-  padding: 12px 14px;
-  border-radius: var(--r-md);
-  background: var(--c-paper);
-  box-shadow: var(--sh-card);
-  color: var(--c-text-muted);
-  font-size: var(--fs-sm);
+  display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 12px 14px; border-radius: var(--r-md);
+  background: var(--c-paper); box-shadow: var(--sh-card); color: var(--c-text-muted); font-size: var(--fs-sm);
   font-weight: 600;
 }
 
 .stripItem {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  display: inline-flex; align-items: center; gap: 6px;
 }
 
-.stripItem svg {
-  color: var(--c-tone);
-}
+.stripItem svg { color: var(--c-tone); }
 
-.stripItem strong {
-  color: var(--c-text);
-}
+.stripItem strong { color: var(--c-text); }
 
 .listHead {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
 }
 
 @media (width <= 360px) {
-  .featuredCard {
-    grid-template-columns: auto 1fr;
-  }
+  .featuredCard { grid-template-columns: auto 1fr; }
 
-  .featuredAction {
-    grid-column: 1 / -1;
-  }
+  .featuredAction { grid-column: 1 / -1; }
 }

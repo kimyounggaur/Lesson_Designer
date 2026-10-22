@@ -1,69 +1,39 @@
 /* 앱 카드. globals.css v2 .appTile~.tileAction(1844-1977)을 토큰으로 옮김. 진행률 규칙(tileProgress*)은 옮기지 않는다 (C-1). */
 .card {
-  min-height: 236px;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 10px;
-  padding: 12px;
-  border-radius: var(--r-lg);
-  background: var(--c-paper);
-  box-shadow: var(--sh-card);
+  min-height: 236px; display: grid; grid-template-rows: auto 1fr auto; gap: 10px; padding: 12px;
+  border-radius: var(--r-lg); background: var(--c-paper); box-shadow: var(--sh-card);
 }
 
-.card[data-locked] {
-  background: color-mix(in srgb, var(--c-paper) 85%, var(--c-rail));
-}
+.card[data-locked] { background: color-mix(in srgb, var(--c-paper) 85%, var(--c-rail)); }
 
 .top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
 }
 
 .iconWrap {
-  width: 72px;
-  height: 72px;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  border-radius: var(--r-lg);
+  width: 72px; height: 72px; display: grid; place-items: center; flex-shrink: 0; border-radius: var(--r-lg);
   background: var(--c-tone-soft);
 }
 
 .icon {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
+  width: 56px; height: 56px; object-fit: contain;
 }
 
 .body {
-  min-width: 0;
-  display: grid;
-  align-content: start;
-  gap: 6px;
+  min-width: 0; display: grid; align-content: start; gap: 6px;
 }
 
 .title {
-  font-size: var(--fs-lg);
-  line-height: 1.22;
+  font-size: var(--fs-lg); line-height: 1.22;
 }
 
 .desc {
-  display: -webkit-box;
-  overflow: hidden;
-  color: var(--c-text-muted);
-  font-size: var(--fs-sm);
-  line-height: 1.45;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  display: -webkit-box; overflow: hidden; color: var(--c-text-muted); font-size: var(--fs-sm);
+  line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
 }
 
 .action {
-  composes: button from "../ui/Button.module.css";
-  background: var(--c-accent);
+  composes: button from "../ui/Button.module.css"; background: var(--c-accent);
 }
 
-.action[data-variant="locked"] {
-  background: var(--c-brand-deep);
-}
+.action[data-variant="locked"] { background: var(--c-brand-deep); }

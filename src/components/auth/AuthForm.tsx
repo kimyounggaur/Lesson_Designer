@@ -27,7 +27,8 @@ export function AuthForm({ variant, action, next = "/", notice }: AuthFormProps)
   const emailId = useId();
   const passwordId = useId();
   const isSignup = variant === "signup";
-  const switchHref = `${isSignup ? "/login" : "/signup"}${next !== "/" ? `?next=${encodeURIComponent(next)}` : ""}` as Route;
+  const switchHref =
+    `${isSignup ? "/login" : "/signup"}${next !== "/" ? `?next=${encodeURIComponent(next)}` : ""}` as Route;
 
   return (
     <main>

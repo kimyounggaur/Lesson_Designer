@@ -1,40 +1,24 @@
 /* 숫자 1개 + 라벨. globals.css v2 dashboardStats/heroStatRow(1725-1750, 1780-1793)를 토큰으로 옮김. 실데이터만 표시한다. */
 .stat {
-  --stat-icon: var(--c-tone);
-  --stat-value: var(--c-brand-deep);
+  --stat-icon: var(--c-tone); --stat-value: var(--c-brand-deep);
 
-  min-width: 0;
-  display: grid;
-  justify-items: center;
-  gap: 4px;
-  padding: 12px 6px;
-  border-radius: var(--r-md);
-  background: var(--c-paper);
-  color: var(--c-text-muted);
-  font-size: var(--fs-xs);
-  font-weight: 800;
-  text-align: center;
-  box-shadow: var(--sh-card);
+  min-width: 0; display: grid; justify-items: center; gap: 4px; padding: 12px 6px; border-radius: var(--r-md);
+  background: var(--c-paper); color: var(--c-text-muted); font-size: var(--fs-xs); font-weight: 800;
+  text-align: center; box-shadow: var(--sh-card);
 }
 
 /* 그라데이션 위에 올릴 때 — 아이콘·숫자 색도 로컬 변수로 함께 바꾼다 (조합 셀렉터 금지) */
 .stat[data-variant="glass"] {
-  --stat-icon: var(--c-paper);
-  --stat-value: var(--c-paper);
+  --stat-icon: var(--c-paper); --stat-value: var(--c-paper);
 
   background: color-mix(in srgb, var(--c-paper) 16%, transparent);
-  color: color-mix(in srgb, var(--c-paper) 86%, transparent);
-  box-shadow: var(--sh-ring);
+  color: color-mix(in srgb, var(--c-paper) 86%, transparent); box-shadow: var(--sh-ring);
 }
 
 .icon {
-  display: grid;
-  place-items: center;
-  color: var(--stat-icon);
+  display: grid; place-items: center; color: var(--stat-icon);
 }
 
 .value {
-  color: var(--stat-value);
-  font-size: var(--fs-lg);
-  line-height: 1.1;
+  color: var(--stat-value); font-size: var(--fs-lg); line-height: 1.1;
 }

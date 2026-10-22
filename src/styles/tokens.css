@@ -1,77 +1,47 @@
-/*
- * 디자인 토큰 1벌 (DESIGN.md §5.5).
- * 색·라운드·그림자·모션·타이포·레이아웃 값은 이 파일에만 둔다. 모듈 CSS 에서는 var() 로만 참조한다.
- */
+/* 디자인 토큰 1벌 (DESIGN.md §5.5). 색·라운드·그림자·모션·타이포·레이아웃 값은 이 파일에만 둔다. 모듈 CSS 에서는 var() 로만 참조한다. */
 :root {
   color-scheme: light;
 
   /* 브랜드 */
-  --c-brand: #3f5fd8;
-  --c-brand-deep: #11152f;
-  --c-brand-soft: #eef2ff;
-  --c-accent: #19b7c4;
-  --c-accent-soft: #dff9fb;
-  --c-play: #ff7a4c;
-  --c-play-soft: #fff0e7;
+  --c-brand: #3f5fd8; --c-brand-deep: #11152f; --c-brand-soft: #eef2ff;
+  --c-accent: #19b7c4; --c-accent-soft: #dff9fb;
+  --c-play: #ff7a4c; --c-play-soft: #fff0e7;
   --c-sun: #ffd23f;
 
   /* 중립 */
-  --c-canvas: #f3f2ee;
-  --c-rail: #f4f5fb;
-  --c-paper: #fff;
-  --c-text: #17172c;
-  --c-text-muted: #7b7f92;
-  --c-line: #e7e8f2;
+  --c-canvas: #f3f2ee; --c-rail: #f4f5fb; --c-paper: #fff;
+  --c-text: #17172c; --c-text-muted: #7b7f92; --c-line: #e7e8f2;
 
   /* 상태 */
-  --c-ok: #16a34a;
-  --c-ok-soft: #e7f6ed;
-  --c-warn: #8a5f0b;
-  --c-warn-soft: #fff3ce;
-  --c-danger: #ef4444;
-  --c-danger-soft: #fdecec;
+  --c-ok: #16a34a; --c-ok-soft: #e7f6ed;
+  --c-warn: #8a5f0b; --c-warn-soft: #fff3ce;
+  --c-danger: #ef4444; --c-danger-soft: #fdecec;
 
   /* 톤 — 카테고리 테마. 기본은 브랜드, 루트 요소의 data-tone 으로만 전환한다 */
-  --c-tone: var(--c-brand);
-  --c-tone-soft: var(--c-brand-soft);
+  --c-tone: var(--c-brand); --c-tone-soft: var(--c-brand-soft);
+  --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-brand) 22%, transparent);
 
   /* 라운드·그림자·모션 */
-  --r-sm: 8px;
-  --r-md: 15px;
-  --r-lg: 24px;
-  --r-pill: 999px;
+  --r-sm: 8px; --r-md: 15px; --r-lg: 24px; --r-pill: 999px;
   --sh-card: 0 12px 24px rgb(20 24 52 / 6%);
   --sh-float: 0 16px 34px rgb(63 95 216 / 30%);
-  --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-brand) 22%, transparent);
   --sh-ring: inset 0 0 0 1px color-mix(in srgb, var(--c-paper) 22%, transparent);
-  --motion-fast: 180ms;
-  --motion-base: 260ms;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-fast: 180ms; --motion-base: 260ms; --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* 타이포 — --font-pretendard 는 next/font/local 이 <html> 에 주입한다 */
   --font-sans: var(--font-pretendard), "Noto Sans KR", system-ui, sans-serif;
-  --fs-xs: 11px;
-  --fs-sm: 13px;
-  --fs-md: 15px;
-  --fs-lg: 18px;
-  --fs-xl: 24px;
-  --fs-2xl: 28px;
-  --fs-3xl: 34px;
+  --fs-xs: 11px; --fs-sm: 13px; --fs-md: 15px; --fs-lg: 18px; --fs-xl: 24px; --fs-2xl: 28px; --fs-3xl: 34px;
 
   /* 레이아웃 */
-  --shell-max: 480px;
-  --tap: 44px;
-  --safe-b: env(safe-area-inset-bottom, 0px);
+  --shell-max: 480px; --tap: 44px; --safe-b: env(safe-area-inset-bottom, 0px);
 }
 
 [data-tone="edu"] {
-  --c-tone: var(--c-brand);
-  --c-tone-soft: var(--c-brand-soft);
+  --c-tone: var(--c-brand); --c-tone-soft: var(--c-brand-soft);
   --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-brand) 22%, transparent);
 }
 
 [data-tone="play"] {
-  --c-tone: var(--c-play);
-  --c-tone-soft: var(--c-play-soft);
+  --c-tone: var(--c-play); --c-tone-soft: var(--c-play-soft);
   --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-play) 22%, transparent);
 }

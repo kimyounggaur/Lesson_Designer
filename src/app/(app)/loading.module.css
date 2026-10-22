@@ -1,12 +1,10 @@
 /* (app) 세그먼트 로딩 — 펄스 블록은 GridSkeleton 모듈을 composes 로 공유한다. */
 .hero {
-  composes: block from "../../components/catalog/GridSkeleton.module.css";
-  height: 150px;
+  composes: block from "../../components/catalog/GridSkeleton.module.css"; height: 150px;
   border-radius: var(--r-lg);
 }
 
 .card {
-  composes: block from "../../components/catalog/GridSkeleton.module.css";
-  height: 148px;
+  composes: block from "../../components/catalog/GridSkeleton.module.css"; height: 148px;
   border-radius: var(--r-lg);
 }

@@ -1,32 +1,24 @@
 /* 셸 안 페이지의 공통 리듬 — 세로 간격·섹션 제목·통계 3칸. 페이지 TSX 가 직접 import 하거나 페이지 모듈이 composes 한다. */
 .page {
-  display: grid;
-  gap: 18px;
+  display: grid; gap: 18px;
 }
 
 .section {
-  display: grid;
-  gap: 10px;
+  display: grid; gap: 10px;
 }
 
 .eyebrow {
-  color: var(--c-text-muted);
-  font-size: var(--fs-sm);
-  font-weight: 800;
+  color: var(--c-text-muted); font-size: var(--fs-sm); font-weight: 800;
 }
 
 .title {
-  font-size: var(--fs-2xl);
-  line-height: 1.1;
+  font-size: var(--fs-2xl); line-height: 1.1;
 }
 
 .sectionTitle {
-  font-size: var(--fs-lg);
-  line-height: 1.25;
+  font-size: var(--fs-lg); line-height: 1.25;
 }
 
 .stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;
 }

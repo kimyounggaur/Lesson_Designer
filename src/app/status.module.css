@@ -1,54 +1,31 @@
 /* 루트 not-found / error 화면. 셸(헤더·탭) 밖이지만 같은 폭·토큰을 쓴다 (C-8). 버튼은 Button 모듈을 직접 쓴다. */
 .screen {
-  width: 100%;
-  max-width: var(--shell-max);
-  min-height: 100dvh;
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 10px;
-  margin: 0 auto;
-  padding: 24px 16px calc(24px + var(--safe-b));
+  width: 100%; max-width: var(--shell-max); min-height: 100dvh; display: grid; align-content: center;
+  justify-items: center; gap: 10px; margin: 0 auto; padding: 24px 16px calc(24px + var(--safe-b));
   text-align: center;
 }
 
 .icon {
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-lg);
-  background: var(--c-brand-soft);
-  color: var(--c-brand);
+  width: 64px; height: 64px; display: grid; place-items: center; border-radius: var(--r-lg);
+  background: var(--c-brand-soft); color: var(--c-brand);
 }
 
 .icon[data-variant="danger"] {
-  background: var(--c-danger-soft);
-  color: var(--c-danger);
+  background: var(--c-danger-soft); color: var(--c-danger);
 }
 
 .title {
-  font-size: var(--fs-xl);
-  line-height: 1.2;
+  font-size: var(--fs-xl); line-height: 1.2;
 }
 
 .body {
-  max-width: 34ch;
-  color: var(--c-text-muted);
-  font-size: var(--fs-md);
+  max-width: 34ch; color: var(--c-text-muted); font-size: var(--fs-md);
 }
 
 .actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px;
 }
 
 .digest {
-  margin-top: 6px;
-  color: var(--c-text-muted);
-  font-size: var(--fs-xs);
-  font-weight: 600;
+  margin-top: 6px; color: var(--c-text-muted); font-size: var(--fs-xs); font-weight: 600;
 }

@@ -1,32 +1,17 @@
 /* 하단 탭. globals.css v2 .bottomNav(1979-2008)를 토큰으로 옮김. 활성 상태는 data-active (C-2), sticky + safe-area 로 뷰포트 하단에 고정 (C-5). */
 .nav {
-  position: sticky;
-  bottom: 0;
-  z-index: 20;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-  gap: 8px;
-  padding: 10px 16px calc(12px + var(--safe-b));
-  border-top: 1px solid var(--c-line);
-  background: color-mix(in srgb, var(--c-paper) 94%, transparent);
-  backdrop-filter: blur(12px);
+  position: sticky; bottom: 0; z-index: 20; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px;
+  padding: 10px 16px calc(12px + var(--safe-b)); border-top: 1px solid var(--c-line);
+  background: color-mix(in srgb, var(--c-paper) 94%, transparent); backdrop-filter: blur(12px);
 }
 
 .item {
-  min-height: var(--tap);
-  display: grid;
-  place-items: center;
-  gap: 3px;
-  padding: 4px 0;
-  border-radius: var(--r-md);
-  color: var(--c-text-muted);
-  font-size: var(--fs-xs);
-  font-weight: 800;
-  line-height: 1.2;
-  transition: background var(--motion-fast) var(--ease-out);
+  min-height: var(--tap); display: grid; place-items: center; gap: 3px; padding: 4px 0;
+  border-radius: var(--r-md); color: var(--c-text-muted); font-size: var(--fs-xs); font-weight: 800;
+  line-height: 1.2; transition: background var(--motion-fast) var(--ease-out);
 }
 
 .item[data-active] {
-  color: var(--c-brand);
-  background: var(--c-brand-soft);
+  color: var(--c-brand); background: var(--c-brand-soft);
 }

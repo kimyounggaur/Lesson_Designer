@@ -1,66 +1,40 @@
 /* 로그인·가입 폼. globals.css v1 .authPanel~.authSwitch(904-1070)를 토큰으로 옮김 — 구조 유지, 44px 터치 타깃(C-10) 유지. */
 .panel {
-  padding: 22px;
-  border: 1px solid var(--c-line);
-  border-radius: var(--r-sm);
-  background: color-mix(in srgb, var(--c-paper) 96%, transparent);
-  box-shadow: var(--sh-card);
+  padding: 22px; border: 1px solid var(--c-line); border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--c-paper) 96%, transparent); box-shadow: var(--sh-card);
 }
 
 .intro {
-  display: grid;
-  gap: 12px;
+  display: grid; gap: 12px;
 }
 
 .mark {
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-sm);
-  background: var(--c-brand-soft);
-  color: var(--c-brand);
+  width: 46px; height: 46px; display: grid; place-items: center; border-radius: var(--r-sm);
+  background: var(--c-brand-soft); color: var(--c-brand);
 }
 
 .title {
-  font-size: var(--fs-3xl);
-  line-height: 1.16;
+  font-size: var(--fs-3xl); line-height: 1.16;
 }
 
-.description,
-.switchText {
-  margin-top: 8px;
-  color: var(--c-text-muted);
-  line-height: 1.6;
+.description, .switchText {
+  margin-top: 8px; color: var(--c-text-muted); line-height: 1.6;
 }
 
 .form {
-  display: grid;
-  gap: 16px;
-  margin-top: 22px;
+  display: grid; gap: 16px; margin-top: 22px;
 }
 
 .group {
-  display: grid;
-  gap: 8px;
+  display: grid; gap: 8px;
 }
 
-.label {
-  font-weight: 800;
-}
+.label { font-weight: 800; }
 
 .field {
-  min-height: 48px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 8px;
-  padding: 0 11px;
-  border: 1px solid var(--c-line);
-  border-radius: var(--r-sm);
-  background: var(--c-paper);
-  color: var(--c-text-muted);
-  transition: border-color var(--motion-fast) var(--ease-out);
+  min-height: 48px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px;
+  padding: 0 11px; border: 1px solid var(--c-line); border-radius: var(--r-sm); background: var(--c-paper);
+  color: var(--c-text-muted); transition: border-color var(--motion-fast) var(--ease-out);
 }
 
 .field:focus-within {
@@ -69,52 +43,31 @@
 }
 
 .input {
-  width: 100%;
-  min-width: 0;
-  min-height: 46px;
-  border: 0;
-  outline: 0;
-  background: none;
-  color: var(--c-text);
+  width: 100%; min-width: 0; min-height: 46px; border: 0; outline: 0; background: none; color: var(--c-text);
 }
 
 .toggle {
-  width: var(--tap);
-  height: var(--tap);
-  display: grid;
-  place-items: center;
-  border-radius: var(--r-sm);
+  width: var(--tap); height: var(--tap); display: grid; place-items: center; border-radius: var(--r-sm);
 }
 
 .submit {
-  composes: button from "../ui/Button.module.css";
-  min-height: 48px;
-  border-radius: var(--r-sm);
+  composes: button from "../ui/Button.module.css"; min-height: 48px; border-radius: var(--r-sm);
   font-size: inherit;
 }
 
 .submit:disabled {
-  opacity: 0.62;
-  cursor: progress;
+  opacity: 0.62; cursor: progress;
 }
 
 .switchLink {
-  min-height: var(--tap);
-  display: inline-flex;
-  align-items: center;
-  padding: 0 6px;
-  border-radius: var(--r-sm);
-  color: var(--c-brand);
-  font-weight: 800;
+  min-height: var(--tap); display: inline-flex; align-items: center; padding: 0 6px;
+  border-radius: var(--r-sm); color: var(--c-brand); font-weight: 800;
 }
 
 @media (width >= 521px) {
-  .panel {
-    padding: 28px;
-  }
+  .panel { padding: 28px; }
 
   .intro {
-    grid-template-columns: auto 1fr;
-    align-items: start;
+    grid-template-columns: auto 1fr; align-items: start;
   }
 }
