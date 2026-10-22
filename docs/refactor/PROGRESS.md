@@ -3,12 +3,14 @@
 > 매 세션 시작 시 읽고, 종료 시 갱신. 최신 항목이 위로.
 
 ## 현재 상태
-- 완료 Phase: 0, 1, 2
-- 진행 중 Phase: 3
-- 현재 브랜치: refactor/phase-3-domain (base: refactor/phase-2-auth)
-- 마지막 verify 결과: Phase 2 — typecheck ✓ lint ✓ test ✓(40) build ✓
+- 완료 Phase: 0, 1, 2, 3
+- 진행 중 Phase: 4
+- 현재 브랜치: refactor/phase-4-shell (base: refactor/phase-3-domain)
+- 마지막 verify 결과: Phase 3 — typecheck ✓ lint ✓ test ✓(53) build ✓
 
 ## 사람 작업 대기 (Human TODO)
+- [ ] **Phase 3**: `supabase/migrations/202610220001_profiles_hardening.sql`을 Supabase SQL Editor에서 적용(이메일 동기화 트리거 + `set_profile_role` RPC, 추가 전용). 적용 후 파일 하단의 확인 SQL 실행. 자동 적용은 플랫폼 정책(프로덕션 배포)으로 차단됨.
+- [ ] **Phase 3**: 공유 DB(ScoreForge) 영향 검토 후 `profiles` 컬럼 권한 축소 적용 여부 결정 (DECISIONS O2)
 - [ ] **Phase 2 배포 전 필수**: Supabase → Authentication → Email Templates → *Confirm signup* 링크를 `{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next={{ .RedirectTo }}` 로 변경
 - [ ] **Phase 2 배포 전 필수**: Authentication → URL Configuration — Site URL = 배포 도메인, Redirect URLs에 `http://localhost:3000/**`, `https://<배포도메인>/**`
 - [ ] D6: Supabase JWT 서명 키 타입 확인(Project Settings → JWT Keys) → 비대칭이면 DECISIONS D6 갱신
@@ -20,6 +22,14 @@
 - TypeScript 6.0에서 `baseUrl` 옵션이 deprecation 오류(TS5101) → Phase 0에서 `paths`만 남기고 제거.
 
 ## 세션 로그
+
+### 2026-10-22 Phase 3 — 도메인·데이터 계층 (브랜치 refactor/phase-3-domain)
+- 완료 Step: 3.1(E-1~E-4, D3), 3.2(A-2 게이트), 3.3(E-5), 3.4(A-7 + RPC — 파일만, 적용은 Human TODO), 3.5(E-6, typedRoutes, README)
+- verify: typecheck ✓ lint ✓ test ✓(53) build ✓
+- 수용 기준(`next start`): 빌드 결과 HTML/RSC에 `vercel.app` 0건 / `/go/kalimba` 게스트 → 302 `/login?next=%2Fgo%2Fkalimba&notice=required` + `cache-control: no-store` / `/go/guitar-chord` → 302 외부 URL / `/go/nope` → 404 / 홈·카테고리 페이지 `vercel.app` 0건 / 카드 링크 `/go/<id>`, 잠김 `/login?required=1&next=%2Fgo%2F<id>`
+- **중요 발견**: Supabase 프로젝트가 ScoreForge와 공유됨. `profiles` 실제 스키마·정책이 저장소 마이그레이션과 다름(DECISIONS O2에 기록). 설계의 권한 축소는 보류, 추가 전용 마이그레이션만 작성. `apply_migration` 시도는 플랫폼 정책으로 거부됨 → 사람 적용.
+- 가정/우회: `typedRoutes` 활성화에 따라 계산된 href는 `as Route` 캐스팅(appOpenHref/appLoginHref/switchHref/redirect). DB 타입은 MCP로 생성해 커밋(`set_profile_role`은 마이그레이션 적용 후 재생성 필요).
+- 다음: Phase 4
 
 ### 2026-10-22 Phase 2 — 인증·세션 계층 (브랜치 refactor/phase-2-auth)
 - 완료 Step: 2.1(B-7), 2.2(B-8, B-10), 2.3(B-6, B-3), 2.4(B-3), 2.5(B-5, F-4), 2.6(B-9, D1)

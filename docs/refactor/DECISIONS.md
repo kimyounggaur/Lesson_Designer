@@ -22,10 +22,12 @@
 | # | 결정 | 값 |
 |---|---|---|
 | O1 | 브랜치 전략 | Phase별 브랜치를 **스택**으로 생성(`refactor/phase-N-*`, 각 브랜치는 직전 Phase 브랜치에서 분기). PR도 스택(base = 직전 Phase 브랜치). `main` 머지는 사람이 수행. |
-| O2 | Supabase 프로젝트 | `lesson-designer` (ref `cgoafcjvnbzozxbbyfle`, ap-northeast-2). 마이그레이션 적용은 `profiles` 스키마가 첫 마이그레이션과 일치함을 확인한 뒤에만 수행. |
+| O2 | Supabase 프로젝트 | `lesson-designer` (ref `cgoafcjvnbzozxbbyfle`, ap-northeast-2). **2026-10-22 조사 결과 이 DB는 ScoreForge 등 다른 앱과 공유**됨(`scores`, `jobs`, `grant_notices` 테이블, `scoreforge_*` 마이그레이션). `profiles`는 저장소의 첫 마이그레이션과 달리 `display_name`·`updated_at` 컬럼, `private.is_admin()`, 관리자 SELECT 정책을 이미 가짐. 따라서 설계 Step 3.4의 컬럼 권한 축소·정책 교체는 **보류**, 추가 전용 변경(이메일 동기화 트리거, `set_profile_role` RPC)만 `202610220001_profiles_hardening.sql`에 담음. 적용은 사람이 수행(자동 적용은 플랫폼 정책으로 차단됨). |
 | O3 | npm 설치 | `--ignore-scripts`로 설치(샌드박스 정책). `sharp` 바이너리 등 postinstall이 필요한 패키지는 사용 시점에 확인. |
 
 ## 미결 사항
+- O2: `profiles` 컬럼 권한 축소(`revoke update` → `grant update (email, display_name, updated_at)`)를 ScoreForge 영향 검토 후 적용할지 결정. 현재는 `profiles_update_own_email_only` 정책의 WITH CHECK가 role 자기 변경을 이미 막고 있어 보안상 공백은 없음.
+- O2: 저장소의 `supabase/migrations/`가 공유 DB의 진실 원천이 아님(`supabase_migrations`에 scoreforge_* 만 기록). 두 저장소의 마이그레이션 관리 방식을 통일할지 결정 필요.
 - D6: JWT 키 타입 확인 후 `src/lib/supabase/proxy.ts`에서 `getUser()` → `getClaims()` 전환 여부 결정.
 - D7: Vercel 프로젝트 env `NEXT_PUBLIC_SITE_URL`에 실제 배포 도메인 설정.
 - D8: e2e 계정 생성 및 GitHub Secrets 등록.

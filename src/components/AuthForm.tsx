@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import { useActionState, useId, useState } from "react";
 import Link from "next/link";
 import { Eye, EyeOff, LockKeyhole, Mail, UserPlus } from "lucide-react";
@@ -25,7 +26,7 @@ export function AuthForm({ variant, action, next = "/", notice }: AuthFormProps)
   const emailId = useId();
   const passwordId = useId();
   const isSignup = variant === "signup";
-  const switchHref = `${isSignup ? "/login" : "/signup"}${next !== "/" ? `?next=${encodeURIComponent(next)}` : ""}`;
+  const switchHref = `${isSignup ? "/login" : "/signup"}${next !== "/" ? `?next=${encodeURIComponent(next)}` : ""}` as Route;
 
   return (
     <main className="authShell">

@@ -2,32 +2,34 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { AppCard } from "@/components/AppCard";
 import { SiteHeader } from "@/components/SiteHeader";
-import { LESSON_APPS } from "@/lib/apps";
+import { LESSON_APPS } from "@/features/catalog";
 
 describe("UI upgrade components", () => {
   it("renders app tiles with the HTML prototype start and locked states", () => {
-    const openApp = LESSON_APPS.find((app) => app.publicAccess);
-    const lockedApp = LESSON_APPS.find((app) => !app.publicAccess);
+    const openApp = LESSON_APPS.find((app) => app.access === "public");
+    const lockedApp = LESSON_APPS.find((app) => app.access === "member");
 
     expect(openApp).toBeDefined();
     expect(lockedApp).toBeDefined();
 
-    const { rerender } = render(<AppCard app={openApp!} role="guest" />);
+    const { rerender, container } = render(<AppCard app={openApp!} role="guest" />);
     expect(screen.getByRole("article")).toHaveClass("appTile");
     expect(screen.getByText("60%")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /시작/ })).toHaveAttribute("href", openApp!.url);
+    expect(screen.getByRole("link", { name: /시작/ })).toHaveAttribute("href", `/go/${openApp!.id}`);
+    expect(container.innerHTML).not.toContain("vercel.app");
 
     rerender(<AppCard app={lockedApp!} role="guest" />);
     expect(screen.getAllByText("잠금").length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /로그인/ })).toHaveAttribute(
       "href",
-      `/login?required=1&next=${encodeURIComponent(`/category/${lockedApp!.category}`)}`
+      `/login?required=1&next=${encodeURIComponent(`/go/${lockedApp!.id}`)}`
     );
+    expect(container.innerHTML).not.toContain("vercel.app");
   });
 
   it("keeps app cards descriptive enough for an app hub", () => {
     expect(LESSON_APPS.every((app) => app.description.length >= 12)).toBe(true);
-    expect(LESSON_APPS.every((app) => app.categoryLabel.length > 0)).toBe(true);
+    expect(LESSON_APPS.every((app) => app.categories.length > 0)).toBe(true);
   });
 
   it("uses the exported mobile app status header", () => {

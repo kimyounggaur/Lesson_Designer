@@ -1,17 +1,28 @@
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LockKeyhole, Play } from "lucide-react";
-import { canOpenApp, type UserRole } from "@/lib/access";
-import type { LessonApp } from "@/lib/apps";
+import { canOpenApp, getCategoryMeta, type LessonApp, type UserRole } from "@/features/catalog";
 
 type AppCardProps = {
   app: LessonApp;
   role: UserRole;
 };
 
+/** 앱 열기 경로. 외부 URL 은 절대 직접 렌더하지 않는다 — 서버 게이트 /go/[appId] 경유. */
+export function appOpenHref(app: Pick<LessonApp, "id">): Route {
+  return `/go/${app.id}` as Route;
+}
+
+export function appLoginHref(app: Pick<LessonApp, "id">): Route {
+  return `/login?required=1&next=${encodeURIComponent(appOpenHref(app))}` as Route;
+}
+
 export function AppCard({ app, role }: AppCardProps) {
   const allowed = canOpenApp(app, role);
-  const tone = app.category === "instrument-education" ? "edu" : "play";
+  const meta = getCategoryMeta(app.categories[0]);
+  const tone = meta.tone;
+  // Phase 4에서 실데이터 없는 진행률 표시를 제거한다 (C-1).
   const progress = allowed ? 60 : 0;
 
   return (
@@ -24,7 +35,7 @@ export function AppCard({ app, role }: AppCardProps) {
       </div>
 
       <div className="appTileBody">
-        <span className={`pill ${tone}`}>{app.categoryLabel}</span>
+        <span className={`pill ${tone}`}>{meta.shortLabel}</span>
         <h2>{app.name}</h2>
         <p>{app.description}</p>
       </div>
@@ -37,15 +48,12 @@ export function AppCard({ app, role }: AppCardProps) {
       </div>
 
       {allowed ? (
-        <Link href={app.url} className="tileAction" target="_blank" rel="noreferrer">
+        <Link href={appOpenHref(app)} className="tileAction" target="_blank" rel="noreferrer">
           시작
           <Play size={15} aria-hidden="true" />
         </Link>
       ) : (
-        <Link
-          href={`/login?required=1&next=${encodeURIComponent(`/category/${app.category}`)}`}
-          className="tileAction lockedAction"
-        >
+        <Link href={appLoginHref(app)} className="tileAction lockedAction">
           로그인
           <LockKeyhole size={15} aria-hidden="true" />
         </Link>

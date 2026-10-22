@@ -1,4 +1,4 @@
-import type { UserRole } from "@/lib/access";
+import type { UserRole } from "@/features/catalog";
 
 export type CurrentUserProfile = {
   id: string;

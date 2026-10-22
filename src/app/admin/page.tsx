@@ -4,8 +4,8 @@ import { redirect } from "next/navigation";
 import { AppGrid } from "@/components/AppGrid";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { canAccessAdminPage } from "@/lib/access";
-import { LESSON_APPS } from "@/lib/apps";
+import { canAccessAdminPage } from "@/features/catalog";
+import { LESSON_APPS } from "@/features/catalog";
 import { getCurrentUserProfile } from "@/features/auth/service";
 
 export default async function AdminPage() {

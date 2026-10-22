@@ -1,5 +1,6 @@
 "use server";
 
+import type { Route } from "next";
 import { redirect } from "next/navigation";
 import { ko } from "@/content/ko";
 import { toUserMessage } from "@/features/auth/errors";
@@ -65,7 +66,7 @@ export async function loginAction(_state: AuthState, formData: FormData): Promis
     return { message: toUserMessage(error), tone: "error" };
   }
 
-  redirect(parsed.next);
+  redirect(parsed.next as Route);
 }
 
 export async function logoutAction() {

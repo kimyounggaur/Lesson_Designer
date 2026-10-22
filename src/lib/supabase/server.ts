@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { getPublicEnv } from "@/lib/env";
+import type { Database } from "@/lib/supabase/database.types";
 
 export async function createClient() {
   const cookieStore = await cookies();
@@ -10,7 +11,7 @@ export async function createClient() {
     throw new Error("Supabase environment variables are not configured.");
   }
 
-  return createServerClient(env.supabaseUrl, env.supabaseAnonKey, {
+  return createServerClient<Database>(env.supabaseUrl, env.supabaseAnonKey, {
     cookies: {
       getAll() {
         return cookieStore.getAll();
