@@ -1,0 +1,38 @@
+.page {
+  display: grid;
+  gap: 18px;
+}
+
+.block {
+  border-radius: var(--r-lg);
+  background: color-mix(in srgb, var(--c-line) 70%, var(--c-paper));
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.hero {
+  height: 150px;
+}
+
+.card {
+  height: 148px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}

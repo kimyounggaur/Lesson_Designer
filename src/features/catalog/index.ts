@@ -6,3 +6,4 @@ export { canAccessAdminPage, canOpenApp, firstOpenableApp, normalizeRole, roleLa
 export type { UserRole } from "./access";
 export { getCatalogStats, getCategoryStats } from "./stats";
 export type { CatalogStats } from "./stats";
+export { appLoginHref, appOpenHref } from "./links";

@@ -1,0 +1,122 @@
+.page {
+  display: grid;
+  gap: 18px;
+}
+
+.back {
+  width: fit-content;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: -8px 0 -8px;
+  padding: 0 10px 0 4px;
+  border-radius: var(--r-sm);
+  color: var(--c-brand-deep);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+}
+
+.back:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--c-brand) 35%, transparent);
+  outline-offset: 2px;
+}
+
+.heading {
+  display: grid;
+  gap: 6px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--c-brand);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+}
+
+.title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.desc {
+  margin: 0;
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.section {
+  display: grid;
+  gap: 10px;
+}
+
+.sectionTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  background: var(--c-warn-soft);
+  color: var(--c-warn);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  box-shadow: var(--sh-card);
+  color: var(--c-text);
+  font-size: var(--fs-md);
+  font-weight: 800;
+}
+
+.rowMeta {
+  color: var(--c-text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.note {
+  margin: 0;
+  padding: 14px;
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  box-shadow: var(--sh-card);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}

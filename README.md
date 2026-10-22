@@ -58,11 +58,11 @@ env가 없으면 앱은 게스트 모드로 동작합니다(빌드·테스트에
 
 ```
 proxy.ts                 Supabase 세션 갱신 (Next 16 proxy)
-src/app/                 App Router 라우트
-src/components/          UI 컴포넌트
+src/app/                 App Router 라우트 — (app)/ 셸 있는 화면(홈·카테고리·관리), (auth)/ 로그인·가입, go/ 접근 게이트
+src/components/          UI 컴포넌트 — shell/(AppShell·AppHeader·BottomNav) catalog/(AppCard·AppGrid·CategoryCard) ui/(Stat·AccessDenied)
 src/features/            도메인 로직 (auth, catalog)
 src/lib/                 env, supabase 클라이언트, 공용 유틸
-src/styles/              디자인 토큰·베이스 스타일
+src/styles/              디자인 토큰 1벌(tokens.css) — 새 CSS 는 CSS Modules + 토큰만 사용
 supabase/migrations/     DB 마이그레이션 (커밋된 파일은 수정하지 않음)
 docs/refactor/           리팩토링 설계·진행 문서
 design/                  디자인 산출물 (앱 빌드와 무관)

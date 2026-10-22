@@ -1,0 +1,72 @@
+/* globals.css v2 `.categoryButton.appCategoryCard`(1651-1716)를 토큰으로 옮김. 톤은 data-tone 으로만 바뀐다. */
+.card {
+  min-height: 148px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto auto;
+  align-items: center;
+  gap: 6px 14px;
+  padding: 18px;
+  border-radius: var(--r-lg);
+  color: var(--c-paper);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.18), transparent 26%),
+    linear-gradient(135deg, var(--c-tone) 0%, color-mix(in srgb, var(--c-tone) 80%, white) 100%);
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--c-tone) 22%, transparent);
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 36px color-mix(in srgb, var(--c-tone) 30%, transparent);
+}
+
+.card:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--c-tone) 45%, transparent);
+  outline-offset: 3px;
+}
+
+.icon {
+  grid-row: 1 / 4;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  color: var(--c-tone);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.title {
+  color: var(--c-paper);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.desc,
+.meta {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.meta {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+}
+
+.action {
+  grid-column: 3;
+  grid-row: 1 / 4;
+  width: var(--tap);
+  height: var(--tap);
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  color: var(--c-brand-deep);
+  background: rgba(255, 255, 255, 0.92);
+}

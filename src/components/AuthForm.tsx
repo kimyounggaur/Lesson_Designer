@@ -92,10 +92,6 @@ export function AuthForm({ variant, action, next = "/", notice }: AuthFormProps)
         <p className="authSwitch">
           {copy.switchPrompt} <Link href={switchHref}>{copy.switchLabel}</Link>
         </p>
-
-        <Link href="/" className="authBackLink">
-          {ko.auth.backHome}
-        </Link>
       </section>
     </main>
   );

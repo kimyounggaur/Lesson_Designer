@@ -1,0 +1,211 @@
+/* 카테고리 화면 모듈. globals.css v2 의 categoryHero/featuredLesson/appPermissionStrip/appListHeading(1745-1830) 대체.
+   톤은 .page 의 data-tone 으로만 바뀐다. 본문 탭바(mobileTabBar)는 옮기지 않는다 (C-3). */
+.page {
+  display: grid;
+  gap: 18px;
+}
+
+.back {
+  width: fit-content;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: -8px 0 -8px;
+  padding: 0 10px 0 4px;
+  border-radius: var(--r-sm);
+  color: var(--c-brand-deep);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+}
+
+.back:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--c-brand) 35%, transparent);
+  outline-offset: 2px;
+}
+
+.hero {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: var(--r-lg);
+  color: var(--c-paper);
+  background:
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.16), transparent 26%),
+    linear-gradient(135deg, var(--c-tone) 0%, color-mix(in srgb, var(--c-tone) 80%, white) 100%);
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--c-tone) 22%, transparent);
+}
+
+.title {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.desc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.preview {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.section {
+  display: grid;
+  gap: 10px;
+}
+
+.sectionTitle {
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+/* 이어 학습하기 — 진행률 없이 '바로 열기'만 */
+.featuredCard {
+  min-height: 92px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: var(--r-lg);
+  background: var(--c-paper);
+  box-shadow: var(--sh-card);
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.featuredCard:hover {
+  transform: translateY(-2px);
+}
+
+.featuredCard:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--c-brand) 35%, transparent);
+  outline-offset: 2px;
+}
+
+.featuredIcon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  background: var(--c-tone-soft);
+}
+
+.featuredImg {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.featuredText {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.featuredKicker {
+  color: var(--c-text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+}
+
+.featuredName {
+  overflow: hidden;
+  color: var(--c-text);
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.featuredAction {
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  border-radius: var(--r-md);
+  background: var(--c-accent);
+  color: var(--c-paper);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* 권한 요약 스트립 — 아이콘 + 텍스트 병기 */
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  box-shadow: var(--sh-card);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.stripItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stripItem svg {
+  color: var(--c-tone);
+}
+
+.stripItem strong {
+  color: var(--c-text);
+  font-weight: 800;
+}
+
+.listHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.listMeta {
+  color: var(--c-text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+  .featuredCard {
+    grid-template-columns: auto 1fr;
+  }
+
+  .featuredAction {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+}

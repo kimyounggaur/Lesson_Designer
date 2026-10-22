@@ -1,3 +1,6 @@
+@import "../styles/tokens.css";
+
+/* 아래 레거시 규칙(v1 데스크톱 + v2 모바일 레이어)은 Phase 5 에서 삭제한다. 새 컴포넌트는 CSS Modules + tokens.css 만 쓴다. */
 :root {
   color-scheme: light;
   --bg: #f6f7f9;
@@ -257,7 +260,7 @@ svg {
   background: var(--ok-soft);
   color: var(--ok);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
   white-space: nowrap;
 }
 
@@ -295,7 +298,7 @@ svg {
   margin: 0 0 12px;
   color: var(--edu-ink);
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 h1,
@@ -343,7 +346,7 @@ h1 {
   border-radius: var(--r-sm);
   border: 1px solid var(--line);
   background: var(--surface);
-  font-weight: 900;
+  font-weight: 800;
   transition:
     box-shadow var(--motion-fast) var(--motion-ease-out),
     transform var(--motion-fast) var(--motion-ease-out),
@@ -567,7 +570,7 @@ h1 {
 .categoryKicker {
   color: var(--muted);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .categoryTitle {
@@ -605,7 +608,7 @@ h1 {
   background: var(--ink);
   color: var(--surface);
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .pageShell {
@@ -618,7 +621,7 @@ h1 {
   gap: 7px;
   margin-bottom: 24px;
   color: var(--edu-ink);
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .pageHeading {
@@ -666,7 +669,7 @@ h1 {
 .permissionStrip span {
   color: var(--muted);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .permissionStrip strong {
@@ -792,7 +795,7 @@ h1 {
   padding: 5px 8px;
   border-radius: var(--r-sm);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1;
   white-space: nowrap;
 }
@@ -844,7 +847,7 @@ h1 {
   border-radius: var(--r-sm);
   background: var(--edu);
   color: var(--surface);
-  font-weight: 900;
+  font-weight: 800;
   transition:
     box-shadow var(--motion-fast) var(--motion-ease-out),
     filter var(--motion-fast) var(--motion-ease-out),
@@ -961,7 +964,7 @@ h1 {
 
 .authForm label {
   color: var(--ink);
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .fieldShell {
@@ -1005,7 +1008,7 @@ h1 {
   border-radius: var(--r-sm);
   background: var(--edu);
   color: var(--surface);
-  font-weight: 900;
+  font-weight: 800;
   cursor: pointer;
   transition:
     box-shadow var(--motion-fast) var(--motion-ease-out),
@@ -1029,9 +1032,10 @@ h1 {
   cursor: progress;
 }
 
+/* C-10: 터치 타깃 44px (Phase 5 AuthForm.module.css 로 이동) */
 .iconOnlyButton {
-  width: 34px;
-  height: 34px;
+  width: var(--tap);
+  height: var(--tap);
   display: grid;
   place-items: center;
   border: 0;
@@ -1051,7 +1055,18 @@ h1 {
   display: inline-flex;
   margin-top: 18px;
   color: var(--edu-ink);
-  font-weight: 900;
+  font-weight: 800;
+}
+
+/* C-10: 본문 안 링크도 44px 타깃 (Phase 5 AuthForm.module.css 로 이동) */
+.authSwitch a {
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  padding: 0 6px;
+  border-radius: var(--r-sm);
+  color: var(--edu-ink);
+  font-weight: 800;
 }
 
 .statusBanner {
@@ -1353,7 +1368,7 @@ body {
 }
 
 .appStatusBar strong {
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .statusIcons {
@@ -1376,7 +1391,7 @@ body {
 
 .brandEyebrow {
   font-size: 11px;
-  font-weight: 950;
+  font-weight: 800;
   letter-spacing: 1.6px;
 }
 
@@ -1415,7 +1430,7 @@ body {
   flex-direction: column;
   gap: 2px;
   font-size: 11px;
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .iconLogoutButton {
@@ -1442,7 +1457,7 @@ body {
   border-radius: 13px;
   color: rgba(255, 255, 255, 0.82);
   font-size: 14px;
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .appQuickNav a:first-child,
@@ -1586,7 +1601,7 @@ body {
 .continueText small {
   color: var(--app-muted);
   font-size: 11px;
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .continueText strong {
@@ -1603,19 +1618,11 @@ body {
   background: #d8f3f5;
 }
 
-.miniProgressTrack span {
-  display: block;
-  width: 60%;
-  height: 100%;
-  border-radius: inherit;
-  background: var(--app-teal);
-}
-
 .continueCard em {
   color: var(--app-teal);
   font-size: 12px;
   font-style: normal;
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .continuePlay {
@@ -1732,7 +1739,7 @@ body {
   background: var(--app-paper);
   color: var(--app-muted);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 800;
   box-shadow: 0 10px 20px rgba(20, 24, 52, 0.05);
 }
 
@@ -1826,7 +1833,7 @@ body {
 .appListHeading span {
   color: var(--app-muted);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .appGrid {
@@ -1883,7 +1890,7 @@ body {
   padding: 0 8px;
   border-radius: 999px;
   font-size: 11px;
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .tileStatus.open {
@@ -1962,7 +1969,7 @@ body {
   background: var(--app-teal);
   color: var(--app-paper);
   font-size: 13px;
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .tileAction.lockedAction {
@@ -1992,7 +1999,7 @@ body {
   gap: 3px;
   border-radius: 17px;
   font-size: 11px;
-  font-weight: 950;
+  font-weight: 800;
 }
 
 .bottomNav a:first-child {
