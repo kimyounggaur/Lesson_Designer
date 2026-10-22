@@ -14,14 +14,27 @@ type AuthFormProps = {
   submitLabel: string;
   action: AuthAction;
   notice?: string;
+  /** 로그인 후 돌아갈 같은 사이트 경로. 서버에서 safeNext 로 다시 검증한다. */
+  next?: string;
+  passwordAutoComplete?: "current-password" | "new-password";
+  variant?: "member" | "admin";
 };
 
-export function AuthForm({ title, description, submitLabel, action, notice }: AuthFormProps) {
+export function AuthForm({
+  title,
+  description,
+  submitLabel,
+  action,
+  notice,
+  next = "/",
+  passwordAutoComplete = "current-password",
+  variant = "member"
+}: AuthFormProps) {
   const [state, formAction, pending] = useActionState(action, initialAuthState);
   const [showPassword, setShowPassword] = useState(false);
   const emailId = useId();
   const passwordId = useId();
-  const isAdmin = title.includes("관리자");
+  const isAdmin = variant === "admin";
 
   return (
     <main className="authShell">
@@ -39,6 +52,8 @@ export function AuthForm({ title, description, submitLabel, action, notice }: Au
         <StatusBanner message={notice} tone="info" />
 
         <form action={formAction} className="authForm">
+          <input type="hidden" name="next" value={next} />
+
           <div className="fieldGroup">
             <label htmlFor={emailId}>이메일</label>
             <span className="fieldShell">
@@ -55,7 +70,7 @@ export function AuthForm({ title, description, submitLabel, action, notice }: Au
                 id={passwordId}
                 name="password"
                 type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
+                autoComplete={passwordAutoComplete}
                 minLength={6}
                 required
               />

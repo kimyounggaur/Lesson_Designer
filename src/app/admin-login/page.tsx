@@ -8,6 +8,7 @@ export default function AdminLoginPage() {
       description="관리자 role이 지정된 계정만 관리자 페이지에 들어갈 수 있습니다."
       submitLabel="관리자 로그인"
       action={adminLoginAction}
+      variant="admin"
     />
   );
 }
