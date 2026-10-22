@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { canAccessAdminPage } from "@/lib/access";
 import { LESSON_APPS } from "@/lib/apps";
-import { getCurrentUserProfile } from "@/lib/auth";
+import { getCurrentUserProfile } from "@/features/auth/service";
 
 export default async function AdminPage() {
   const profile = await getCurrentUserProfile();

@@ -1,37 +1,45 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { toUserMessage } from "@/lib/auth-errors";
-import type { AuthState } from "@/lib/auth-form-state";
+import { ko } from "@/content/ko";
+import { toUserMessage } from "@/features/auth/errors";
+import type { AuthState } from "@/features/auth/types";
+import { credentialsFromForm, formString, type Credentials } from "@/features/auth/validation";
 import { getPublicEnv } from "@/lib/env";
 import { safeNext } from "@/lib/safe-next";
 import { createClient } from "@/lib/supabase/server";
-import { getString, validateCredentials } from "@/lib/auth-validation";
 
-const SIGNUP_NOTICE = "입력한 주소로 안내 메일을 보냈습니다. 메일함을 확인해주세요.";
+type Parsed = { ok: true; value: Credentials; next: string } | { ok: false; state: AuthState };
 
-function missingSupabaseState(): AuthState {
-  return {
-    message: "Supabase 환경 변수를 설정한 뒤 다시 시도해주세요.",
-    tone: "error"
-  };
+function parse(formData: FormData): Parsed {
+  if (!getPublicEnv().isConfigured) {
+    return { ok: false, state: { message: ko.auth.notConfigured, tone: "error" } };
+  }
+
+  const result = credentialsFromForm(formData);
+
+  if (!result.ok) {
+    return { ok: false, state: { message: result.error, tone: "error" } };
+  }
+
+  return { ok: true, value: result.value, next: safeNext(formString(formData, "next")) };
 }
 
 export async function signUpAction(_state: AuthState, formData: FormData): Promise<AuthState> {
-  if (!getPublicEnv().isConfigured) {
-    return missingSupabaseState();
-  }
+  const parsed = parse(formData);
 
-  const email = getString(formData, "email");
-  const password = getString(formData, "password");
-  const validationError = validateCredentials(email, password);
-
-  if (validationError) {
-    return { message: validationError, tone: "error" };
+  if (!parsed.ok) {
+    return parsed.state;
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signUp({ email, password });
+  const confirmUrl = new URL("/auth/confirm", getPublicEnv().siteUrl);
+  confirmUrl.searchParams.set("next", parsed.next);
+
+  const { error } = await supabase.auth.signUp({
+    ...parsed.value,
+    options: { emailRedirectTo: confirmUrl.toString() }
+  });
 
   // 이미 가입된 이메일도 동일한 문구를 보여 계정 존재 여부를 노출하지 않는다.
   if (error && error.code !== "user_already_exists") {
@@ -39,73 +47,25 @@ export async function signUpAction(_state: AuthState, formData: FormData): Promi
     return { message: toUserMessage(error), tone: "error" };
   }
 
-  return { message: SIGNUP_NOTICE, tone: "success" };
+  return { message: ko.auth.signupSent, tone: "success" };
 }
 
 export async function loginAction(_state: AuthState, formData: FormData): Promise<AuthState> {
-  if (!getPublicEnv().isConfigured) {
-    return missingSupabaseState();
-  }
+  const parsed = parse(formData);
 
-  const email = getString(formData, "email");
-  const password = getString(formData, "password");
-  const validationError = validateCredentials(email, password);
-
-  if (validationError) {
-    return { message: validationError, tone: "error" };
+  if (!parsed.ok) {
+    return parsed.state;
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { error } = await supabase.auth.signInWithPassword(parsed.value);
 
   if (error) {
     console.error("[auth:login]", error.code, error.message);
     return { message: toUserMessage(error), tone: "error" };
   }
 
-  redirect(safeNext(getString(formData, "next")));
-}
-
-export async function adminLoginAction(_state: AuthState, formData: FormData): Promise<AuthState> {
-  if (!getPublicEnv().isConfigured) {
-    return missingSupabaseState();
-  }
-
-  const email = getString(formData, "email");
-  const password = getString(formData, "password");
-  const validationError = validateCredentials(email, password);
-
-  if (validationError) {
-    return { message: validationError, tone: "error" };
-  }
-
-  const supabase = await createClient();
-  const {
-    data: { user },
-    error
-  } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    console.error("[auth:admin-login]", error.code, error.message);
-    return { message: toUserMessage(error), tone: "error" };
-  }
-
-  const { data: profile, error: profileError } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user?.id)
-    .maybeSingle();
-
-  if (profileError) {
-    console.error("[auth:admin-login] profiles 조회 실패", profileError.code, profileError.message);
-  }
-
-  // 비관리자 회원이어도 로그아웃시키지 않는다 (B-1 로그아웃 트랩 제거). 회원 화면으로 안내만 한다.
-  if (profile?.role !== "admin") {
-    return { message: "관리자 권한이 없는 계정입니다. 회원 화면에서 앱을 이용해주세요.", tone: "error" };
-  }
-
-  redirect("/admin");
+  redirect(parsed.next);
 }
 
 export async function logoutAction() {

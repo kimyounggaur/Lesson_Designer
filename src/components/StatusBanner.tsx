@@ -1,12 +1,19 @@
+import type { AuthTone } from "@/features/auth/types";
+
 type StatusBannerProps = {
   message?: string;
-  tone?: "idle" | "success" | "error" | "info";
+  tone?: AuthTone;
 };
 
+/** 서버 액션 결과·안내 문구. 오류는 alert, 나머지는 status 로 읽어 주어 스크린리더가 놓치지 않게 한다 (F-4). */
 export function StatusBanner({ message, tone = "idle" }: StatusBannerProps) {
   if (!message) {
     return null;
   }
 
-  return <p className={`statusBanner ${tone}`}>{message}</p>;
+  return (
+    <p className={`statusBanner ${tone}`} role={tone === "error" ? "alert" : "status"} aria-live="polite">
+      {message}
+    </p>
+  );
 }

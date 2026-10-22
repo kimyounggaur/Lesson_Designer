@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BatteryFull, LogOut, Signal, UserRound, Wifi } from "lucide-react";
 import { logoutAction } from "@/app/auth/actions";
 import { roleLabel } from "@/lib/access";
-import type { CurrentUserProfile } from "@/lib/auth";
+import type { CurrentUserProfile } from "@/features/auth/types";
 
 type SiteHeaderProps = {
   profile: CurrentUserProfile | null;

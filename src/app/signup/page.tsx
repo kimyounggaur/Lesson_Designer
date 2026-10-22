@@ -1,14 +1,17 @@
+import type { Metadata } from "next";
 import { signUpAction } from "@/app/auth/actions";
 import { AuthForm } from "@/components/AuthForm";
+import { ko } from "@/content/ko";
+import { safeNext } from "@/lib/safe-next";
 
-export default function SignupPage() {
-  return (
-    <AuthForm
-      title="회원가입"
-      description="회원 계정으로 가입하면 모든 악기 교육앱과 음악 게임앱을 이용할 수 있습니다."
-      submitLabel="회원가입"
-      action={signUpAction}
-      passwordAutoComplete="new-password"
-    />
-  );
+export const metadata: Metadata = { title: ko.auth.signup.title };
+
+type SignupPageProps = {
+  searchParams: Promise<{ next?: string }>;
+};
+
+export default async function SignupPage({ searchParams }: SignupPageProps) {
+  const { next } = await searchParams;
+
+  return <AuthForm variant="signup" action={signUpAction} next={safeNext(next)} />;
 }
