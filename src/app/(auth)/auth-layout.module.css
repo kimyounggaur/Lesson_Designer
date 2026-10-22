@@ -1,5 +1,11 @@
 /* 셸(헤더·하단 탭) 없이 같은 폭의 컬럼. 상단 "← 홈" 링크(Button ghost)만 둔다. */
 .column {
-  width: 100%; max-width: var(--shell-max); min-height: 100dvh; display: grid; grid-template-rows: auto 1fr;
-  gap: 8px; margin: 0 auto; padding: 12px 16px calc(24px + var(--safe-b));
+  width: 100%;
+  max-width: var(--shell-max);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8px;
+  margin: 0 auto;
+  padding: 12px 16px calc(24px + var(--safe-b));
 }

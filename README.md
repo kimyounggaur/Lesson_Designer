@@ -48,7 +48,7 @@ env가 없으면 앱은 게스트 모드로 동작합니다(빌드·테스트에
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run lint` | ESLint (flat config, 경고 0 기준) + `lint:css` |
 | `npm run lint:css` | Stylelint — 토큰 외 hex 금지, 특이성 상한 (0,2,0), `!important` 금지 |
-| `npm run format` / `format:check` | Prettier (TS/TSX — CSS 는 제외, 아래 참고) |
+| `npm run format` / `format:check` | Prettier (TS/TSX/CSS/JSON) |
 | `npm test` / `test:watch` | Vitest 단위 테스트 |
 | `npm run test:e2e` | Playwright e2e |
 | `npm run verify` | typecheck → lint → test → build (CI와 동일) |
@@ -69,7 +69,7 @@ docs/refactor/           리팩토링 설계·진행 문서
 design/                  디자인 산출물 (앱 빌드와 무관)
 ```
 
-CSS 는 설계문서(`docs/refactor/DESIGN.md` §5.5·§6 Phase 5) 와 같은 선언 묶음 스타일(한 줄에 여러 선언, 110자 이내)로 쓰고 Stylelint 로 검사합니다. Prettier 는 CSS 를 건드리지 않습니다(`.prettierignore`).
+CSS 는 CSS Modules + `src/styles/tokens.css` 토큰만 사용하며 Prettier 로 포맷하고 Stylelint(`npm run lint:css`: 토큰 외 hex 금지, 특이성 상한 (0,2,0), `!important` 금지)로 검사합니다.
 
 ## 의존성 메모
 

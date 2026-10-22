@@ -1,7 +1,13 @@
 /* 홈의 카테고리 카드. globals.css v2 .categoryButton.appCategoryCard(1658-1723)를 토큰으로 옮김. 톤은 data-tone 으로만 바뀐다. */
 .card {
-  min-height: 148px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 6px 14px;
-  padding: 18px; border-radius: var(--r-lg); color: var(--c-paper);
+  min-height: 148px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 6px 14px;
+  padding: 18px;
+  border-radius: var(--r-lg);
+  color: var(--c-paper);
   background:
     radial-gradient(circle at 82% 18%, color-mix(in srgb, var(--c-paper) 18%, transparent), transparent 26%),
     linear-gradient(135deg, var(--c-tone) 0%, color-mix(in srgb, var(--c-tone) 80%, var(--c-paper)) 100%);
@@ -9,25 +15,42 @@
 }
 
 .icon {
-  grid-row: 1 / 4; width: 58px; height: 58px; display: grid; place-items: center; border-radius: var(--r-md);
-  color: var(--c-tone); background: color-mix(in srgb, var(--c-paper) 92%, transparent);
+  grid-row: 1 / 4;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  color: var(--c-tone);
+  background: color-mix(in srgb, var(--c-paper) 92%, transparent);
 }
 
 .title {
-  font-size: var(--fs-xl); line-height: 1.1;
+  font-size: var(--fs-xl);
+  line-height: 1.1;
 }
 
-.desc, .meta {
-  color: color-mix(in srgb, var(--c-paper) 84%, transparent); font-size: var(--fs-sm); font-weight: 600;
+.desc,
+.meta {
+  color: color-mix(in srgb, var(--c-paper) 84%, transparent);
+  font-size: var(--fs-sm);
+  font-weight: 600;
   line-height: 1.4;
 }
 
 .meta {
-  font-size: var(--fs-xs); font-weight: 800;
+  font-size: var(--fs-xs);
+  font-weight: 800;
 }
 
 .action {
-  grid-column: 3; grid-row: 1 / 4; width: var(--tap); height: var(--tap); display: grid; place-items: center;
-  border-radius: var(--r-pill); color: var(--c-brand-deep);
+  grid-column: 3;
+  grid-row: 1 / 4;
+  width: var(--tap);
+  height: var(--tap);
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  color: var(--c-brand-deep);
   background: color-mix(in srgb, var(--c-paper) 92%, transparent);
 }

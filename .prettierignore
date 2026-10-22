@@ -17,5 +17,3 @@ docs/superpowers
 *.ai
 *.svg
 *.md
-# CSS 는 설계문서(DESIGN.md §5.5·§6 Phase 5) 와 같은 '선언 묶음' 스타일로 두고 stylelint 로만 검사한다 (Phase 5 결정, PROGRESS.md 참조)
-*.css

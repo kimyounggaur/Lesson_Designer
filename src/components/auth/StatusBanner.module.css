@@ -1,20 +1,28 @@
 /* 서버 액션 결과·안내 배너. globals.css v1 .statusBanner(1072-1098)를 토큰으로 옮김. 색만으로 구분하지 않도록 role 로도 알린다 (F-4). */
 .banner {
-  margin-top: 8px; padding: 12px; border: 1px solid var(--c-line); border-radius: var(--r-sm);
-  background: var(--c-rail); font-size: var(--fs-md); font-weight: 800;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-sm);
+  background: var(--c-rail);
+  font-size: var(--fs-md);
+  font-weight: 800;
 }
 
 .banner[data-variant="success"] {
-  border-color: color-mix(in srgb, var(--c-ok) 44%, var(--c-line)); background: var(--c-ok-soft);
+  border-color: color-mix(in srgb, var(--c-ok) 44%, var(--c-line));
+  background: var(--c-ok-soft);
   color: var(--c-ok);
 }
 
 .banner[data-variant="error"] {
-  border-color: color-mix(in srgb, var(--c-danger) 44%, var(--c-line)); background: var(--c-danger-soft);
+  border-color: color-mix(in srgb, var(--c-danger) 44%, var(--c-line));
+  background: var(--c-danger-soft);
   color: var(--c-danger);
 }
 
 .banner[data-variant="info"] {
-  border-color: color-mix(in srgb, var(--c-sun) 44%, var(--c-line)); background: var(--c-warn-soft);
+  border-color: color-mix(in srgb, var(--c-sun) 44%, var(--c-line));
+  background: var(--c-warn-soft);
   color: var(--c-warn);
 }

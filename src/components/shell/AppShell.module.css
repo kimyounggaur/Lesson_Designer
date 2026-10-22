@@ -1,16 +1,25 @@
 /* D2: 폰 베젤 없이 중앙 컬럼. 600px 이상에서는 카드형(라운드 + 그림자). DESIGN.md Step 5.3 */
 .shell {
-  width: 100%; max-width: var(--shell-max); min-height: 100dvh; display: grid;
-  grid-template-rows: auto 1fr auto; margin: 0 auto; background: var(--c-rail);
+  width: 100%;
+  max-width: var(--shell-max);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  margin: 0 auto;
+  background: var(--c-rail);
 }
 
 .main {
-  min-width: 0; padding: 18px 16px 24px;
+  min-width: 0;
+  padding: 18px 16px 24px;
 }
 
 @media (width >= 600px) {
   .shell {
-    min-height: calc(100dvh - 48px); margin-block: 24px; border-radius: var(--r-lg);
-    box-shadow: var(--sh-card); overflow: clip;
+    min-height: calc(100dvh - 48px);
+    margin-block: 24px;
+    border-radius: var(--r-lg);
+    box-shadow: var(--sh-card);
+    overflow: clip;
   }
 }

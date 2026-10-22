@@ -9,7 +9,7 @@
 - 마지막 verify 결과: Phase 5 — typecheck ✓ lint ✓(eslint + stylelint) test ✓(50) build ✓
 
 ## 사람 작업 대기 (Human TODO)
-- [ ] **Phase 5**: `design/qa/phase5-before/` ↔ `phase5-after/` 를 나란히 놓고 P-D 디자인 검토 → Vercel Preview 승인. 확인 포인트 ① 버튼·통계 타일 라운드 8px → 15px(토큰값 복원, 아래 세션 로그 참조) ② 로그인 화면 토큰 매핑(제목 굵기 800, 링크·아이콘 색) ③ 헤더는 모든 화면에서 브랜드 블루 유지(결정) — 게임 카테고리에서 헤더까지 주황으로 바꾸고 싶으면 라우트 단위 톤 출처를 정해야 함 ④ CSS 선언 묶음 포맷(Prettier 제외) 유지 여부 — 한 줄 한 선언으로 되돌리려면 `.prettierignore` 의 `*.css` 를 지우고 `npx prettier --write "src/**/*.css"` (총 줄 수는 약 1,220줄로 늘어남)
+- [ ] **Phase 5**: `design/qa/phase5-before/` ↔ `phase5-after/` 를 나란히 놓고 P-D 디자인 검토 → Vercel Preview 승인. 확인 포인트 ① 버튼·통계 타일 라운드 8px → 15px(토큰값 복원, 아래 세션 로그 참조) ② 로그인 화면 토큰 매핑(제목 굵기 800, 링크·아이콘 색) ③ 헤더는 모든 화면에서 브랜드 블루 유지(결정) — 게임 카테고리에서 헤더까지 주황으로 바꾸고 싶으면 라우트 단위 톤 출처를 정해야 함
 - [ ] **Phase 4**: `design/qa/phase4/*.png` 스크린샷과 Vercel Preview 로 디자인 검토(P-D 프롬프트 권장). 특히 ① 홈 히어로를 흰 카드로 둔 선택 ② 카테고리 화면에서 헤더(브랜드 블루) + 히어로(카테고리 톤) 조합 — Phase 5 에서 '헤더는 브랜드 톤 고정' 으로 결정
 - [ ] **Phase 4**: Lighthouse 모바일 Accessibility 측정(이 환경에서는 실행 불가 → 미측정). `npx lighthouse http://localhost:3000 --only-categories=accessibility`
 - [ ] **Phase 3**: `supabase/migrations/202610220001_profiles_hardening.sql`을 Supabase SQL Editor에서 적용(이메일 동기화 트리거 + `set_profile_role` RPC, 추가 전용). 적용 후 파일 하단의 확인 SQL 실행. 자동 적용은 플랫폼 정책(프로덕션 배포)으로 차단됨.
@@ -57,7 +57,7 @@
   - **의도되지 않은 차이**: 없음. 작업 중 발견해 고친 것 — 홈 h1(`.heroTitle`) 이 레거시 `h1 { line-height: 1.02 }` 에 기대고 있어 base 적용 후 4px 커짐 → `line-height: 1.2` 명시; base `button` 리셋 뒤 비밀번호 토글이 UA `buttontext`(검정) 로 바뀜 → base 에 `color: inherit` 추가
 - 결정·가정/우회:
   - **헤더 톤**: 모든 화면에서 헤더는 브랜드 블루 고정, 카테고리 톤은 페이지 루트·CategoryCard·AppCard 의 `data-tone` 이 입는다. `(app)/layout.tsx` 는 카테고리 파라미터를 알 수 없고, 클라이언트 JS 로 `document.documentElement` 에 톤을 다는 방식은 깜빡임·JS 의존이라 배제. 게임 카테고리 = 블루 앱바 + 주황 히어로(의도된 조합, 디자인 검토 항목)
-  - **CSS 포맷**: 설계문서의 CSS 예시와 같은 '선언 묶음' 스타일(한 줄 여러 선언, 110자)로 쓰고 `.prettierignore` 에 `*.css` 추가. 이유: Prettier 의 한 줄 한 선언 + stylelint-config-standard 의 규칙 사이 빈 줄 포맷으로는 같은 내용이 약 1,220줄이라 설계 목표(≤ 900)를 만족할 수 없음(데드 규칙 0 기준). 되돌리기는 `.prettierignore` 한 줄 삭제 + `prettier --write`
+  - **CSS 포맷(리뷰에서 정정)**: 에이전트는 '≤ 900줄' 기준을 맞추려고 CSS 를 Prettier 에서 제외하고 선언 묶음 포맷(741줄)을 썼으나, 리뷰에서 되돌림 — 포맷으로 지표를 맞추는 것은 설계 의도(데드 코드 제거)가 아니므로. Prettier 표준 포맷(한 줄 한 선언)으로 **1,220줄 / 규칙 162개 / 선언 678개**, 데드 규칙 0. 설계문서의 '≤ 900줄'은 포맷 의존 추정치였고, 실제 감량은 3,398줄 → 1,220줄(−64%). stylelint 통과.
   - **base.css 추가분**(설계 Step 5.2 + α): v2 body 의 은은한 radial-gradient 배경을 토큰으로 유지(로그인·404·데스크톱 여백에서 보이던 것), `word-break: keep-all`(Phase 4 유지), `p { margin: 0 }`, `button { border: 0; background: none; color: inherit; cursor: pointer }` 리셋, `h1~h3·strong { font-weight: 800 }`, `.sr-only` 는 `clip` 대신 `clip-path: inset(50%)`(stylelint property-no-deprecated)
   - **토큰 추가 3개**: `--fs-3xl: 34px`(로그인 제목), `--sh-tone`(카테고리 카드·히어로 그림자, `[data-tone]` 블록에서 같이 전환), `--sh-ring`(그라데이션 위 1px 안쪽 링). `#ffffff` → `#fff`, `rgba()` → `rgb(... / %)` 표기(stylelint)
   - **공용 모듈**: `ui/Button.module.css`(`.button` + `data-variant` secondary/ghost, composes 또는 직접 import), `ui/Page.module.css`(`.page/.section/.eyebrow/.title/.sectionTitle/.stats`), `ui/Pill.tsx`(AppCard 상태·관리자 배지). GridSkeleton 은 AppGrid/AppCard 모듈을, loading 은 GridSkeleton 의 `.block` 을 composes — Turbopack·Vite 모두 `composes ... from` 지원 확인

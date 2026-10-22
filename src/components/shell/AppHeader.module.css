@@ -1,7 +1,9 @@
 /* 셸 헤더 — 그라데이션 + 계정 칩. globals.css v2 .siteHeader.appHeader/.userChip(1343-1440)을 토큰으로 옮김.
    가짜 상태바·퀵탭은 두지 않는다 (C-1/C-3). 색은 --c-tone 을 따르므로 셸 루트의 data-tone 으로만 바뀐다. */
 .header {
-  display: grid; gap: 2px; padding: 12px 16px 18px;
+  display: grid;
+  gap: 2px;
+  padding: 12px 16px 18px;
   background:
     radial-gradient(circle at 82% 22%, color-mix(in srgb, var(--c-paper) 16%, transparent), transparent 25%),
     linear-gradient(
@@ -14,42 +16,71 @@
 }
 
 .top {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .brand {
-  min-height: var(--tap); display: inline-flex; align-items: center; border-radius: var(--r-sm);
-  font-size: var(--fs-xs); font-weight: 800; letter-spacing: 1.6px;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--r-sm);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 1.6px;
 }
 
 .greeting {
-  font-size: var(--fs-xl); font-weight: 800; line-height: 1.15;
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  line-height: 1.15;
 }
 
 .account {
-  display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .chip {
-  min-height: var(--tap); display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 0 14px; border-radius: var(--r-pill);
-  background: color-mix(in srgb, var(--c-paper) 16%, transparent); color: var(--c-paper);
-  box-shadow: var(--sh-ring); font-size: var(--fs-sm); font-weight: 800; white-space: nowrap;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-paper) 16%, transparent);
+  color: var(--c-paper);
+  box-shadow: var(--sh-ring);
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  white-space: nowrap;
   transition: background var(--motion-fast) var(--ease-out);
 }
 
-.chip:hover { background: color-mix(in srgb, var(--c-paper) 26%, transparent); }
+.chip:hover {
+  background: color-mix(in srgb, var(--c-paper) 26%, transparent);
+}
 
 .chip[data-variant="solid"] {
-  background: var(--c-paper); color: var(--c-brand-deep); box-shadow: none;
+  background: var(--c-paper);
+  color: var(--c-brand-deep);
+  box-shadow: none;
 }
 
 /* 역할 표시용 칩은 눌리지 않으므로 hover 변화도 없다 */
 .chip[data-variant="static"] {
-  background: color-mix(in srgb, var(--c-paper) 16%, transparent); cursor: default;
+  background: color-mix(in srgb, var(--c-paper) 16%, transparent);
+  cursor: default;
 }
 
 /* 그라데이션 위에서는 포커스 링을 흰색으로 */
-.brand:focus-visible, .chip:focus-visible {
-  outline-color: color-mix(in srgb, var(--c-paper) 60%, transparent); outline-offset: 2px;
+.brand:focus-visible,
+.chip:focus-visible {
+  outline-color: color-mix(in srgb, var(--c-paper) 60%, transparent);
+  outline-offset: 2px;
 }

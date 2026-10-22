@@ -1,22 +1,41 @@
 /* 403 안내 카드 (B-1). 버튼은 Button 모듈을 직접 쓴다. */
 .card {
-  display: grid; justify-items: center; gap: 10px; padding: 28px 18px; border-radius: var(--r-lg);
-  background: var(--c-paper); box-shadow: var(--sh-card); text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 28px 18px;
+  border-radius: var(--r-lg);
+  background: var(--c-paper);
+  box-shadow: var(--sh-card);
+  text-align: center;
 }
 
 .icon {
-  width: 56px; height: 56px; display: grid; place-items: center; border-radius: var(--r-md);
-  background: var(--c-warn-soft); color: var(--c-warn);
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  background: var(--c-warn-soft);
+  color: var(--c-warn);
 }
 
 .title {
-  font-size: var(--fs-xl); line-height: 1.2;
+  font-size: var(--fs-xl);
+  line-height: 1.2;
 }
 
 .body {
-  max-width: 34ch; color: var(--c-text-muted); font-size: var(--fs-sm); line-height: 1.55;
+  max-width: 34ch;
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
 }
 
 .actions {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
 }

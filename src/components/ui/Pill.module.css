@@ -1,13 +1,22 @@
 /* 아이콘 + 짧은 텍스트 배지. 레거시 전역 .pill/.statusBadge 를 대체하며, 색만으로 상태를 구분하지 않는다 (F-2). */
 .pill {
-  min-height: 26px; display: inline-flex; align-items: center; gap: 4px; padding: 0 9px;
-  border-radius: var(--r-pill); font-size: var(--fs-xs); font-weight: 800; white-space: nowrap;
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 9px;
+  border-radius: var(--r-pill);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .pill[data-variant="accent"] {
-  background: var(--c-accent-soft); color: color-mix(in srgb, var(--c-accent) 62%, var(--c-text));
+  background: var(--c-accent-soft);
+  color: color-mix(in srgb, var(--c-accent) 62%, var(--c-text));
 }
 
 .pill[data-variant="warn"] {
-  background: var(--c-warn-soft); color: var(--c-warn);
+  background: var(--c-warn-soft);
+  color: var(--c-warn);
 }

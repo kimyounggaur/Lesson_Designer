@@ -1,41 +1,68 @@
 /* 관리자 화면 (C-8). 세로 리듬·제목·통계는 Page 모듈, 뒤로 링크는 Button ghost, '준비 중' 배지는 Pill. */
 .back {
-  composes: button from "../../../components/ui/Button.module.css"; margin: -8px 0;
+  composes: button from "../../../components/ui/Button.module.css";
+  margin: -8px 0;
 }
 
 .heading {
-  display: grid; gap: 6px;
+  display: grid;
+  gap: 6px;
 }
 
 .eyebrow {
-  composes: eyebrow from "../../../components/ui/Page.module.css"; display: inline-flex; align-items: center;
-  gap: 6px; color: var(--c-brand);
+  composes: eyebrow from "../../../components/ui/Page.module.css";
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--c-brand);
 }
 
 .desc {
-  color: var(--c-text-muted); font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
 }
 
 .sectionTitle {
-  composes: sectionTitle from "../../../components/ui/Page.module.css"; display: inline-flex;
-  align-items: center; gap: 8px;
+  composes: sectionTitle from "../../../components/ui/Page.module.css";
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .list {
-  display: grid; gap: 8px; margin: 0; padding: 0; list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .row {
-  min-height: var(--tap); display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 10px 14px; border-radius: var(--r-md); background: var(--c-paper); box-shadow: var(--sh-card);
-  font-size: var(--fs-md); font-weight: 800;
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  box-shadow: var(--sh-card);
+  font-size: var(--fs-md);
+  font-weight: 800;
 }
 
 .rowMeta {
-  color: var(--c-text-muted); font-size: var(--fs-xs); white-space: nowrap;
+  color: var(--c-text-muted);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
 }
 
 .note {
-  padding: 14px; border-radius: var(--r-md); background: var(--c-paper); box-shadow: var(--sh-card);
-  color: var(--c-text-muted); font-size: var(--fs-sm); line-height: 1.55;
+  padding: 14px;
+  border-radius: var(--r-md);
+  background: var(--c-paper);
+  box-shadow: var(--sh-card);
+  color: var(--c-text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
 }
