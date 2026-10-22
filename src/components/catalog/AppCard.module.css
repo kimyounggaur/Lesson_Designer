@@ -59,11 +59,14 @@
   -webkit-line-clamp: 3;
 }
 
+/* 액센트(시안) 위의 흰 글자는 2.4:1 밖에 안 되므로 짙은 글자를 쓴다 (7.3:1, Phase 6 axe). */
 .action {
   composes: button from "../ui/Button.module.css";
   background: var(--c-accent);
+  color: var(--c-brand-deep);
 }
 
 .action[data-variant="locked"] {
   background: var(--c-brand-deep);
+  color: var(--c-paper);
 }

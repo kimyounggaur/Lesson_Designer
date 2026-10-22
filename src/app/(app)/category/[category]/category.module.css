@@ -83,10 +83,12 @@
   white-space: nowrap;
 }
 
+/* 액센트 위 글자색은 AppCard .action 과 같은 이유로 짙게 (Phase 6 axe). */
 .featuredAction {
   composes: button from "../../../../components/ui/Button.module.css";
   padding: 0 14px;
   background: var(--c-accent);
+  color: var(--c-brand-deep);
   white-space: nowrap;
 }
 
