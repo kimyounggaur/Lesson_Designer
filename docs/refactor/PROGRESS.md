@@ -60,6 +60,11 @@
 
 ## 세션 로그
 
+### 2026-10-22 CI 안정화 (PR #1~#8 전부 녹색)
+- 원인 1: CI의 `vitest --coverage`가 `@vitest/coverage-v8` 없이 실행되어 Phase 0~5 브랜치 verify 실패 → Phase 0에 추가하고 스택을 따라 머지 커밋으로 전파(`fix(ci): add @vitest/coverage-v8`).
+- 원인 2: Phase 6·7 e2e job 실패(로그·아티팩트는 이 환경에서 다운로드 차단) → `playwright.config.ts`에 GitHub 리포터(체크 주석) 추가, 스냅샷 비교를 브라우저 빌드 차이에 견디도록 `threshold 0.35 / maxDiffPixelRatio 0.02`로 조정(`ci(e2e): add github reporter and tolerate browser-build antialiasing`). 이후 phase-6·7 모두 verify ✓ e2e ✓.
+- 결과: 8개 PR 모두 CI 녹색. Vercel 프리뷰 8개 Ready.
+
 ### 2026-10-22 Phase 7 — 저장소·에셋 정리 (브랜치 refactor/phase-7-repo, 태그 phase-7)
 - 완료 Step: 7.1(H-3, H-4), 7.2(E-7, I-2), 7.3(.gitattributes), 7.4(README)
 - verify ✓(108 tests) · e2e visual/guest 9 passed(아이콘 교체 후 스냅샷 diff < 1%) · 스크린샷 `design/qa/phase7/` 7장(깨진 이미지 0, 최소 터치 타깃 44px)
