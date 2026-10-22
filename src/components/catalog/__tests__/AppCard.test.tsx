@@ -39,4 +39,30 @@ describe("AppCard", () => {
     expect(container.textContent).not.toMatch(/\d+%/);
     expect(container.innerHTML).not.toContain("vercel.app");
   });
+
+  it("opens every app for admins and keeps the new-tab link safe", () => {
+    render(<AppCard app={memberApp} role="admin" />);
+
+    const start = screen.getByRole("link", { name: /시작/ });
+    expect(start).toHaveAttribute("target", "_blank");
+    expect(start).toHaveAttribute("rel", "noreferrer");
+    expect(screen.queryByRole("link", { name: /로그인하고 열기/ })).not.toBeInTheDocument();
+  });
+
+  it("takes its tone from the surrounding category, falling back to the app's first category", () => {
+    const { rerender } = render(<AppCard app={memberApp} role="member" tone="play" />);
+    expect(screen.getByRole("article")).toHaveAttribute("data-tone", "play");
+
+    rerender(<AppCard app={memberApp} role="member" />);
+    expect(screen.getByRole("article")).toHaveAttribute("data-tone", "edu");
+  });
+
+  it("marks the icon as decorative so the heading is the only name", () => {
+    const { container } = render(<AppCard app={publicApp} role="guest" />);
+
+    const icon = container.querySelector("img");
+    expect(icon).not.toBeNull();
+    expect(icon).toHaveAttribute("alt", "");
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
+  });
 });
