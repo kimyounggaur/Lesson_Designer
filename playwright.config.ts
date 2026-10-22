@@ -16,9 +16,12 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
-  reporter: process.env.CI ? [["line"], ["html", { open: "never" }]] : "list",
+  // CI: github 리포터가 실패를 PR 체크 주석으로 남겨 로그 없이도 원인을 볼 수 있다.
+  reporter: process.env.CI ? [["line"], ["github"], ["html", { open: "never" }]] : "list",
   expect: {
-    toHaveScreenshot: { maxDiffPixelRatio: 0.01 }
+    // 기준선은 로컬 Chromium(r1194)으로 생성됐고 CI 는 @playwright/test 번들 Chromium 을 쓴다.
+    // threshold 는 픽셀당 색 허용치(안티앨리어싱 차이 흡수), maxDiffPixelRatio 는 레이아웃 변화 감지용.
+    toHaveScreenshot: { maxDiffPixelRatio: 0.02, threshold: 0.35, animations: "disabled" }
   },
   use: {
     baseURL: process.env.E2E_BASE_URL ?? `http://localhost:${PORT}`,
