@@ -3,12 +3,16 @@
 > 매 세션 시작 시 읽고, 종료 시 갱신. 최신 항목이 위로.
 
 ## 현재 상태
-- 완료 Phase: 0, 1, 2, 3, 4, 5
-- 진행 중 Phase: 6 (다음 세션)
-- 현재 브랜치: refactor/phase-5-css (base: refactor/phase-4-shell), 태그 `phase-5`
-- 마지막 verify 결과: Phase 5 — typecheck ✓ lint ✓(eslint + stylelint) test ✓(50) build ✓
+- 완료 Phase: 0, 1, 2, 3, 4, 5, 6
+- 진행 중 Phase: 7 (다음 세션)
+- 현재 브랜치: refactor/phase-6-quality (base: refactor/phase-5-css), 태그 `phase-6`
+- 마지막 verify 결과: Phase 6 — typecheck ✓ lint ✓(eslint + stylelint) test ✓(108) build ✓ · e2e 18 passed / 2 skipped(member·admin, 계정 없음)
 
 ## 사람 작업 대기 (Human TODO)
+- [ ] **Phase 6 (D8)**: e2e 전용 Supabase 프로젝트(또는 로컬 `supabase start`)에 member/admin 계정 2개 생성 → GitHub Secrets 등록: `E2E_MEMBER_EMAIL`, `E2E_MEMBER_PASSWORD`, `E2E_ADMIN_EMAIL`, `E2E_ADMIN_PASSWORD` **+ `E2E_SUPABASE_URL`, `E2E_SUPABASE_ANON_KEY`**(e2e job 이 프로덕션 서버를 이 값으로 빌드함. 가정 — 아래 세션 로그). 없으면 member/admin 스펙은 CI 에서 계속 skip.
+- [ ] **Phase 6 CSP**: enforce 전환 후 첫 배포에서 Vercel 로그·브라우저 콘솔의 "Content Security Policy" 메시지 확인. **Vercel Preview 의 툴바(`vercel.live`)는 현재 정책에 막힌다**(팀원에게만 보이는 기능, 최종 사용자 영향 없음) — Preview 코멘트 기능이 필요하면 `script-src/connect-src/frame-src` 에 `https://vercel.live` 추가 여부 결정.
+- [ ] **Phase 6 시각 기준선**: `e2e/visual.spec.ts-snapshots/*.png` 는 이 환경의 Chromium r1194(headless shell)로 만들었다. CI 의 Playwright 1.64 번들 Chromium 과 안티앨리어싱이 달라 첫 CI 가 visual 스펙에서 1% 이상 차이로 실패할 수 있음 → 그러면 CI 아티팩트(또는 로컬 `npx playwright test e2e/visual.spec.ts --update-snapshots`)로 기준선을 CI 브라우저 기준으로 한 번 갱신해 커밋.
+- [ ] **Phase 6 디자인 검토 추가 항목**: ① 보조 텍스트 색 `--c-text-muted` `#7b7f92` → `#666b80`(대비 3.96 → 5.28:1) ② "시작"/"바로 열기" 버튼이 시안 배경 위 **짙은 글자**(흰 글자 2.4:1 → 7.4:1) ③ (미수정) 카테고리 카드·카테고리 히어로의 흰 글자 — edu 그라데이션 밝은 끝 약 3.7:1, play(주황) 약 2.2~2.6:1 로 AA 미달. axe 는 그라데이션을 판정 못 해 "incomplete" 로만 남김. 글자색을 짙게 하거나 그라데이션 끝을 어둡게 하는 디자인 결정 필요(아래 발견 사항).
 - [ ] **Phase 5**: `design/qa/phase5-before/` ↔ `phase5-after/` 를 나란히 놓고 P-D 디자인 검토 → Vercel Preview 승인. 확인 포인트 ① 버튼·통계 타일 라운드 8px → 15px(토큰값 복원, 아래 세션 로그 참조) ② 로그인 화면 토큰 매핑(제목 굵기 800, 링크·아이콘 색) ③ 헤더는 모든 화면에서 브랜드 블루 유지(결정) — 게임 카테고리에서 헤더까지 주황으로 바꾸고 싶으면 라우트 단위 톤 출처를 정해야 함
 - [ ] **Phase 4**: `design/qa/phase4/*.png` 스크린샷과 Vercel Preview 로 디자인 검토(P-D 프롬프트 권장). 특히 ① 홈 히어로를 흰 카드로 둔 선택 ② 카테고리 화면에서 헤더(브랜드 블루) + 히어로(카테고리 톤) 조합 — Phase 5 에서 '헤더는 브랜드 톤 고정' 으로 결정
 - [ ] **Phase 4**: Lighthouse 모바일 Accessibility 측정(이 환경에서는 실행 불가 → 미측정). `npx lighthouse http://localhost:3000 --only-categories=accessibility`
@@ -18,9 +22,14 @@
 - [ ] **Phase 2 배포 전 필수**: Authentication → URL Configuration — Site URL = 배포 도메인, Redirect URLs에 `http://localhost:3000/**`, `https://<배포도메인>/**`
 - [ ] D6: Supabase JWT 서명 키 타입 확인(Project Settings → JWT Keys) → 비대칭이면 DECISIONS D6 갱신
 - [ ] D7: Vercel env `NEXT_PUBLIC_SITE_URL`에 실제 배포 도메인 설정
-- [ ] D8: e2e 계정 2개(member/admin) 생성, GitHub Secrets `E2E_*` 등록
+- [ ] ~~D8: e2e 계정 2개(member/admin) 생성, GitHub Secrets `E2E_*` 등록~~ → 위 Phase 6 항목으로 통합(secret 2개 추가)
 
 ## 발견 사항 (범위 밖이라 보류한 문제)
+- **그라데이션 위 흰 글자 대비(Phase 4/5 디자인)**: `CategoryCard`(홈)·카테고리 히어로(`category.module.css .hero`)·헤더는 `--c-tone` → `color-mix(tone 80%, paper)` 그라데이션 위에 흰 글자를 올린다. 계산값: edu(브랜드 블루) 어두운 끝 5.5:1 / 밝은 끝 약 3.7:1(13~15px 설명문 AA 미달), play(주황 `#ff7a4c`) 2.6:1 이하로 제목(24px bold, 3:1 필요)도 미달. axe 는 그라데이션 배경을 판정하지 않아 `incomplete` 로만 남기므로 CI 가 잡지 못한다 → 디자인 결정(Human TODO). 헤더(브랜드 블루 92~100% 그라데이션)는 글자 위치에서 4.7:1 이상으로 AA 충족(우상단 하이라이트 원 아래는 4.0:1 이지만 거기엔 흰 칩만 있음).
+- **`/login` 의 "← 홈" 링크가 랜드마크 밖**: `(auth)/layout.tsx` 가 `AuthForm` 의 `<main>` 바깥에 링크를 두어 axe `region`(moderate) 경고. 실패 기준(serious 이상)은 아니라 두었다. `<nav aria-label>` 로 감싸면 해결 — Phase 7/8 중 아무 때나.
+- **no-JS 로그인 + 외부 `next`**: JS 가 꺼진 브라우저에서 폼 POST → 303 `/go/<id>` → 302 외부 앱 체인은 Chrome 이 `form-action 'self'` 를 리다이렉트에도 적용해 마지막 외부 이동을 막는다. JS 가 켜진 정상 경로(서버 액션 fetch → 클라이언트 라우터 → 일반 내비게이션)는 영향 없음. 앱이 클라이언트 컴포넌트에 의존하므로 수용했고, 문제가 되면 `form-action` 을 완화하는 대신 로그인 후 `/go` 복귀를 중간 화면으로 바꾸는 쪽을 권장.
+- `package.json` 의 `icons:build` 가 가리키는 `scripts/optimize-icons.mjs` 가 저장소에 없다(Phase 7 Step 7.2 에서 만들 것). Phase 6 에서 `scripts/` 디렉터리를 `check-coverage.mjs` 로 처음 만들었다.
+- `src/lib/supabase/client.ts`(브라우저 클라이언트)는 어디서도 import 되지 않는다(커버리지 0%). Phase 7 `knip` 에서 삭제 후보.
 - ~~**Phase 5로 넘기는 레거시 CSS 범위**~~ → **Phase 5 에서 전부 삭제 완료**(`globals.css` 2줄). 아래 표는 Phase 4 종료 시점(2,051줄) 기준 기록용:
 
   | 새 모듈 | 대체한 globals.css 규칙(라인) | 함께 버릴 규칙 |
@@ -47,6 +56,30 @@
 - TypeScript 6.0에서 `baseUrl` 옵션이 deprecation 오류(TS5101) → Phase 0에서 `paths`만 남기고 제거.
 
 ## 세션 로그
+
+### 2026-10-22 Phase 6 — 테스트 · 품질 보증 (브랜치 refactor/phase-6-quality, 태그 phase-6)
+- 완료 Step: 6.0(브랜치), 6.1(`app/auth/__tests__/actions.test.ts` 16케이스 + `confirm-route.test.ts` 6케이스), 6.2(`/go` 라우트 테스트 8 → 13케이스), 6.3(`AuthForm`·`StatusBanner`·`AppHeader`·`CategoryCard` 신규, `BottomNav`·`AppCard` 확장, `features/auth/__tests__/service.test.ts` 신규), 6.4(`playwright.config.ts` + `e2e/` 7스펙 + 기준선 4장), 6.5(`ci.yml` e2e job + `scripts/check-coverage.mjs`), 6.6(CSP enforce 전환)
+- verify: typecheck ✓ lint ✓(eslint + stylelint) test ✓(**108**, Phase 5 종료 50 → 108 / 16파일) build ✓
+- 커버리지(v8, `npm run test -- --coverage --coverage.reporter=json-summary`): **`src/features/` 100%(55/55) · `src/app/auth/` 100%(46/46) · `src/app/go/` 100%(13/13)** 라인 — `check-coverage.mjs` 통과(문턱 85%). 전체 61.65%(페이지·레이아웃·`lib/supabase/*` 는 단위 테스트 대상 아님)
+- e2e(`PW_EXECUTABLE_PATH=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell npx playwright test`, 프로덕션 `next start -p 3100`): **18 passed / 2 skipped** — guest 5 ✓, visual 4 ✓, a11y 4 ✓, csp 5 ✓, member 1 **skipped**, admin 1 **skipped**(E2E_* 계정 없음, D8). 두 번 연속 실행해 스냅샷 결정성 확인
+  - 스냅샷 기준선: `e2e/visual.spec.ts-snapshots/{home,instrument-education,music-game,login}-mobile-chromium-linux.png` (390×844, DPR 1, 눈으로 확인: 폰트·아이콘·이미지 정상)
+  - axe(`@axe-core/playwright` 4.14, 전체 규칙): 4화면 **serious/critical 0**. moderate 1건(`/login` `region`, 발견 사항) — 실패시키지 않고 리포트에만 출력. `incomplete`(그라데이션 위 텍스트)는 발견 사항에 수치로 기록
+  - **테스트가 발견한 버그 → `fix(a11y)` 커밋 561379d**: ① `--c-text-muted #7b7f92` 가 흰 배경 3.96:1, `--c-rail` 3.64:1 로 13px 본문 AA 미달(홈 lead·eyebrow·stat 라벨·카드 설명·권한 스트립·하단 탭 비활성 라벨 23개 노드) → `#666b80`(5.28 / 4.85:1) ② "시작"·"바로 열기" 버튼이 `--c-accent`(시안) 위 흰 글자 2.44:1 → `--c-brand-deep` 글자(7.35:1). 수정 중 잠금 변형(`.action[data-variant="locked"]`, 네이비 배경)이 글자색을 상속해 네이비-on-네이비가 되는 회귀를 axe `incomplete`(equalRatio) 덤프로 잡아 `color: var(--c-paper)` 명시
+- **CSP 결정: enforce**(커밋 6c2418e). 근거: 프로덕션 Report-Only 로그가 없어 로컬 프로덕션 빌드에서 수집 — 4화면 + `/signup`·`/admin`(게스트 리다이렉트)·404·`/auth/confirm` 9경로, 하단 탭 클라이언트 내비게이션·비밀번호 토글(하이드레이션)까지 실행해 콘솔 "Content Security Policy" **0건**(유일한 콘솔 오류는 404 리소스 상태). 전환 후 재실행도 0건·시각 스냅샷 동일·하이드레이션 정상. 지시문은 그대로(`script-src 'self' 'unsafe-inline'` 유지, nonce 는 별도 작업). `e2e/csp.spec.ts` 가 enforce 헤더·하이드레이션·4화면 콘솔 0건을 계속 지킨다
+- CI: `verify` job 에 json-summary 커버리지 + `node scripts/check-coverage.mjs`, `e2e` job(needs verify, `npx playwright install --with-deps chromium`, `npm run test:e2e`, 실패 시 `playwright-report`·`test-results` 아티팩트). 의존성 추가: `@axe-core/playwright@^4.14.0`, `@vitest/coverage-v8@^4.1.12`(vitest 4.1.12 와 메이저 일치 — npm 이 처음 5.x 를 고르기에 명시 고정)
+- 가정/우회:
+  - **프롬프트북과 다른 Playwright 설정**(세션 지시 우선): 기준 포트 3100·`webServer: npm run build && npm run start -- -p 3100`(dev 서버 대신 프로덕션), `PW_EXECUTABLE_PATH` 가 있을 때만 `launchOptions.executablePath`(이 환경의 Chromium r1194 ≠ @playwright/test 1.64 번들), `locale ko-KR`·`timezoneId Asia/Seoul`·`hasTouch` 추가, CI 에서만 retries 1 + html 리포터
+  - **스펙 6+1개**: 프롬프트의 5개(guest/member/admin/visual/a11y)에 `csp.spec.ts` 를 더해 Step 6.6 수집을 영구 가드로 남겼다. 공통 화면 목록·안정화 대기(`networkidle` + `document.fonts.ready` + 이미지 complete)는 `e2e/helpers/screens.ts`
+  - **게스트 스펙의 외부 이동**: 네트워크가 없어 "시작" 클릭으로 새 탭 URL 을 확인하는 대신 링크 `href=/go/guitar-chord`·`target=_blank`·`rel=noreferrer` 와 `request.get('/go/guitar-chord', { maxRedirects: 0 })` 302 Location 으로 검증(외부 요청 안 함). 회원 스펙도 `/go/kalimba` 는 `page.request`(쿠키 공유) 요청 레벨로만 확인하고 로그인 복귀 `next` 는 같은 사이트(`/category/instrument-education`)로 둠
+  - **"시작 링크 수 = 14"** 는 두 카테고리 화면의 카드 링크가 중복(칼림바·텅드럼) 포함 16개라서 **고유 `/go/` href 집합 크기 = 14** 로 단언
+  - **CI e2e 의 Supabase env**: member/admin 스펙이 실제로 돌려면 서버가 Supabase 를 알아야 하므로 `NEXT_PUBLIC_SUPABASE_URL/ANON_KEY` 를 secrets `E2E_SUPABASE_URL/E2E_SUPABASE_ANON_KEY` 에서 주입(D8 에 없던 항목, Human TODO). 비어 있으면 게스트 모드 빌드 → skip
+  - 커버리지 문턱은 파일별이 아니라 **그룹 합산**(covered/total)으로 판정하고, 그룹에 측정 파일이 0개면 실패(패턴 깨짐 방지). `COVERAGE_MIN` env 로 조정 가능
+  - 시각 스냅샷은 전체 페이지가 아니라 **뷰포트(390×844)** 만 — 지연 로드 이미지로 인한 비결정성 회피. 프롬프트의 `--update-snapshots` 로 생성 후 4장을 열어 확인
+  - `AuthForm` 테스트는 React 19 폼 액션을 jsdom 에서 실제 submit(`fireEvent.submit`)으로 돌려 `role="alert"`/`role="status"` 전환을 확인(동작함)
+  - `features/auth/service.ts` 테스트는 `server-only` 를 빈 모듈로 mock. React `cache()` 는 클라이언트 빌드에서 패스스루라 호출마다 실행됨
+  - README 의 e2e 안내는 Phase 7(저장소 정리)로 미룸 — 실행 방법은 `playwright.config.ts` 주석과 이 장부에 있음
+- 사람 작업: 위 Human TODO 4건(e2e 계정·secret 6개, CSP 배포 확인·Vercel 툴바, 기준선 CI 재생성 가능성, 디자인 검토 항목 3개)
+- 다음: Phase 7 (저장소·에셋 정리). `scripts/optimize-icons.mjs` 부재, `lib/supabase/client.ts` 미사용, `/login` region 경고는 발견 사항 참조
 
 ### 2026-10-22 Phase 5 — CSS 아키텍처 재구축 (브랜치 refactor/phase-5-css, 태그 phase-5)
 - 완료 Step: 5.0(브랜치 + `design/qa/phase5-before/` 7장), 5.1(CSS 문자열 테스트 2파일 삭제 → 테스트 55 → 50), 5.2(`src/styles/base.css` 신규, `globals.css` = `@import` 2줄), 5.3(AuthForm/StatusBanner 모듈화 + `components/auth/` 이동, 홈·카테고리·관리자·상태 화면·AccessDenied·AppCard·GridSkeleton·loading 모듈 재작성, 공용 `ui/Button.module.css`·`ui/Page.module.css`·`ui/Pill.tsx`, 셸·카탈로그 모듈 압축, 레거시 v1/v2 전부 삭제), 5.4(1280px 데스크톱 베젤 없음·카드형 컬럼 — `desktop-home.png`), 5.5(Stylelint 도입, `npm run lint` 에 통합), 5.6(`design/qa/phase5-after/` 7장 + 전체 페이지 10장·computed style 덤프로 before/after 비교)

@@ -17,7 +17,9 @@
   --c-rail: #f4f5fb;
   --c-paper: #fff;
   --c-text: #17172c;
-  --c-text-muted: #7b7f92;
+
+  /* 보조 텍스트. 흰 배경 5.3:1, --c-rail 배경 4.9:1 — 13px 본문에서도 WCAG AA(4.5:1)를 넘긴다 (Phase 6 axe). */
+  --c-text-muted: #666b80;
   --c-line: #e7e8f2;
 
   /* 상태 */
