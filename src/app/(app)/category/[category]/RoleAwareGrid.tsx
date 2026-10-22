@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Layers, LockKeyhole, Play, ShieldCheck, UserRound } from "lucide-react";
 import { AppGrid } from "@/components/catalog/AppGrid";
+import page from "@/components/ui/Page.module.css";
 import { ko } from "@/content/ko";
 import { getCurrentUserProfile } from "@/features/auth/service";
 import {
@@ -36,8 +37,8 @@ export async function RoleAwareGrid({ category }: RoleAwareGridProps) {
   return (
     <>
       {featured ? (
-        <section className={styles.section} aria-labelledby="featured-title">
-          <h2 id="featured-title" className={styles.sectionTitle}>
+        <section className={page.section} aria-labelledby="featured-title">
+          <h2 id="featured-title" className={page.sectionTitle}>
             {ko.category.continueTitle}
           </h2>
           <Link
@@ -66,7 +67,7 @@ export async function RoleAwareGrid({ category }: RoleAwareGridProps) {
             <span className={styles.featuredAction}>
               {ko.category.openNow}
               <Play size={14} aria-hidden="true" />
-              <span className={styles.srOnly}>{ko.catalog.opensInNewTab}</span>
+              <span className="sr-only">{ko.catalog.opensInNewTab}</span>
             </span>
           </Link>
         </section>
@@ -83,9 +84,9 @@ export async function RoleAwareGrid({ category }: RoleAwareGridProps) {
         </span>
       </div>
 
-      <section className={styles.section} aria-labelledby="all-apps-title">
+      <section className={page.section} aria-labelledby="all-apps-title">
         <div className={styles.listHead}>
-          <h2 id="all-apps-title" className={styles.sectionTitle}>
+          <h2 id="all-apps-title" className={page.sectionTitle}>
             {ko.category.allApps}
           </h2>
           <span className={styles.listMeta}>

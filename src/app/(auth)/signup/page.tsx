@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { signUpAction } from "@/app/auth/actions";
-import { AuthForm } from "@/components/AuthForm";
+import { AuthForm } from "@/components/auth/AuthForm";
 import { ko } from "@/content/ko";
 import { safeNext } from "@/lib/safe-next";
 

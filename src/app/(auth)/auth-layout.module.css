@@ -1,4 +1,4 @@
-/* 셸(헤더·하단 탭) 없이 같은 폭의 컬럼. 상단 "← 홈" 링크만 둔다. */
+/* 셸(헤더·하단 탭) 없이 같은 폭의 컬럼. 상단 "← 홈" 링크(Button ghost)만 둔다. */
 .column {
   width: 100%;
   max-width: var(--shell-max);
@@ -8,39 +8,4 @@
   gap: 8px;
   margin: 0 auto;
   padding: 12px 16px calc(24px + var(--safe-b));
-  color: var(--c-text);
-  font-family: var(--font-sans);
-  line-height: 1.5;
-  word-break: keep-all;
-}
-
-.column :is(h1, h2, h3) {
-  font-family: inherit;
-}
-
-.back {
-  width: fit-content;
-  min-height: var(--tap);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 10px 0 4px;
-  border-radius: var(--r-sm);
-  color: var(--c-brand-deep);
-  font-size: var(--fs-sm);
-  font-weight: 800;
-}
-
-.back:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--c-brand) 35%, transparent);
-  outline-offset: 2px;
-}
-
-/* AuthForm 은 아직 레거시 전역 클래스(.authShell)를 쓴다. 컬럼 안에서는 100vh 센터링을 끈다. Phase 5 AuthForm 모듈화 시 제거. */
-.column :global(.authShell) {
-  width: 100%;
-  min-height: 0;
-  margin: 0;
-  padding: 0;
-  place-items: start center;
 }

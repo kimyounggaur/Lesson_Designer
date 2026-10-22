@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ArrowLeft, Globe, Layers, LockKeyhole } from "lucide-react";
 import { GridSkeleton } from "@/components/catalog/GridSkeleton";
+import page from "@/components/ui/Page.module.css";
 import { Stat } from "@/components/ui/Stat";
 import { ko } from "@/content/ko";
 import { getAppsByCategory, getCategoryMeta, getCategoryStats, isAppCategory } from "@/features/catalog";
@@ -38,14 +39,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   // 카탈로그 히어로는 역할과 무관하므로 즉시 렌더하고, 역할 의존 부분은 Suspense 로 분리한다.
   return (
-    <div className={styles.page} data-tone={meta.tone}>
-      <Link href="/" className={styles.back}>
+    <div className={page.page} data-tone={meta.tone}>
+      <Link href="/" className={styles.back} data-variant="ghost">
         <ArrowLeft size={16} aria-hidden="true" />
         {ko.category.back}
       </Link>
 
       <section className={styles.hero} aria-labelledby="category-page-title">
-        <h1 id="category-page-title" className={styles.title}>
+        <h1 id="category-page-title" className={page.title}>
           {meta.label}
         </h1>
         <p className={styles.desc}>{meta.description}</p>

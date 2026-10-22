@@ -1,4 +1,4 @@
-/* 루트 not-found / error 화면. 셸(헤더·탭) 밖이지만 같은 폭·폰트·토큰을 쓴다. */
+/* 루트 not-found / error 화면. 셸(헤더·탭) 밖이지만 같은 폭·토큰을 쓴다 (C-8). 버튼은 Button 모듈을 직접 쓴다. */
 .screen {
   width: 100%;
   max-width: var(--shell-max);
@@ -9,16 +9,7 @@
   gap: 10px;
   margin: 0 auto;
   padding: 24px 16px calc(24px + var(--safe-b));
-  color: var(--c-text);
-  font-family: var(--font-sans);
-  line-height: 1.5;
   text-align: center;
-  word-break: keep-all;
-}
-
-.screen :is(h1, h2, h3) {
-  margin: 0;
-  font-family: inherit;
 }
 
 .icon {
@@ -31,20 +22,18 @@
   color: var(--c-brand);
 }
 
-.icon[data-tone="danger"] {
+.icon[data-variant="danger"] {
   background: var(--c-danger-soft);
   color: var(--c-danger);
 }
 
 .title {
   font-size: var(--fs-xl);
-  font-weight: 800;
   line-height: 1.2;
 }
 
 .body {
   max-width: 34ch;
-  margin: 0;
   color: var(--c-text-muted);
   font-size: var(--fs-md);
 }
@@ -57,34 +46,8 @@
   margin-top: 10px;
 }
 
-.button {
-  min-height: var(--tap);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 0 18px;
-  border: 0;
-  border-radius: var(--r-md);
-  background: var(--c-brand);
-  color: var(--c-paper);
-  font-size: var(--fs-sm);
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.button[data-variant="secondary"] {
-  background: var(--c-brand-soft);
-  color: var(--c-brand-deep);
-}
-
-.button:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--c-brand) 35%, transparent);
-  outline-offset: 2px;
-}
-
 .digest {
-  margin: 6px 0 0;
+  margin-top: 6px;
   color: var(--c-text-muted);
   font-size: var(--fs-xs);
   font-weight: 600;

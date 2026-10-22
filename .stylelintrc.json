@@ -1,0 +1,23 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "color-no-hex": true,
+    "selector-max-specificity": "0,2,0",
+    "declaration-no-important": true,
+    "import-notation": "string",
+    "selector-class-pattern": null,
+    "property-no-unknown": [true, { "ignoreProperties": ["composes"] }],
+    "value-keyword-case": ["lower", { "ignoreProperties": ["composes"] }],
+    "property-no-vendor-prefix": [true, { "ignoreProperties": ["-webkit-text-size-adjust"] }]
+  },
+  "overrides": [
+    {
+      "files": ["src/styles/tokens.css"],
+      "rules": { "color-no-hex": null }
+    },
+    {
+      "files": ["src/styles/base.css"],
+      "rules": { "declaration-no-important": null }
+    }
+  ]
+}

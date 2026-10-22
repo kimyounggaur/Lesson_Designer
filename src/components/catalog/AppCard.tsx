@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LockKeyhole, Play } from "lucide-react";
+import { Pill } from "@/components/ui/Pill";
 import { ko } from "@/content/ko";
 import {
   appLoginHref,
@@ -31,10 +32,10 @@ export function AppCard({ app, role, tone }: AppCardProps) {
         <span className={styles.iconWrap}>
           <Image src={app.icon} alt="" width={56} height={56} sizes="56px" className={styles.icon} />
         </span>
-        <span className={styles.status} data-state={allowed ? "open" : "locked"}>
+        <Pill variant={allowed ? "accent" : "warn"}>
           {allowed ? <Play size={12} aria-hidden="true" /> : <LockKeyhole size={12} aria-hidden="true" />}
           {allowed ? ko.catalog.open : ko.catalog.locked}
-        </span>
+        </Pill>
       </div>
 
       <div className={styles.body}>
@@ -53,7 +54,7 @@ export function AppCard({ app, role, tone }: AppCardProps) {
         >
           {ko.catalog.start}
           <Play size={14} aria-hidden="true" />
-          <span className={styles.srOnly}>{ko.catalog.opensInNewTab}</span>
+          <span className="sr-only">{ko.catalog.opensInNewTab}</span>
         </Link>
       ) : (
         <Link href={appLoginHref(app)} className={styles.action} data-variant="locked">

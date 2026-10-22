@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, SearchX } from "lucide-react";
+import button from "@/components/ui/Button.module.css";
 import { ko } from "@/content/ko";
 import styles from "./status.module.css";
 
@@ -16,7 +17,7 @@ export default function NotFound() {
       <h1 className={styles.title}>{ko.status.notFoundTitle}</h1>
       <p className={styles.body}>{ko.status.notFoundBody}</p>
       <div className={styles.actions}>
-        <Link href="/" className={styles.button}>
+        <Link href="/" className={button.button}>
           <ArrowLeft size={16} aria-hidden="true" />
           {ko.status.home}
         </Link>

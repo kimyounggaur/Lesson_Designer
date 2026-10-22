@@ -1,7 +1,4 @@
-/*
- * 디자인 토큰 1벌 (DESIGN.md §5.5).
- * 색·라운드·그림자·모션·타이포·레이아웃 값은 이 파일에만 둔다. 모듈 CSS 에서는 var() 로만 참조한다.
- */
+/* 디자인 토큰 1벌 (DESIGN.md §5.5). 색·라운드·그림자·모션·타이포·레이아웃 값은 이 파일에만 둔다. 모듈 CSS 에서는 var() 로만 참조한다. */
 :root {
   color-scheme: light;
 
@@ -18,7 +15,7 @@
   /* 중립 */
   --c-canvas: #f3f2ee;
   --c-rail: #f4f5fb;
-  --c-paper: #ffffff;
+  --c-paper: #fff;
   --c-text: #17172c;
   --c-text-muted: #7b7f92;
   --c-line: #e7e8f2;
@@ -34,14 +31,16 @@
   /* 톤 — 카테고리 테마. 기본은 브랜드, 루트 요소의 data-tone 으로만 전환한다 */
   --c-tone: var(--c-brand);
   --c-tone-soft: var(--c-brand-soft);
+  --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-brand) 22%, transparent);
 
   /* 라운드·그림자·모션 */
   --r-sm: 8px;
   --r-md: 15px;
   --r-lg: 24px;
   --r-pill: 999px;
-  --sh-card: 0 12px 24px rgba(20, 24, 52, 0.06);
-  --sh-float: 0 16px 34px rgba(63, 95, 216, 0.3);
+  --sh-card: 0 12px 24px rgb(20 24 52 / 6%);
+  --sh-float: 0 16px 34px rgb(63 95 216 / 30%);
+  --sh-ring: inset 0 0 0 1px color-mix(in srgb, var(--c-paper) 22%, transparent);
   --motion-fast: 180ms;
   --motion-base: 260ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -54,6 +53,7 @@
   --fs-lg: 18px;
   --fs-xl: 24px;
   --fs-2xl: 28px;
+  --fs-3xl: 34px;
 
   /* 레이아웃 */
   --shell-max: 480px;
@@ -64,9 +64,11 @@
 [data-tone="edu"] {
   --c-tone: var(--c-brand);
   --c-tone-soft: var(--c-brand-soft);
+  --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-brand) 22%, transparent);
 }
 
 [data-tone="play"] {
   --c-tone: var(--c-play);
   --c-tone-soft: var(--c-play-soft);
+  --sh-tone: 0 16px 32px color-mix(in srgb, var(--c-play) 22%, transparent);
 }

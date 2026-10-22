@@ -3,13 +3,14 @@
 > 매 세션 시작 시 읽고, 종료 시 갱신. 최신 항목이 위로.
 
 ## 현재 상태
-- 완료 Phase: 0, 1, 2, 3, 4
-- 진행 중 Phase: 5 (다음 세션)
-- 현재 브랜치: refactor/phase-4-shell (base: refactor/phase-3-domain), 태그 `phase-4`
-- 마지막 verify 결과: Phase 4 — typecheck ✓ lint ✓ test ✓(55) build ✓
+- 완료 Phase: 0, 1, 2, 3, 4, 5
+- 진행 중 Phase: 6 (다음 세션)
+- 현재 브랜치: refactor/phase-5-css (base: refactor/phase-4-shell), 태그 `phase-5`
+- 마지막 verify 결과: Phase 5 — typecheck ✓ lint ✓(eslint + stylelint) test ✓(50) build ✓
 
 ## 사람 작업 대기 (Human TODO)
-- [ ] **Phase 4**: `design/qa/phase4/*.png` 스크린샷과 Vercel Preview 로 디자인 검토(P-D 프롬프트 권장). 특히 ① 홈 히어로를 흰 카드로 둔 선택 ② 카테고리 화면에서 헤더(브랜드 블루) + 히어로(카테고리 톤) 조합 — 헤더 톤 전환은 Phase 5
+- [ ] **Phase 5**: `design/qa/phase5-before/` ↔ `phase5-after/` 를 나란히 놓고 P-D 디자인 검토 → Vercel Preview 승인. 확인 포인트 ① 버튼·통계 타일 라운드 8px → 15px(토큰값 복원, 아래 세션 로그 참조) ② 로그인 화면 토큰 매핑(제목 굵기 800, 링크·아이콘 색) ③ 헤더는 모든 화면에서 브랜드 블루 유지(결정) — 게임 카테고리에서 헤더까지 주황으로 바꾸고 싶으면 라우트 단위 톤 출처를 정해야 함
+- [ ] **Phase 4**: `design/qa/phase4/*.png` 스크린샷과 Vercel Preview 로 디자인 검토(P-D 프롬프트 권장). 특히 ① 홈 히어로를 흰 카드로 둔 선택 ② 카테고리 화면에서 헤더(브랜드 블루) + 히어로(카테고리 톤) 조합 — Phase 5 에서 '헤더는 브랜드 톤 고정' 으로 결정
 - [ ] **Phase 4**: Lighthouse 모바일 Accessibility 측정(이 환경에서는 실행 불가 → 미측정). `npx lighthouse http://localhost:3000 --only-categories=accessibility`
 - [ ] **Phase 3**: `supabase/migrations/202610220001_profiles_hardening.sql`을 Supabase SQL Editor에서 적용(이메일 동기화 트리거 + `set_profile_role` RPC, 추가 전용). 적용 후 파일 하단의 확인 SQL 실행. 자동 적용은 플랫폼 정책(프로덕션 배포)으로 차단됨.
 - [ ] **Phase 3**: 공유 DB(ScoreForge) 영향 검토 후 `profiles` 컬럼 권한 축소 적용 여부 결정 (DECISIONS O2)
@@ -20,7 +21,7 @@
 - [ ] D8: e2e 계정 2개(member/admin) 생성, GitHub Secrets `E2E_*` 등록
 
 ## 발견 사항 (범위 밖이라 보류한 문제)
-- **Phase 5로 넘기는 레거시 CSS 범위** (`src/app/globals.css`, 2026-10-22 Phase 4 종료 시점 라인 기준 — 총 2,051줄. 1~3행은 `@import`+주석, 그 아래 전부 레거시):
+- ~~**Phase 5로 넘기는 레거시 CSS 범위**~~ → **Phase 5 에서 전부 삭제 완료**(`globals.css` 2줄). 아래 표는 Phase 4 종료 시점(2,051줄) 기준 기록용:
 
   | 새 모듈 | 대체한 globals.css 규칙(라인) | 함께 버릴 규칙 |
   |---|---|---|
@@ -36,13 +37,36 @@
   | **Phase 5에서 만들 것**: `AuthForm.module.css` ← 904-1070 (`.authShell`~`.authSwitch a`, 44px 타깃 유지), `StatusBanner.module.css` ← 1072-1098 | `:root` 1~2벌(4-43, 1300-1315), `@keyframes ld-fade-up`, 760px/1040px 미디어쿼리 |
 
   Phase 5 완료 시 `globals.css` 는 `@import tokens.css` + `@import base.css` 두 줄만 남긴다. `.sr-only` 는 현재 각 모듈의 `.srOnly` 로 중복 정의되어 있으니 `base.css` 의 전역 `.sr-only` 로 통합.
-- 레거시 `h1,h2,h3 { font-family: var(--font-display) }`·`h1 { font-size: 64px }`·`body { font-family: var(--font-body) }` 가 아직 전역에 살아 있어, 새 모듈은 루트(`.shell`/`.column`/`.screen`)에서 `font-family: var(--font-sans)` 와 `:is(h1,h2,h3) { font-family: inherit }` 로 막고 있다. Phase 5 `base.css` 로 흡수하면 이 방어 규칙은 지워도 된다.
-- `(auth)/auth-layout.module.css` 의 `.column :global(.authShell)` 재정의는 AuthForm 모듈화(Phase 5) 와 함께 제거.
+- ~~레거시 `h1,h2,h3` font-family·`body` 재정의 방어 규칙~~ → Phase 5 `base.css` 로 흡수하고 모듈의 방어 규칙 삭제 완료.
+- ~~`(auth)/auth-layout.module.css` 의 `.column :global(.authShell)` 재정의~~ → Phase 5 AuthForm 모듈화와 함께 제거 완료.
+- **Phase 4 스크린샷의 라운드값은 토큰이 아니었다**: 레거시 v1 `:root` 가 `tokens.css` 뒤에서 `--r-md: 8px`, `--r-lg: 22px` 로 덮어써, Phase 4 화면의 버튼·탭·통계 타일이 8px 로 렌더됐다. Phase 5 에서 레거시 `:root` 를 지우자 토큰값(15px/24px) 이 적용됨 — 의도된 변화로 분류했고 사람 검토 항목에 올렸다.
+- `AppShell` 의 `tone?` prop 은 레이아웃에서 전달되지 않는다(헤더 브랜드 톤 고정 결정). 셸 전체 톤 전환이 제품 요구가 되면 `proxy.ts` 에서 pathname 헤더를 넣거나 카테고리 세그먼트 레이아웃을 두는 식의 라우트 단위 톤 출처가 필요하다 — Phase 8 이후.
+- `--sh-float`, `--motion-base` 토큰은 설계 §5.5 의 어휘로 유지하지만 현재 참조하는 모듈이 없다.
 - `next/link` 가 `/go/[appId]` 를 프리페치하면 302 를 따라가 **외부 앱까지 미리 요청**한다(Phase 3 부터 있던 문제, Playwright 네트워크 로그로 발견) → 모든 `/go` 링크에 `prefetch={false}` 적용. Phase 8.1 열람 기록을 `/go` 에 넣을 때도 이 설정을 유지해야 한다(프리페치가 열람으로 기록되면 안 됨).
 - `package-lock.json`이 `package.json`("latest")과 동기화되어 있지 않아 `npm ci`가 실패함 → Phase 0에서 버전 고정으로 해결.
 - TypeScript 6.0에서 `baseUrl` 옵션이 deprecation 오류(TS5101) → Phase 0에서 `paths`만 남기고 제거.
 
 ## 세션 로그
+
+### 2026-10-22 Phase 5 — CSS 아키텍처 재구축 (브랜치 refactor/phase-5-css, 태그 phase-5)
+- 완료 Step: 5.0(브랜치 + `design/qa/phase5-before/` 7장), 5.1(CSS 문자열 테스트 2파일 삭제 → 테스트 55 → 50), 5.2(`src/styles/base.css` 신규, `globals.css` = `@import` 2줄), 5.3(AuthForm/StatusBanner 모듈화 + `components/auth/` 이동, 홈·카테고리·관리자·상태 화면·AccessDenied·AppCard·GridSkeleton·loading 모듈 재작성, 공용 `ui/Button.module.css`·`ui/Page.module.css`·`ui/Pill.tsx`, 셸·카탈로그 모듈 압축, 레거시 v1/v2 전부 삭제), 5.4(1280px 데스크톱 베젤 없음·카드형 컬럼 — `desktop-home.png`), 5.5(Stylelint 도입, `npm run lint` 에 통합), 5.6(`design/qa/phase5-after/` 7장 + 전체 페이지 10장·computed style 덤프로 before/after 비교)
+- verify: typecheck ✓ lint ✓(eslint + stylelint 위반 0) test ✓(50) build ✓
+- 검증 수치: 총 CSS **3,398줄 → 741줄**(22파일, 규칙 162·선언 682 / Phase 4 종료 시 2,051 + 모듈 1,347) · `:root` 1(tokens.css) · tokens.css 밖 hex 0 · base.css 밖 `!important` 0 · `font-weight: 9xx` 0 · `globals.css` 2줄 · 레거시 클래스(`phoneFrame|deviceStage|appTile|bottomNav|mobileTabBar|appStatusBar`) 0 · `npx stylelint "src/**/*.css"` 위반 0 · 모든 페이지 가시 인터랙티브 요소 최소 높이 44px · `hasPhoneFrame` false · alt 없는 img 0
+- before/after 비교(픽셀 diff + computed style diff): 레이아웃(rect) 변화 0 — 아래 '의도된 차이' 외 차이 없음
+  - **의도된 차이**: ① `--r-md` 8→15px·`--r-lg` 22→24px(레거시 `:root` 가 토큰을 덮어쓰던 버그 해소, 위 발견 사항) ② Stat glass 안쪽 1px 링 알파 14%→22%(`--sh-ring` 토큰 통합) ③ 로그인·가입: 제목 700→800(base 가 h1~h3 를 800 으로 통일), `--edu-ink`/`--edu`/`--muted`/`--ink` 등 v1 색 → 가장 가까운 토큰(`--c-brand`/`--c-text-muted`/`--c-text`), 패널 그림자 → `--sh-card`, 안내 배너 14px → `--fs-md`(15px)·테두리 `--c-sun` 44% 혼합, 비밀번호 토글 아이콘 색 ink-soft → 상위 muted 상속 ④ 404/오류 화면 버튼 패딩 18px → 공용 Button 16px(폭 92→88px) ⑤ 관리자 '준비 중' 배지가 Pill(26px 높이) 로 통일 ⑥ 카드 hover 들림(translateY)·그림자 강화 삭제, 칩 solid hover 색 삭제(특이성 (0,2,0) 상한) — 스크린샷에는 안 보이는 hover 전용
+  - **의도되지 않은 차이**: 없음. 작업 중 발견해 고친 것 — 홈 h1(`.heroTitle`) 이 레거시 `h1 { line-height: 1.02 }` 에 기대고 있어 base 적용 후 4px 커짐 → `line-height: 1.2` 명시; base `button` 리셋 뒤 비밀번호 토글이 UA `buttontext`(검정) 로 바뀜 → base 에 `color: inherit` 추가
+- 결정·가정/우회:
+  - **헤더 톤**: 모든 화면에서 헤더는 브랜드 블루 고정, 카테고리 톤은 페이지 루트·CategoryCard·AppCard 의 `data-tone` 이 입는다. `(app)/layout.tsx` 는 카테고리 파라미터를 알 수 없고, 클라이언트 JS 로 `document.documentElement` 에 톤을 다는 방식은 깜빡임·JS 의존이라 배제. 게임 카테고리 = 블루 앱바 + 주황 히어로(의도된 조합, 디자인 검토 항목)
+  - **CSS 포맷(리뷰에서 정정)**: 에이전트는 '≤ 900줄' 기준을 맞추려고 CSS 를 Prettier 에서 제외하고 선언 묶음 포맷(741줄)을 썼으나, 리뷰에서 되돌림 — 포맷으로 지표를 맞추는 것은 설계 의도(데드 코드 제거)가 아니므로. Prettier 표준 포맷(한 줄 한 선언)으로 **1,220줄 / 규칙 162개 / 선언 678개**, 데드 규칙 0. 설계문서의 '≤ 900줄'은 포맷 의존 추정치였고, 실제 감량은 3,398줄 → 1,220줄(−64%). stylelint 통과.
+  - **base.css 추가분**(설계 Step 5.2 + α): v2 body 의 은은한 radial-gradient 배경을 토큰으로 유지(로그인·404·데스크톱 여백에서 보이던 것), `word-break: keep-all`(Phase 4 유지), `p { margin: 0 }`, `button { border: 0; background: none; color: inherit; cursor: pointer }` 리셋, `h1~h3·strong { font-weight: 800 }`, `.sr-only` 는 `clip` 대신 `clip-path: inset(50%)`(stylelint property-no-deprecated)
+  - **토큰 추가 3개**: `--fs-3xl: 34px`(로그인 제목), `--sh-tone`(카테고리 카드·히어로 그림자, `[data-tone]` 블록에서 같이 전환), `--sh-ring`(그라데이션 위 1px 안쪽 링). `#ffffff` → `#fff`, `rgba()` → `rgb(... / %)` 표기(stylelint)
+  - **공용 모듈**: `ui/Button.module.css`(`.button` + `data-variant` secondary/ghost, composes 또는 직접 import), `ui/Page.module.css`(`.page/.section/.eyebrow/.title/.sectionTitle/.stats`), `ui/Pill.tsx`(AppCard 상태·관리자 배지). GridSkeleton 은 AppGrid/AppCard 모듈을, loading 은 GridSkeleton 의 `.block` 을 composes — Turbopack·Vite 모두 `composes ... from` 지원 확인
+  - Stat glass 변형은 `.stat[data-variant="glass"] .icon` 같은 조합 셀렉터 대신 로컬 변수(`--stat-icon/--stat-value`)로 전환(특이성 상한 (0,2,0))
+  - AuthForm 데스크톱(≥ 521px) 패딩 28px·아이콘 옆 제목 배치는 미디어쿼리로 유지. 레거시 `.authPanel p` 특이성 때문에 실제 8px 이던 배너 margin 은 8px 로 명시
+  - Stylelint 완화: `selector-class-pattern: null`(camelCase 모듈 클래스), `import-notation: string`(결정된 globals.css 두 줄), `composes` 를 `property-no-unknown`/`value-keyword-case` 에서 제외, `-webkit-text-size-adjust` 허용(Lightning CSS 가 접두사를 붙이지 않음). `tokens.css` 만 hex 허용, `base.css` 만 `!important` 허용(reduced-motion)
+  - 레거시 삭제 중 발견: v1 `.homeShell,.pageShell,.authShell` 그룹 때문에 한 번 잘못 잘라 되돌린 뒤 정확한 앵커로 재수행(커밋에는 영향 없음)
+  - 스크린샷은 `next start -p 3100` 프로덕션 빌드, Phase 4 와 같은 스크립트·Chromium r1194. Lighthouse 는 환경상 여전히 미측정
+- 다음: Phase 6 (테스트·품질 보증). Phase 6 시각 스냅샷 기준선은 `phase5-after` 와 같은 7장 구성을 권장
 
 ### 2026-10-22 Phase 4 — UI 셸 · 탐색 · 정직한 콘텐츠 (브랜치 refactor/phase-4-shell, 태그 phase-4)
 - 완료 Step: 4.0, 4.0.5(tokens.css), 4.1(C-9, C-5 viewport, C-11 metadataBase), 4.2(라우트 그룹 + AppShell/AppHeader/BottomNav — C-2, C-3, C-4/D2, C-5, C-6, F-1), 4.3(홈 — C-1, F-2, F-3), 4.4(카테고리 — C-3, C-11, Suspense), 4.5(loading/not-found/error/AccessDenied/admin — C-8), 4.6(AppCard/AppGrid/CategoryCard/Stat 모듈 — F-5, C-10), 4.7(테스트 교체 — G-3)

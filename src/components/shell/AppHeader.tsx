@@ -47,7 +47,7 @@ export function AppHeader({ profile }: AppHeaderProps) {
           ) : null}
 
           {profile ? (
-            <form action={logoutAction} className={styles.form}>
+            <form action={logoutAction}>
               <button type="submit" className={styles.chip}>
                 <LogOut size={16} aria-hidden="true" />
                 {ko.shell.logout}

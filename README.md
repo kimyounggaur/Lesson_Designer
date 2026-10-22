@@ -46,8 +46,9 @@ env가 없으면 앱은 게스트 모드로 동작합니다(빌드·테스트에
 |---|---|
 | `npm run dev` / `build` / `start` | Next.js 개발·빌드·실행 |
 | `npm run typecheck` | `tsc --noEmit` |
-| `npm run lint` | ESLint (flat config, 경고 0 기준) |
-| `npm run format` / `format:check` | Prettier |
+| `npm run lint` | ESLint (flat config, 경고 0 기준) + `lint:css` |
+| `npm run lint:css` | Stylelint — 토큰 외 hex 금지, 특이성 상한 (0,2,0), `!important` 금지 |
+| `npm run format` / `format:check` | Prettier (TS/TSX/CSS/JSON) |
 | `npm test` / `test:watch` | Vitest 단위 테스트 |
 | `npm run test:e2e` | Playwright e2e |
 | `npm run verify` | typecheck → lint → test → build (CI와 동일) |
@@ -59,14 +60,16 @@ env가 없으면 앱은 게스트 모드로 동작합니다(빌드·테스트에
 ```
 proxy.ts                 Supabase 세션 갱신 (Next 16 proxy)
 src/app/                 App Router 라우트 — (app)/ 셸 있는 화면(홈·카테고리·관리), (auth)/ 로그인·가입, go/ 접근 게이트
-src/components/          UI 컴포넌트 — shell/(AppShell·AppHeader·BottomNav) catalog/(AppCard·AppGrid·CategoryCard) ui/(Stat·AccessDenied)
+src/components/          UI 컴포넌트 — shell/(AppShell·AppHeader·BottomNav) catalog/(AppCard·AppGrid·CategoryCard) auth/(AuthForm·StatusBanner) ui/(Stat·Pill·AccessDenied·Button/Page 모듈)
 src/features/            도메인 로직 (auth, catalog)
 src/lib/                 env, supabase 클라이언트, 공용 유틸
-src/styles/              디자인 토큰 1벌(tokens.css) — 새 CSS 는 CSS Modules + 토큰만 사용
+src/styles/              tokens.css(디자인 토큰 1벌) + base.css(리셋·.sr-only·포커스 링) — 그 외 CSS 는 전부 CSS Modules, 색·그림자·라운드는 토큰만 사용
 supabase/migrations/     DB 마이그레이션 (커밋된 파일은 수정하지 않음)
 docs/refactor/           리팩토링 설계·진행 문서
 design/                  디자인 산출물 (앱 빌드와 무관)
 ```
+
+CSS 는 CSS Modules + `src/styles/tokens.css` 토큰만 사용하며 Prettier 로 포맷하고 Stylelint(`npm run lint:css`: 토큰 외 hex 금지, 특이성 상한 (0,2,0), `!important` 금지)로 검사합니다.
 
 ## 의존성 메모
 

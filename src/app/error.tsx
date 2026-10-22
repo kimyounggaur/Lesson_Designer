@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, CircleAlert, RotateCcw } from "lucide-react";
 import { useEffect } from "react";
+import button from "@/components/ui/Button.module.css";
 import { ko } from "@/content/ko";
 import styles from "./status.module.css";
 
@@ -19,17 +20,17 @@ export default function ErrorScreen({ error, reset }: ErrorScreenProps) {
 
   return (
     <main className={styles.screen}>
-      <span className={styles.icon} data-tone="danger" aria-hidden="true">
+      <span className={styles.icon} data-variant="danger" aria-hidden="true">
         <CircleAlert size={30} />
       </span>
       <h1 className={styles.title}>{ko.status.errorTitle}</h1>
       <p className={styles.body}>{ko.status.errorBody}</p>
       <div className={styles.actions}>
-        <button type="button" className={styles.button} onClick={() => reset()}>
+        <button type="button" className={button.button} onClick={() => reset()}>
           <RotateCcw size={16} aria-hidden="true" />
           {ko.status.retry}
         </button>
-        <Link href="/" className={styles.button} data-variant="secondary">
+        <Link href="/" className={button.button} data-variant="secondary">
           <ArrowLeft size={16} aria-hidden="true" />
           {ko.status.home}
         </Link>
